@@ -11,7 +11,7 @@ using TMPro;
 public enum Status
 {
     needSunglasses,
-    needPainKillers,
+    needPainkillers,
     needCoffee
 }
 public class PlayerStatus : MonoBehaviour
@@ -38,7 +38,7 @@ public class PlayerStatus : MonoBehaviour
     public void InitStatusList() // public so can be called from outside if needed
     {
         statusList.Add(Status.needSunglasses);
-        statusList.Add(Status.needPainKillers);
+        statusList.Add(Status.needPainkillers);
         statusList.Add(Status.needCoffee);
     }
 
