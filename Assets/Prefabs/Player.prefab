@@ -135,7 +135,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 10, y: 10}
+  m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1321519639375395459
 CanvasRenderer:
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1247,6 +1247,11 @@ MonoBehaviour:
     strafe: Vertical
     run: Fire3
     jump: Jump
+  toggleInversion: 1
+  minInvertCooldown: 5
+  maxInvertCooldown: 15
+  invertCooldown: 5
+  invertTimer: 0
 --- !u!114 &3484394809789389964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1354,28 +1359,16 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 101179878207409771, guid: 37bda764a4c79b54f898828a8d84046d, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.1069255
-      objectReference: {fileID: 0}
-    - target: {fileID: 101179878207409771, guid: 37bda764a4c79b54f898828a8d84046d, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.1069255
-      objectReference: {fileID: 0}
-    - target: {fileID: 101179878207409771, guid: 37bda764a4c79b54f898828a8d84046d, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.1069255
-      objectReference: {fileID: 0}
-    - target: {fileID: 101179878207409771, guid: 37bda764a4c79b54f898828a8d84046d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.07514061
+      value: 0.075295
       objectReference: {fileID: 0}
     - target: {fileID: 101179878207409771, guid: 37bda764a4c79b54f898828a8d84046d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.15632054
+      value: -0.15522
       objectReference: {fileID: 0}
     - target: {fileID: 101179878207409771, guid: 37bda764a4c79b54f898828a8d84046d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.019093513
+      value: -0.01805
       objectReference: {fileID: 0}
     - target: {fileID: 101179878207409771, guid: 37bda764a4c79b54f898828a8d84046d, type: 3}
       propertyPath: m_LocalRotation.w
