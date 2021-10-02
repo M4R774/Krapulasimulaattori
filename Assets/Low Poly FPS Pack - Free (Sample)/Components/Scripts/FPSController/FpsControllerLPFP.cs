@@ -72,13 +72,15 @@ namespace FPSControllerLPFP
         // Tatu
         private bool isCrouching = false;
         private bool isInverted = false;
+        [Tooltip("Toggle random inversion on/off"), SerializeField]
+        private bool toggleInversion = true;
         [Tooltip("Minimum time before next invert."), SerializeField]
         private float minInvertCooldown = 5f;
         [Tooltip("Maximum time before next invert."), SerializeField]
         private float maxInvertCooldown = 15f;
-        [Tooltip("Maximum time before next invert."), SerializeField]
+        [Tooltip("Cooldown until next invert. DEBUG"), SerializeField]
         private float invertCooldown = 5.0f;
-        [Tooltip("Maximum time before next invert."), SerializeField]
+        [Tooltip("Current inversion timer. DEBUG"), SerializeField]
         private float invertTimer = 0.0f;
 
         /// Initializes the FpsController on start.
@@ -159,7 +161,7 @@ namespace FPSControllerLPFP
 			arms.position = transform.position + transform.TransformVector(armPosition);
             Jump();
             PlayFootstepSounds();
-            RandomInvert();
+            if (toggleInversion) { RandomInvert(); }
         }
 
         public void Crouch()
