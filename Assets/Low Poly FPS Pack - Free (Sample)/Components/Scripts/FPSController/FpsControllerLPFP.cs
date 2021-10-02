@@ -71,6 +71,15 @@ namespace FPSControllerLPFP
 
         // Tatu
         private bool isCrouching = false;
+        private bool isInverted = false;
+        [Tooltip("Minimum time before next invert."), SerializeField]
+        private float minInvertCooldown = 5f;
+        [Tooltip("Maximum time before next invert."), SerializeField]
+        private float maxInvertCooldown = 15f;
+        [Tooltip("Maximum time before next invert."), SerializeField]
+        private float invertCooldown = 5.0f;
+        [Tooltip("Maximum time before next invert."), SerializeField]
+        private float invertTimer = 0.0f;
 
         /// Initializes the FpsController on start.
         private void Start()
@@ -150,6 +159,7 @@ namespace FPSControllerLPFP
 			arms.position = transform.position + transform.TransformVector(armPosition);
             Jump();
             PlayFootstepSounds();
+            RandomInvert();
         }
 
         public void Crouch()
@@ -165,11 +175,52 @@ namespace FPSControllerLPFP
                 walkingSpeed = walkingSpeed * 2;
             }
         }
+        // Invert controls
+        private void Invert() {
+            isInverted = true;
+        }
+
+        private void StopInvert() {
+            isInverted = false;
+            invertCooldown = (float)UnityEngine.Random.Range(minInvertCooldown, maxInvertCooldown);
+        }
+
+        // Invert for a specific duration
+        private void InvertFor(float duration) {
+            // Only invert if not on cooldown
+            if (invertCooldown == 0.0f) {
+                invertTimer = duration;
+                Invert();
+            }
+        }
+
+        // Run or stop timers for random inversion
+        private void RandomInvert() {
+
+            // Currently inverted
+            if (invertTimer != 0.0f) {
+                invertTimer -= Time.deltaTime;
+                if (invertTimer <= 0) {
+                    invertTimer = 0.0f;
+                    StopInvert();
+                }
+            } else {
+                if (invertCooldown != 0.0f) {
+                    invertCooldown -= Time.deltaTime;
+                    if (invertCooldown < 0) {
+                        invertCooldown = 0.0f;
+                    }
+                } else {
+                    InvertFor((float)UnityEngine.Random.Range(2, 6));
+                }
+            }
+            
+        }
 
         private void RotateCameraAndCharacter()
         {
-            var rotationX = _rotationX.Update(RotationXRaw, rotationSmoothness);
-            var rotationY = _rotationY.Update(RotationYRaw, rotationSmoothness);
+            var rotationX = _rotationX.Update((isInverted ? -RotationXRaw : RotationXRaw), rotationSmoothness);
+            var rotationY = _rotationY.Update((isInverted ? -RotationYRaw : RotationYRaw), rotationSmoothness);
             var clampedY = RestrictVerticalRotation(rotationY);
             _rotationY.Current = clampedY;
 			var worldUp = arms.InverseTransformDirection(Vector3.up);
@@ -222,7 +273,8 @@ namespace FPSControllerLPFP
 
         private void MoveCharacter()
         {
-            var direction = new Vector3(input.Move, 0f, input.Strafe).normalized;
+
+            var direction = isInverted ? new Vector3(-input.Move, 0f, -input.Strafe).normalized : new Vector3(input.Move, 0f, input.Strafe).normalized;
             var worldDirection = transform.TransformDirection(direction);
             var velocity = worldDirection * (input.Run ? runningSpeed : walkingSpeed);
             //Checks for collisions so that the character does not stuck when jumping against walls.
