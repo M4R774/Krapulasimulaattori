@@ -42,6 +42,7 @@ public class CameraShake : MonoBehaviour
 			
 			shakeDuration -= Time.deltaTime * decreaseFactor;
             if (shakeDuration <= 0) {
+                shakeDuration = 0f;
                 SetCooldown();
             }
 		}
