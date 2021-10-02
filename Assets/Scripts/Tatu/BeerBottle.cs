@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BeerBottle : Item
+public class BeerBottle : Usable
 {
     [SerializeField] Material emptyBottleMaterial;
     [SerializeField] Material fullBottleMaterial;
@@ -17,15 +17,15 @@ public class BeerBottle : Item
             rend.material = emptyBottleMaterial;
         }
     }
-    void UseObject()
+    public override void UseObject()
     {
         // Separates the itemDescription according to if the item is usable or not
         string[] phrases = itemDescription.Split('*');
-        if(usable)
+        if (usable) {
             messageManager.DisplayDialogue(phrases[0]);
-        else
-        {
+        } else {
             messageManager.DisplayDialogue(phrases[1]);
+            Destroy(transform, 1);
         }
     }
 }

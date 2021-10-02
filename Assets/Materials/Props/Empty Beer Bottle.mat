@@ -111,6 +111,7 @@ Material:
     - _TextureFilterMode: 0
     - _UVAnimationMode: 0
     - _UVSec: 0
+    - _VertexColorBlendMode: 0
     - _VertexColorMode: 0
     - _ZWrite: 1
     m_Colors:
