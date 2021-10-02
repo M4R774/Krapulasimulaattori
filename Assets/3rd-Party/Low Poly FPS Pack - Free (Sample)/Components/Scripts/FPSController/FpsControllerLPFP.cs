@@ -165,8 +165,8 @@ namespace FPSControllerLPFP
 			arms.position = transform.position + transform.TransformVector(armPosition);
             Jump();
             PlayFootstepSounds();
-            if (_status.statusList.Contains(Status.needCoffee)) { RandomInvert(); }
-            if (_status.statusList.Contains(Status.needPainkillers)) { RandomShake(); }
+            if (_status.HasStatus(Status.needCoffee)) { RandomInvert(); }
+            if (_status.HasStatus(Status.needPainkillers)) { RandomShake(); }
         }
 
         public void Crouch()

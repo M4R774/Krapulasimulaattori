@@ -29,7 +29,7 @@ public class PlayerStatus : MonoBehaviour
 
     void Update()
     {
-        if(statusList.Count != 0)
+        if (statusList.Count != 0)
             statusText.text = statusList[0].ToString();
         else
             statusText.text = "";
@@ -44,13 +44,17 @@ public class PlayerStatus : MonoBehaviour
 
     public bool RemoveStatus(Status st)
     {
-        if(statusList.Contains(st))
-        {
+        if (HasStatus(st)) {
             statusList.Remove(st);
             dragRigidbodyUse.ObjectUsed();
             return true;
-        }
-        else
+        } else {
             return false;
+        }
+    }
+
+    public bool HasStatus(Status st)
+    {
+        return statusList.Contains(st);
     }
 }
