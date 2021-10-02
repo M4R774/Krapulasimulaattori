@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2777296266161339730}
   - component: {fileID: 2777296266161339757}
   - component: {fileID: 2777296266161339731}
-  m_Layer: 10
+  m_Layer: 6
   m_Name: Beer_bottle
   m_TagString: Interact
   m_Icon: {fileID: 0}
