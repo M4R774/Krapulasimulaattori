@@ -21,10 +21,10 @@ public abstract class Item : MonoBehaviour
             messageManager = FindObjectOfType<MessageManager>();
     }
 
-    void OnCollisionEnter(Collision col)
-    {
-        Vector3 collisionForce = col.impulse / Time.fixedDeltaTime;
-        Debug.Log(collisionForce);
-        GameEvents.current.OnCollisionSound(collisionForce, this.transform);
-    }
+    //void OnCollisionEnter(Collision col)
+    //{
+    //    Vector3 collisionForce = col.impulse / Time.fixedDeltaTime;
+    //    Debug.Log(collisionForce);
+    //    GameEvents.current.OnCollisionSound(collisionForce, this.transform);
+    //}
 }
