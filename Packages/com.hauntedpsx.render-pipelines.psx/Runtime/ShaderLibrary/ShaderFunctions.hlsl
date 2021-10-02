@@ -240,7 +240,7 @@ float3 ComputeFramebufferDiscretization(float3 color, float2 positionSS, float d
     float framebufferDitherWeight = _FramebufferDither * ditherWeight;
     if (framebufferDitherWeight > 0.0f)
     {
-        uint2 framebufferDitherTexelCoord = (uint2)floor(frac(positionSS * _FramebufferDitherSize.zw) * _FramebufferDitherSize.xy);
+        uint2 framebufferDitherTexelCoord = (uint2)floor(frac(positionSS * _FramebufferDitherScaleAndInverse.yy * _FramebufferDitherSize.zw) * _FramebufferDitherSize.xy);
         framebufferDither = LOAD_TEXTURE2D_LOD(_FramebufferDitherTexture, framebufferDitherTexelCoord, 0).a;
         framebufferDither = NoiseDitherRemapTriangularDistribution(framebufferDither);
         framebufferDither = lerp(0.5f, framebufferDither, framebufferDitherWeight);
@@ -259,7 +259,7 @@ void ComputeAndFetchAlphaClippingParameters(out float alphaClippingDither, out f
 {
     if (alphaClippingDitherIsEnabled > 0.5f)
     {
-        uint2 alphaClippingDitherTexelCoord = (uint2)floor(frac(positionSS * _AlphaClippingDitherSize.zw) * _AlphaClippingDitherSize.xy);
+        uint2 alphaClippingDitherTexelCoord = (uint2)floor(frac(positionSS * _FramebufferDitherScaleAndInverse.yy * _AlphaClippingDitherSize.zw) * _AlphaClippingDitherSize.xy);
         alphaClippingDither = LOAD_TEXTURE2D_LOD(_AlphaClippingDitherTexture, alphaClippingDitherTexelCoord, 0).a;
         alphaClippingDither = min(0.999f, alphaClippingDither);
         alphaForClipping = saturate(alpha * alphaClippingScaleBiasMinMax.x + alphaClippingScaleBiasMinMax.y);
@@ -348,7 +348,7 @@ float ComputeFogAlphaDiscretization(float alpha, float2 positionSS)
     float dither = 0.5f;
     if (_FogPrecisionAlphaDither > 0.0f)
     {
-        uint2 ditherTexelCoord = (uint2)floor(frac(positionSS * _FogPrecisionAlphaDitherSize.zw) * _FogPrecisionAlphaDitherSize.xy);
+        uint2 ditherTexelCoord = (uint2)floor(frac(positionSS * _FramebufferDitherScaleAndInverse.yy * _FogPrecisionAlphaDitherSize.zw) * _FogPrecisionAlphaDitherSize.xy);
         dither = LOAD_TEXTURE2D_LOD(_FogPrecisionAlphaDitherTexture, ditherTexelCoord, 0).a;
         dither = NoiseDitherRemapTriangularDistribution(dither);
         dither = lerp(0.5f, dither, _FogPrecisionAlphaDither);
@@ -470,5 +470,61 @@ float4 SampleTextureWithFilterModeN64(TEXTURE2D_PARAM(tex, samp), float2 uv, flo
     return A * weights.x + B * weights.y + C * weights.z;
 #endif
 }
+
+float2 ComputeRasterizationRTUV(float2 uv)
+{
+    return uv * _RasterizationRTScaledMaxSSAndUV.zw;
+}
+
+float2 ClampRasterizationRTUV(float2 uv)
+{
+    return clamp(uv, _RasterizationRTScaledClampBoundsUV.xy, _RasterizationRTScaledClampBoundsUV.zw);
+}
+
+bool ComputeRasterizationRTUVIsInBounds(float2 uv)
+{
+    return (min(uv.x, uv.y) >= 0.0f)
+        && (uv.x <= _RasterizationRTScaledMaxSSAndUV.z)
+        && (uv.y <= _RasterizationRTScaledMaxSSAndUV.w);
+}
+
+bool ComputeRasterizationRTPositionSSIsInBounds(float2 positionSS)
+{
+    return (min(positionSS.x, positionSS.y) >= 0.0f)
+        && (positionSS.x <= _RasterizationRTScaledMaxSSAndUV.x)
+        && (positionSS.y <= _RasterizationRTScaledMaxSSAndUV.y);
+}
+
+float2 ComputeRasterizationRTUVFlipVerticallyInBounds(float2 uv)
+{
+    return ComputeRasterizationRTUVIsInBounds(uv)
+        ? float2(
+            uv.x,
+            _RasterizationRTScaledMaxSSAndUV.w - uv.y
+        )
+        : uv;
+}
+
+float2 ComputeRasterizationRTPositionSSFlipVerticallyInBounds(float2 positionSS)
+{
+    return ComputeRasterizationRTPositionSSIsInBounds(positionSS)
+        ? float2(
+            positionSS.x,
+            _RasterizationRTScaledMaxSSAndUV.y - positionSS.y
+        )
+        : positionSS;
+}
+
+float2 ComputeRasterizationRTUVNormalizedFromAbsolute(float2 uvAbsolute)
+{
+    return uvAbsolute / _RasterizationRTScaledMaxSSAndUV.zw;
+}
+
+float2 ComputeRasterizationRTUVAbsoluteFromNormalized(float2 uvNormalized)
+{
+    return uvNormalized * _RasterizationRTScaledMaxSSAndUV.xy * _ScreenSizeRasterizationRTScaled.zw;
+}
+
+
 
 #endif
