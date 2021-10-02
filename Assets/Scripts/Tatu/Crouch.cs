@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Crouch : MonoBehaviour
 {
@@ -10,13 +11,13 @@ public class Crouch : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.C) && !isCrouching)
+        if(Input.GetButtonDown("Crouch") && !isCrouching)
         {
             isCrouching = true;
             capsuleCollider.height = 0;
             this.gameObject.SendMessage("Crouch",SendMessageOptions.DontRequireReceiver);
         }
-        else if(Input.GetKeyDown(KeyCode.C) && isCrouching)
+        else if(Input.GetButtonDown("Crouch") && isCrouching)
         {
             isCrouching = false;
             capsuleCollider.height = 1;
@@ -24,3 +25,4 @@ public class Crouch : MonoBehaviour
         }
     }
 }
+

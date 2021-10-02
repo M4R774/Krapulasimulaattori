@@ -1013,7 +1013,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967039
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: c6cfd82d2ec49c149a782ceac6cff8e2, type: 2}
+  m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -1037,8 +1037,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camTransform: {fileID: 3481009730736982122}
   shakeDuration: 0
-  shakeAmount: 0.04
-  decreaseFactor: 1
+  shakeAmount: 0.3
+  decreaseFactor: 0.75
   shakeCooldown: 0
 --- !u!1 &3484271724344047772
 GameObject:
@@ -1484,18 +1484,6 @@ PrefabInstance:
     - target: {fileID: 101179878207409771, guid: 37bda764a4c79b54f898828a8d84046d, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.032785416
-      objectReference: {fileID: 0}
-    - target: {fileID: 101179878207409771, guid: 37bda764a4c79b54f898828a8d84046d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.07529499
-      objectReference: {fileID: 0}
-    - target: {fileID: 101179878207409771, guid: 37bda764a4c79b54f898828a8d84046d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.018051133
-      objectReference: {fileID: 0}
-    - target: {fileID: 101179878207409771, guid: 37bda764a4c79b54f898828a8d84046d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.15522002
       objectReference: {fileID: 0}
     - target: {fileID: 101179878207409771, guid: 37bda764a4c79b54f898828a8d84046d, type: 3}
       propertyPath: m_LocalRotation.w

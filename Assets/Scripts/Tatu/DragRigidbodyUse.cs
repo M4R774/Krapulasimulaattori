@@ -96,10 +96,9 @@ public class DragRigidbodyUse : MonoBehaviour
 			}
 		}
 	}*/
-	
 	void Update ()
 	{
-		if(Input.GetButton(GrabButton))
+		if(Input.GetButton(GrabButton) || (GetTriggerFloat() > 0.5f))
 		{
 			if(!isObjectHeld)
 			{
@@ -357,4 +356,10 @@ public class DragRigidbodyUse : MonoBehaviour
 		isObjectHeld = false;
 		tryPickupObject = false;
 	}
+	float GetTriggerFloat()
+	{
+		float triggetIntensity = Input.GetAxis("Grab Trigger");
+		return triggetIntensity;
+	}
+	
 }
