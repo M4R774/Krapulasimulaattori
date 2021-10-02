@@ -19,6 +19,7 @@ public class BeerBottle : Item
     }
     void UseObject()
     {
+        Debug.Log("using object");
         // Separates the itemDescription according to if the item is usable or not
         string[] phrases = itemDescription.Split('*');
         if(usable)

@@ -169,7 +169,7 @@ public class DragRigidbodyUse : MonoBehaviour
 		if (Physics.Raycast (playerAim, out hit, PickupRange, layerMask))
 		{
 			objectHeld = hit.collider.gameObject;
-			Debug.Log(objectHeld);
+			//Debug.Log(objectHeld);
 
 			// Props that are movable
 			if(hit.collider.tag == Tags.m_InteractTag && tryPickupObject)
@@ -322,8 +322,10 @@ public class DragRigidbodyUse : MonoBehaviour
 	
     private void Use()
     {
+
 		if(objectHeld != null && objectHeld.GetComponent<Item>()) // && objectHeld.GetComponent<Item>().usable) // This caused a bug with items that are not usable but emit a message
 		{
+			Debug.Log(objectHeld + "UseObject should be called now");
 			objectHeld.SendMessage ("UseObject",SendMessageOptions.DontRequireReceiver); //Every script attached to the PickupObject that has a UseObject function will be called.
 		}
     }
@@ -333,7 +335,7 @@ public class DragRigidbodyUse : MonoBehaviour
 		if(objectHeld.GetComponent<Item>() && objectHeld.GetComponent<Item>().usable)
 		{
 			Color objectColor = objectHeld.GetComponent<Renderer>().materials[1].color;
-			Debug.Log(objectColor);
+			//Debug.Log(objectColor);
 			objectColor.a = 0.5f;
 			objectHeld.GetComponent<Renderer>().materials[1].color = objectColor;
 		}
@@ -343,7 +345,7 @@ public class DragRigidbodyUse : MonoBehaviour
 		if(objectHeld.GetComponent<Item>() && objectHeld.GetComponent<Item>().usable)
 		{
 			Color objectColor = objectHeld.GetComponent<Renderer>().materials[1].color;
-			Debug.Log(objectColor);
+			//Debug.Log(objectColor);
 			objectColor.a = 0f;
 			objectHeld.GetComponent<Renderer>().materials[1].color = objectColor;
 		}
