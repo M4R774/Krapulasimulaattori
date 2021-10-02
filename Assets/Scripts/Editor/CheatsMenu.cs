@@ -7,34 +7,34 @@ public class CheatsMenu : MonoBehaviour
     [MenuItem("Cheats/Reset Scene", false, 100)]
     static void ResetScene()
     {
-        Debug.Log("Reset Scene");
+        Debug.Log("Reset Scene #&%r");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    [MenuItem("Cheats/Reset Scene", true, 100)]
+    [MenuItem("Cheats/Reset Scene #&%r", true, 100)]
     static bool ValidateResetScene()
     {
         return Application.isPlaying;
     }
 
-    [MenuItem("Cheats/Log Selected Transform Name", false, 100)]
-    static void LogSelectedTransformName()
-    {
-        Debug.Log("Selected Transform is on " + Selection.activeTransform.gameObject.name + ".");
-    }
+    //[MenuItem("Cheats/Log Selected Transform Name", false, 100)]
+    //static void LogSelectedTransformName()
+    //{
+    //    Debug.Log("Selected Transform is on " + Selection.activeTransform.gameObject.name + ".");
+    //}
 
-    [MenuItem("Cheats/Log Selected Transform Name", true, 100)]
-    static bool ValidateLogSelectedTransformName()
-    {
-        // Return false if no transform is selected.
-        return Selection.activeTransform != null;
-    }
+    //[MenuItem("Cheats/Log Selected Transform Name", true, 100)]
+    //static bool ValidateLogSelectedTransformName()
+    //{
+    //    // Return false if no transform is selected.
+    //    return Selection.activeTransform != null;
+    //}
 
-    [MenuItem("Cheats/Do Something with a Shortcut Key %g", false, 110)]
-    static void DoSomethingWithAShortcutKey()
-    {
-        Debug.Log("Doing something with a Shortcut Key...");
-    }
+    //[MenuItem("Cheats/Do Something with a Shortcut Key %g", false, 110)]
+    //static void DoSomethingWithAShortcutKey()
+    //{
+    //    Debug.Log("Doing something with a Shortcut Key...");
+    //}
 
     //[MenuItem("CONTEXT/Rigidbody/Double Mass")]
     //static void DoubleMass(MenuCommand command)
