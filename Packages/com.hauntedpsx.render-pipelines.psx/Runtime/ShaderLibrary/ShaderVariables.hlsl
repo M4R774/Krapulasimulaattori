@@ -52,6 +52,11 @@
 #define PSX_FOG_BLEND_MODE_SUBTRACTIVE (2)
 #define PSX_FOG_BLEND_MODE_MULTIPLY (3)
 
+// Warning: These definitions must stay in sync with VertexColorBlendMode enum.
+#define PSX_VERTEX_COLOR_BLEND_MODE_MULTIPLY (0)
+#define PSX_VERTEX_COLOR_BLEND_MODE_ADDITIVE (1)
+#define PSX_VERTEX_COLOR_BLEND_MODE_SUBTRACTIVE (2)
+
 // Globals:
 // Unity Standard:
 //
@@ -111,6 +116,9 @@ float _TonemapperCrossTalkSaturation;
 
 float4 _ScreenSize;
 float4 _ScreenSizeRasterization;
+float4 _ScreenSizeRasterizationRTScaled;
+float4 _RasterizationRTScaledClampBoundsUV;
+float4 _RasterizationRTScaledMaxSSAndUV;
 
 float4x4 glstate_matrix_projection;
 float4x4 unity_MatrixV;
@@ -222,6 +230,7 @@ SAMPLER(samplerunity_ShadowMask);
 TEXTURE2D(_FramebufferDitherTexture);
 float4 _FramebufferDitherSize;
 float _FramebufferDither;
+float2 _FramebufferDitherScaleAndInverse;
 
 
 TEXTURE2D(_AlphaClippingDitherTexture);

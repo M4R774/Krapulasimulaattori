@@ -1,4 +1,43 @@
 ---------------------------------------------------------------------------------------------------------------------------
+Bugfix: **CRT Shader Scanline Size and Vignette**
+---------------------------------------------------------------------------------------------------------------------------
+Fixed bug where scanline size and vignette was incorrect when scaled render targets were encountered.
+
+---------------------------------------------------------------------------------------------------------------------------
+Bugfix: **CRT Shader Vertical Flip Logic**
+---------------------------------------------------------------------------------------------------------------------------
+Fixed bug where some CameraVolume aspect modes did not render correctly on hardware that requires flipped Y in the CRT shader.
+
+---------------------------------------------------------------------------------------------------------------------------
+New Material Feature: **Vertex Color Blend Modes**
+---------------------------------------------------------------------------------------------------------------------------
+Controls how vertex colors are blended with MainColor|MainTex.
+**Multiply** The standard vertex color blend mode, the vertexColor.rgba channels are multiplied against the MainColor.rgba channels.
+**Additive** adds the vertexColor.rgb * vertexColor.a result to the MainColor.rgb channels. vertexColor.a is multiplied against MainColor.a to support alpha fade out.
+**Subtractive** subtracts the vertexColor.rgb * vertexColor.a result from the MainColor.rgb channels. vertexColor.a is multiplied against MainColor.a to support alpha fade out.
+
+---------------------------------------------------------------------------------------------------------------------------
+New Material Feature: **Vertex Color Mode: Split Color And Lighting**
+---------------------------------------------------------------------------------------------------------------------------
+**Split Color And Lighting**: A hybrid of VertexColorMode.Color and VertexColorMode.Lighting. Vertex colors >= 0.5 are rescaled and treated as VertexColorMode.Lighting. Vertex colors < 0.5 are rescaled and treated as VertexColorMode.Color. This mode is experimental. Looking for feedback from users. Expect potential modifications to the underlying implementation in future releases.
+
+---------------------------------------------------------------------------------------------------------------------------
+New Precision Volume Feature: **Dither Size**
+---------------------------------------------------------------------------------------------------------------------------
+**Dither Size**: Controls the size (in rasterization resolution pixels) of screen space dither.
+A value of 1 results in standard, 1:1 mapping between rasterization resolution pixels and dither pattern pixels.
+Values > 1 result a dither pattern that covers multiple rasterization resolution pixels.
+Values > 1 are useful for aesthetic purposes, particularly with higher rasterization resolutions, where you want the dither pattern to be more noticable / clear.
+
+---------------------------------------------------------------------------------------------------------------------------
+Bugfix Render Target + Viewport Scaling Issue
+---------------------------------------------------------------------------------------------------------------------------
+Fix up multiple bugs introduced by new RTHandleSystem use. The RTHandleSystem will only allocate new Render Textures if the requested size is greater then the previously max allocated size.
+On the first frame, all Render Textures exactly match the rasterization resolution. However, if resolution changes occur, such as from window resizing, toggling of PSX Quality, or changes to target rasterization resolution, multiple bugs existed due to incorrect viewport setting and / or UV calculation.
+Viewports are now correctly set, and all existing affected passes (blit, AccumulationMotionBlur, CRT) have been fixed up to correctly handle these cases.
+For context, multiple users reported seeing this issue with incorrect dither size, incorrect geometry precision, and incorrect aspect ratios. These have all been fixed.
+
+---------------------------------------------------------------------------------------------------------------------------
 Bugfix Compression Volume
 ---------------------------------------------------------------------------------------------------------------------------
 Compression volume rendering code was erroneously disabled in 1.4.0. Reenabled it.

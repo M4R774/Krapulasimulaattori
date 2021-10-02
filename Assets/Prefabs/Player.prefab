@@ -1283,7 +1283,7 @@ MonoBehaviour:
   DoorGrab:
     m_DoorPickupRange: 1.5
     m_DoorThrow: 0
-    m_DoorDistance: 1
+    m_DoorDistance: 1.5
     m_DoorMaxGrab: 3
   NoteGrab:
     m_FreezeRotation: 0
@@ -1299,7 +1299,7 @@ MonoBehaviour:
     m_SwitchTag: Switch
   layerMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 64
 --- !u!114 &3484394809789389967
 MonoBehaviour:
   m_ObjectHideFlags: 0
