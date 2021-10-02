@@ -65,6 +65,7 @@ namespace FPSControllerLPFP
         private SmoothRotation _rotationY;
         private SmoothVelocity _velocityX;
         private SmoothVelocity _velocityZ;
+        [SerializeField] private CameraShake _cameraShake;
         private bool _isGrounded;
 
         private readonly RaycastHit[] _groundCastResults = new RaycastHit[8];
@@ -99,6 +100,7 @@ namespace FPSControllerLPFP
             _rotationY = new SmoothRotation(RotationYRaw);
             _velocityX = new SmoothVelocity();
             _velocityZ = new SmoothVelocity();
+            //_cameraShake = transform.Find("Main Camera").GetComponent<CameraShake>();
             Cursor.lockState = CursorLockMode.Locked;
             ValidateRotationRestriction();
         }
@@ -164,6 +166,7 @@ namespace FPSControllerLPFP
             Jump();
             PlayFootstepSounds();
             if (_status.statusList.Contains(Status.needCoffee)) { RandomInvert(); }
+            if (_status.statusList.Contains(Status.needPainkillers)) { RandomShake(); }
         }
 
         public void Crouch()
@@ -223,6 +226,12 @@ namespace FPSControllerLPFP
                 }
             }
             
+        }
+
+        private void RandomShake() {
+            if (!_cameraShake.IsShaking) {
+                _cameraShake.shakeDuration = (float)UnityEngine.Random.Range(1,6);  
+            }
         }
 
         private void RotateCameraAndCharacter()

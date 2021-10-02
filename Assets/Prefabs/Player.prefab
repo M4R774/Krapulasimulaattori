@@ -955,6 +955,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3481009730736982122}
   - component: {fileID: 3464837693879814816}
+  - component: {fileID: 1738933042057194107}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1020,6 +1021,23 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1738933042057194107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3484199021066931564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9db1c5ac145b34da78ace32758b9c11c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camTransform: {fileID: 3481009730736982122}
+  shakeDuration: 0
+  shakeAmount: 0.04
+  decreaseFactor: 1
+  shakeCooldown: 0
 --- !u!1 &3484271724344047772
 GameObject:
   m_ObjectHideFlags: 0
@@ -1247,6 +1265,7 @@ MonoBehaviour:
     strafe: Vertical
     run: Fire3
     jump: Jump
+  _cameraShake: {fileID: 1738933042057194107}
   toggleInversion: 1
   minInvertCooldown: 5
   maxInvertCooldown: 15
@@ -1283,7 +1302,7 @@ MonoBehaviour:
   DoorGrab:
     m_DoorPickupRange: 1.5
     m_DoorThrow: 0
-    m_DoorDistance: 1
+    m_DoorDistance: 1.5
     m_DoorMaxGrab: 3
   NoteGrab:
     m_FreezeRotation: 0
@@ -1299,7 +1318,7 @@ MonoBehaviour:
     m_SwitchTag: Switch
   layerMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 64
 --- !u!114 &3484394809789389967
 MonoBehaviour:
   m_ObjectHideFlags: 0
