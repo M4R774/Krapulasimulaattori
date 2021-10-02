@@ -57,6 +57,7 @@ namespace FPSControllerLPFP
         private FpsInput input;
 #pragma warning restore 649
 
+        private PlayerStatus _status;
         private Rigidbody _rigidbody;
         private CapsuleCollider _collider;
         private AudioSource _audioSource;
@@ -86,6 +87,7 @@ namespace FPSControllerLPFP
         /// Initializes the FpsController on start.
         private void Start()
         {
+            _status = GameObject.Find("GameManager").GetComponent<PlayerStatus>();
             _rigidbody = GetComponent<Rigidbody>();
             _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
             _collider = GetComponent<CapsuleCollider>();
@@ -161,7 +163,7 @@ namespace FPSControllerLPFP
 			arms.position = transform.position + transform.TransformVector(armPosition);
             Jump();
             PlayFootstepSounds();
-            if (toggleInversion) { RandomInvert(); }
+            if (_status.statusList.Contains(Status.needCoffee)) { RandomInvert(); }
         }
 
         public void Crouch()
@@ -198,6 +200,10 @@ namespace FPSControllerLPFP
 
         // Run or stop timers for random inversion
         private void RandomInvert() {
+            if (toggleInversion == false) {
+                isInverted = false;
+                return;
+            }
 
             // Currently inverted
             if (invertTimer != 0.0f) {
