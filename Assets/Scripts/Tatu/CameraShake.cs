@@ -35,6 +35,9 @@ public class CameraShake : MonoBehaviour
     float startTime;
 	Vector3 originalPos;
 
+	// Shake reaction
+	bool canTalk = true;
+
     public bool IsShaking {
         get { return shakeDuration > 0; }
     }
@@ -66,6 +69,11 @@ public class CameraShake : MonoBehaviour
 		if (shakeDuration > 0 && shakeCooldown == 0f)
 		{
 
+			if(canTalk)
+			{
+				canTalk = false;
+				messageManager.DisplayDialogue(shakeReactionText);
+			}
 			if (timeElapsed < lerpDuration)
 			{
 				camTransform.localPosition = Vector3.Lerp(startPos, endPos, timeElapsed / lerpDuration);
@@ -89,6 +97,10 @@ public class CameraShake : MonoBehaviour
 		}
 		else
 		{
+			if(!canTalk)
+			{
+				canTalk = true;
+			}
 			shakeDuration = 0f;
 			//camTransform.localPosition = originalPos;
 			if (timeElapsed < lerpDuration)
@@ -116,7 +128,6 @@ public class CameraShake : MonoBehaviour
         if (shakeCounter == 0 || shakeCounter % shakeInterval == 0)
         {
            _shakeReactionAudioSource.PlayOneShot(shakeReactionClip);
-		   messageManager.DisplayDialogue(shakeReactionText);
         }
     }
 }

@@ -12,6 +12,7 @@ public class Bed : Usable
     FpsControllerLPFP fpsController;
     Rigidbody playerRigidbody;
     Collider playerCollider;
+    Coroutine sleepCoroutine;
 
     [SerializeField] Transform sleepPosition;
     [SerializeField] Transform wakeUpPosition;
@@ -23,16 +24,25 @@ public class Bed : Usable
     // Time when the movement started.
     float startTime;
 
-    private void Start()
+    private void Awake()
     {
         player = GameObject.Find("Player");
         fpsController = player.GetComponent<FpsControllerLPFP>();
         playerRigidbody = player.GetComponent<Rigidbody>();
         playerCollider = player.GetComponent<Collider>();
     }
+    /*private void Start()
+    {
+        player = GameObject.Find("Player");
+        fpsController = player.GetComponent<FpsControllerLPFP>();
+        playerRigidbody = player.GetComponent<Rigidbody>();
+        playerCollider = player.GetComponent<Collider>();
+    }*/
 
     public override void OnUseItem() {
-        StartCoroutine("MoveToBed");
+        
+        if(sleepCoroutine == null)
+            sleepCoroutine = StartCoroutine("MoveToBed");
     }
     IEnumerator MoveToBed()
     {
@@ -83,6 +93,40 @@ public class Bed : Usable
         playerRigidbody.isKinematic = false;
         playerCollider.enabled = true;
 
+        sleepCoroutine = null;
+        yield return null;
+
         // TODO: Play sound
+    }
+    public void WakeUp()
+    {
+        sleepCoroutine = StartCoroutine("GetOutFromBed");
+    }
+    IEnumerator GetOutFromBed()
+    {
+        playerRigidbody.isKinematic = true;
+        playerCollider.enabled = false;
+        startMarker = player.transform;
+        startTime = Time.time;
+        journeyLength = Vector3.Distance(player.transform.position, wakeUpPosition.position);
+
+        while (Vector3.Distance(player.transform.position, wakeUpPosition.position) > .01f)
+        {
+            // Distance moved equals elapsed time times speed..
+            float distCovered = (Time.time - startTime) * speed;
+
+            // Fraction of journey completed equals current distance divided by total distance.
+            float fractionOfJourney = distCovered / journeyLength;
+
+            // Set our position as a fraction of the distance between the markers.
+            player.transform.position = Vector3.Lerp(player.transform.position, wakeUpPosition.position, fractionOfJourney);
+            player.transform.rotation = Quaternion.Lerp(player.transform.rotation, wakeUpPosition.rotation, fractionOfJourney);
+            yield return new WaitForFixedUpdate();
+        }
+        fpsController.enabled = true;
+        playerRigidbody.isKinematic = false;
+        playerCollider.enabled = true;
+        sleepCoroutine = null;
+        yield return null;
     }
 }

@@ -19,6 +19,7 @@ public class BlackoutScreen : MonoBehaviour
     // Game Start logic
     [SerializeField] FpsControllerLPFP fpsController;
     [SerializeField] CameraShake cameraShake;
+    [SerializeField] Bed bed;
 
     // Start is called before the first frame update
     void Awake()
@@ -29,6 +30,7 @@ public class BlackoutScreen : MonoBehaviour
     private void Start()
     {
         _audioSource = GameObject.Find("PlayerAudioSource").GetComponent<AudioSource>();
+        bed.WakeUp();
     }
 
     // Update is called once per frame
