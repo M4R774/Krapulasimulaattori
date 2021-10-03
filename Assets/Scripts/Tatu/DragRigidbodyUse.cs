@@ -358,8 +358,9 @@ public class DragRigidbodyUse : MonoBehaviour
 	}
 	float GetTriggerFloat()
 	{
-		float triggetIntensity = Input.GetAxis("Grab Trigger");
-		return triggetIntensity;
+		
+		float triggerIntensity = Input.GetAxis("Grab Trigger");
+		return triggerIntensity;
 	}
 	
 }

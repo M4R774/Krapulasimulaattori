@@ -35,5 +35,6 @@ public class GameEvents : MonoBehaviour
         {
             onCollisionSound(force, impactTransform);
         }
-    }  
+    }
+
 }
