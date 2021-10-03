@@ -194,7 +194,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blackoutSquare: {fileID: 1866214738183698923}
   whiteoutSquare: {fileID: 6572714179375620700}
+  _audioSource: {fileID: 0}
   fadeFromBlackReactionClip: {fileID: 8300000, guid: e14a99d69422c0442af46225e3f9453b, type: 3}
+  fadeFromBlackReactionText: 
+  messageManager: {fileID: 0}
+  fpsController: {fileID: 0}
+  cameraShake: {fileID: 0}
+  bed: {fileID: 0}
 --- !u!225 &3333696394210053248
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1189,6 +1195,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camTransform: {fileID: 3481009730736982122}
+  messageManager: {fileID: 0}
+  shakeReactionText: 
   shakeReactionClip: {fileID: 8300000, guid: 42fe58f5a9c9b464f921bc2286c2bd47, type: 3}
   shakeInterval: 2
   shakeDuration: 0
@@ -1431,6 +1439,9 @@ MonoBehaviour:
   maxInvertCooldown: 15
   invertCooldown: 5
   invertTimer: 0
+  messageManager: {fileID: 0}
+  invertedReactionText: 
+  canMove: 0
 --- !u!114 &3484394809789389964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1449,14 +1460,19 @@ MonoBehaviour:
   GrabButton: Grab
   ThrowButton: Throw
   UseButton: Use
+  upwardRotationTorqueFactor: 10
   ObjectGrab:
     m_FreezeRotation: 0
+    m_UpwardRotation: 0
+    m_UpwardRotationAngularDrag: 10
     m_PickupRange: 2
     m_ThrowStrength: 50
     m_distance: 1
     m_maxDistanceGrab: 2
   ItemGrab:
     m_FreezeRotation: 0
+    m_UpwardRotation: 0
+    m_UpwardRotationAngularDrag: 10
     m_ItemPickupRange: 1.5
     m_ItemThrow: 45
     m_ItemDistance: 0.7
@@ -1468,6 +1484,8 @@ MonoBehaviour:
     m_DoorMaxGrab: 3
   NoteGrab:
     m_FreezeRotation: 0
+    m_UpwardRotation: 0
+    m_UpwardRotationAngularDrag: 10
     m_ItemPickupRange: 2
     m_ItemThrow: 45
     m_ItemDistance: 0.5
@@ -1495,6 +1513,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   capsuleCollider: {fileID: 3583708440525084614}
   fpsController: {fileID: 3484394809789389966}
+  forceCrouch: 0
 --- !u!81 &7284714272173737302
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1517,6 +1536,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baselineHeartRate: 90
   heartRateBPM: 0
+  heartRateThreshold: 150
+  crouchScriprt: {fileID: 3484394809789389967}
 --- !u!1 &3484765941082644360
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,14 +6,22 @@ public class PlayerStats : MonoBehaviour
 {
     [SerializeField] double baselineHeartRate = 90; // BPM
     [SerializeField] double heartRateBPM; // Heart rate as BPM
+    AudioSource heartAudioSource;
+    GameObject heart;
+    [Tooltip("If this threshold is exceeded to player crouches and moves slower."),SerializeField] double heartRateThreshold;
     Animator heartAnimator;
+    [SerializeField] Crouch crouchScriprt;
+    [SerializeField] MessageManager messageManager;
 
     void Start()
     {
+        StartCoroutine("HeartRateCheckRoutine");
         GameObject[] heartAnimatorGameObjects = GameObject.FindGameObjectsWithTag("HeartUI");
         if (heartAnimatorGameObjects.Length > 0)
         {
-            heartAnimator = heartAnimatorGameObjects[0].GetComponent<Animator>();
+            heart = heartAnimatorGameObjects[0];
+            heartAudioSource = heart.GetComponent<AudioSource>();
+            heartAnimator = heart.GetComponent<Animator>();
         }
         else
         {
@@ -21,6 +29,7 @@ public class PlayerStats : MonoBehaviour
                 "the gameobject with the heart animator tagged with 'HeartUI'? ");
         }
         ResetHeartRateToBaseline();
+        StartCoroutine("PlayHeartSound");
     }
 
     // Update is called once per frame
@@ -30,6 +39,31 @@ public class PlayerStats : MonoBehaviour
         double newHeartRate = heartRateBPM + Time.deltaTime; // 1s in irl -> +1 BPM to heart rate
         SetHeartRate(newHeartRate);
         // TODO: Näkymän reunoilla näkyvä punainen syke
+    }
+
+    private void FixedUpdate()
+    {
+        
+    }
+
+    public IEnumerator HeartRateCheckRoutine()
+    {
+        while(true)
+        {
+            Debug.Log(string.Format("BP {0} threshold {1}", heartRateBPM, heartRateThreshold));
+            if (heartRateBPM > heartRateThreshold)
+            {
+                Debug.Log("Forcing crouch");
+                crouchScriprt.forceCrouch = true;
+                messageManager.DisplayDialogue("Hells bells my heart!* It is about to burst!* I need to go to bed!");
+                // TODO add audiosource and audio clip for dialog
+            }
+            else
+            {
+                crouchScriprt.forceCrouch = false;
+            }
+            yield return new WaitForSeconds(1);
+        }
     }
 
     public void ResetHeartRateToBaseline()
@@ -46,11 +80,22 @@ public class PlayerStats : MonoBehaviour
 
     double ConvertBPMToAnimationSpeed(double bpm)
     {
-        return bpm / 120;
+        return bpm / 72;
     }
 
     double ConvertAnimationSpeedToBPM(double animationSpeed)
     {
-        return animationSpeed * 120;
+        return animationSpeed * 72;
+    }
+
+    IEnumerator PlayHeartSound()
+    {
+        // TODO: Adjust volume
+        while (true)
+        {
+            heartAudioSource.volume = (float)((heartRateBPM - 100) / 100);
+            heartAudioSource.Play();
+            yield return new WaitForSeconds((float)(60f / heartRateBPM));
+        }
     }
 }
