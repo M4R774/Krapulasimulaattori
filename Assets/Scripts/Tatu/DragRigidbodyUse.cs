@@ -167,7 +167,7 @@ public class DragRigidbodyUse : MonoBehaviour
         {
             Rigidbody objectHeldRb = objectHeld.GetComponent<Rigidbody>();
             Vector3 torque = Vector3.Cross(objectHeldRb.transform.up, Vector3.up);
-            Debug.DrawRay(objectHeldRb.transform.position, torque, Color.green);
+            // Debug.DrawRay(objectHeldRb.transform.position, torque, Color.green);
             objectHeldRb.AddTorque(torque * upwardRotationTorqueFactor);
         }
     }
@@ -314,10 +314,9 @@ public class DragRigidbodyUse : MonoBehaviour
         float dist = Vector3.Distance(objectHeld.transform.position, playerCam.transform.position);
 
         Vector3 nextPos = playerCam.transform.position + playerAim.direction * distance;
-        //Vector3 nextPos = playerCam.transform.position + playerAim.direction; // * dist;
         Vector3 currPos = objectHeld.transform.position;
 
-        objectHeld.GetComponent<Rigidbody>().velocity = (nextPos - currPos).normalized * Mathf.Clamp(Vector3.Distance(nextPos, currPos), 0f, 0.2f) * 10;
+        objectHeld.GetComponent<Rigidbody>().AddForce((nextPos - currPos).normalized * Mathf.Clamp(Vector3.Distance(nextPos, currPos), 0f, 0.2f) * 100);
 
         if (Vector3.Distance(objectHeld.transform.position, playerCam.transform.position) > maxDistanceGrab)
         {
