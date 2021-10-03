@@ -163,12 +163,15 @@ public class DragRigidbodyUse : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (ObjectGrab.m_UpwardRotation && objectHeld)
+        if (objectHeld)
         {
             Rigidbody objectHeldRb = objectHeld.GetComponent<Rigidbody>();
-            Vector3 torque = Vector3.Cross(objectHeldRb.transform.up, Vector3.up);
-            // Debug.DrawRay(objectHeldRb.transform.position, torque, Color.green);
-            objectHeldRb.AddTorque(torque * upwardRotationTorqueFactor);
+            if (ObjectGrab.m_UpwardRotation && objectHeldRb)
+            {
+                Vector3 torque = Vector3.Cross(objectHeldRb.transform.up, Vector3.up);
+                // Debug.DrawRay(objectHeldRb.transform.position, torque, Color.green);
+                objectHeldRb.AddTorque(torque * upwardRotationTorqueFactor);
+            }
         }
     }
 
