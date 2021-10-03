@@ -6,6 +6,7 @@ public class BeerBottle : Usable
 {
     [SerializeField] Material emptyBottleMaterial;
     [SerializeField] Material fullBottleMaterial;
+    public GameObject whiteoutSquare;
 
     void Awake()
     {
