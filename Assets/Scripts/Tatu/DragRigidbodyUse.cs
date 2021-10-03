@@ -3,6 +3,7 @@ DragRigidbodyUse.cs ver. 11.1.16 - wirted by ThunderWire Games * Script for Drag
 */
 
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -49,6 +50,8 @@ public class DragRigidbodyUse : MonoBehaviour
 {
 	
 	public GameObject playerCam;
+	public GameObject pointer;
+	public GameObject grabPointer;
 	
 	public string GrabButton = "Grab";
 	public string ThrowButton = "Throw";
@@ -63,6 +66,7 @@ public class DragRigidbodyUse : MonoBehaviour
 	private float ThrowStrength = 50f;
 	private float distance = 3f;
 	private float maxDistanceGrab = 4f;
+	private float pointerUseRange = 1.2f;
 	
 	private Ray playerAim;
 	private GameObject objectHeld;
@@ -137,7 +141,8 @@ public class DragRigidbodyUse : MonoBehaviour
 			objectHeld.GetComponent<Rigidbody>().useGravity = true;
 			ThrowObject();
 		}
-		
+		Ray playerAim = playerCam.GetComponent<Camera>().ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+		RaycastHit hit;
 		if(Input.GetButtonDown(UseButton)) //&& !objectHeld) // Uses item held in hand atm
 		{
 			if(objectHeld != null)
@@ -149,14 +154,19 @@ public class DragRigidbodyUse : MonoBehaviour
 			}
 			else
 			{
-				Ray playerAim = playerCam.GetComponent<Camera>().ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-				RaycastHit hit;
 				
 				if (Physics.Raycast (playerAim, out hit, PickupRange, layerMask))
 				{
 					hit.collider.gameObject.SendMessage ("UseObject",SendMessageOptions.DontRequireReceiver);
 				}
 			}
+		}
+		if (Physics.Raycast (playerAim, out hit, pointerUseRange, layerMask) && isObjectHeld == false) {
+			pointer.SetActive(false);
+			grabPointer.SetActive(true);
+		} else {
+			pointer.SetActive(true);
+			grabPointer.SetActive(false);
 		}
 	}
 	

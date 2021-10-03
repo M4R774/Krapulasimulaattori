@@ -6,5 +6,10 @@ public class Usable : Item
 {
     public virtual void UseObject() {
         messageManager.DisplayDialogue(itemDescription);
+        OnUseItem();
+    }
+
+    public virtual void OnUseItem() {
+        
     }
 }
