@@ -11,10 +11,11 @@ public class PlayerStats : MonoBehaviour
     [Tooltip("If this threshold is exceeded to player crouches and moves slower."),SerializeField] double heartRateThreshold;
     Animator heartAnimator;
     [SerializeField] Crouch crouchScriprt;
+    [SerializeField] MessageManager messageManager;
 
     void Start()
     {
-        StartCoroutine(HeartRateCheckRoutine());
+        StartCoroutine("HeartRateCheckRoutine");
         GameObject[] heartAnimatorGameObjects = GameObject.FindGameObjectsWithTag("HeartUI");
         if (heartAnimatorGameObjects.Length > 0)
         {
@@ -47,15 +48,22 @@ public class PlayerStats : MonoBehaviour
 
     public IEnumerator HeartRateCheckRoutine()
     {
-        if (heartRateBPM > heartRateThreshold)
+        while(true)
         {
-            crouchScriprt.forceCrouch = true;
+            Debug.Log(string.Format("BP {0} threshold {1}", heartRateBPM, heartRateThreshold));
+            if (heartRateBPM > heartRateThreshold)
+            {
+                Debug.Log("Forcing crouch");
+                crouchScriprt.forceCrouch = true;
+                messageManager.DisplayDialogue("Hells bells my heart!* It is about to burst!* I need to go to bed!");
+                // TODO add audiosource and audio clip for dialog
+            }
+            else
+            {
+                crouchScriprt.forceCrouch = false;
+            }
+            yield return new WaitForSeconds(1);
         }
-        else
-        {
-            crouchScriprt.forceCrouch = false;
-        }
-        yield return null;
     }
 
     public void ResetHeartRateToBaseline()
