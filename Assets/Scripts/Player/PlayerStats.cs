@@ -6,6 +6,8 @@ public class PlayerStats : MonoBehaviour
 {
     [SerializeField] double baselineHeartRate = 90; // BPM
     [SerializeField] double heartRateBPM; // Heart rate as BPM
+    AudioSource heartAudioSource;
+    GameObject heart;
     Animator heartAnimator;
 
     void Start()
@@ -13,7 +15,9 @@ public class PlayerStats : MonoBehaviour
         GameObject[] heartAnimatorGameObjects = GameObject.FindGameObjectsWithTag("HeartUI");
         if (heartAnimatorGameObjects.Length > 0)
         {
-            heartAnimator = heartAnimatorGameObjects[0].GetComponent<Animator>();
+            heart = heartAnimatorGameObjects[0];
+            heartAudioSource = heart.GetComponent<AudioSource>();
+            heartAnimator = heart.GetComponent<Animator>();
         }
         else
         {
@@ -21,6 +25,7 @@ public class PlayerStats : MonoBehaviour
                 "the gameobject with the heart animator tagged with 'HeartUI'? ");
         }
         ResetHeartRateToBaseline();
+        StartCoroutine("PlayHeartSound");
     }
 
     // Update is called once per frame
@@ -46,11 +51,21 @@ public class PlayerStats : MonoBehaviour
 
     double ConvertBPMToAnimationSpeed(double bpm)
     {
-        return bpm / 120;
+        return bpm / 72;
     }
 
     double ConvertAnimationSpeedToBPM(double animationSpeed)
     {
-        return animationSpeed * 120;
+        return animationSpeed * 72;
+    }
+
+    IEnumerator PlayHeartSound()
+    {
+        // TODO: Adjust volume
+        while (true)
+        {
+            heartAudioSource.Play();
+            yield return new WaitForSeconds((float)(60f / heartRateBPM));
+        }
     }
 }
