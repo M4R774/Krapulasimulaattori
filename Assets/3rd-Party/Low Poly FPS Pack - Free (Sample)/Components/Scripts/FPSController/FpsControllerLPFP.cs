@@ -65,6 +65,7 @@ namespace FPSControllerLPFP
         private SmoothRotation _rotationY;
         private SmoothVelocity _velocityX;
         private SmoothVelocity _velocityZ;
+
         [SerializeField] private CameraShake _cameraShake;
         private bool _isGrounded;
 
@@ -230,8 +231,9 @@ namespace FPSControllerLPFP
 
         private void RandomShake() {
             if (!_cameraShake.IsShaking) {
-                _cameraShake.shakeDuration = (float)UnityEngine.Random.Range(1,6);  
+                _cameraShake.shakeDuration = (float)UnityEngine.Random.Range(1,6);
             }
+
         }
 
         private void RotateCameraAndCharacter()
