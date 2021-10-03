@@ -5,23 +5,17 @@ using UnityEngine;
 
 public class Bed : Usable
 {
-    // Movement speed in units per second.
-    public float speed = 0.01F;
-
+    [SerializeField] float speed = 0.01F;
     [SerializeField] GameObject player;
+    [SerializeField] Transform sleepPosition;
+    [SerializeField] Transform wakeUpPosition;
     FpsControllerLPFP fpsController;
     Rigidbody playerRigidbody;
     Collider playerCollider;
     Coroutine sleepCoroutine;
 
-    [SerializeField] Transform sleepPosition;
-    [SerializeField] Transform wakeUpPosition;
     Transform startMarker;
-
-    // Total distance between the markers.
     float journeyLength;
-
-    // Time when the movement started.
     float startTime;
 
     private void Awake()
