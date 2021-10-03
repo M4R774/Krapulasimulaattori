@@ -6,7 +6,7 @@ public abstract class Openable : MonoBehaviour
 {
     [SerializeField] protected Rigidbody rb;
     public bool isOpenable;
-    [SerializeField] private MessageManager messageManager;
+    [SerializeField] protected MessageManager messageManager;
     [TextArea(5,5)]
     // This is displayed in the dialogue when the door is locked
     public string lockedDescription;
@@ -23,7 +23,7 @@ public abstract class Openable : MonoBehaviour
         if(messageManager == null)
             messageManager = FindObjectOfType<MessageManager>();
     }
-    public void Open()
+    public virtual void Open()
     {
         if(!isOpenable)
         {
