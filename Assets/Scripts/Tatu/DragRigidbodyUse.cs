@@ -240,7 +240,7 @@ public class DragRigidbodyUse : MonoBehaviour
             // Post it notes
             if (hit.collider.tag == Tags.m_NoteTag && tryPickupObject)
             {
-                isObjectHeld = true;
+                /*isObjectHeld = true;
                 objectHeld.GetComponent<Rigidbody>().useGravity = true;
                 if (ItemGrab.m_FreezeRotation)
                 {
@@ -253,7 +253,8 @@ public class DragRigidbodyUse : MonoBehaviour
                 PickupRange = NoteGrab.m_ItemPickupRange;
                 ThrowStrength = NoteGrab.m_ItemThrow;
                 distance = NoteGrab.m_ItemDistance;
-                maxDistanceGrab = NoteGrab.m_ItemMaxGrab;
+                maxDistanceGrab = NoteGrab.m_ItemMaxGrab;*/
+				objectHeld.SendMessage("UseObject", SendMessageOptions.DontRequireReceiver);
             }
 
             // Doors
