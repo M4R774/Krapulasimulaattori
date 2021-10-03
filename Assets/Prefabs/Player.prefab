@@ -1616,6 +1616,8 @@ MonoBehaviour:
     strafe: Vertical
     run: Fire3
     jump: Jump
+  invertedReactionClip: {fileID: 8300000, guid: 2087da861c934cf478811798a10142f7, type: 3}
+  invertedAudioInterval: 2
   _cameraShake: {fileID: 1738933042057194107}
   toggleInversion: 1
   minInvertCooldown: 5
@@ -1742,7 +1744,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3924920786897429194
 Transform:
   m_ObjectHideFlags: 0

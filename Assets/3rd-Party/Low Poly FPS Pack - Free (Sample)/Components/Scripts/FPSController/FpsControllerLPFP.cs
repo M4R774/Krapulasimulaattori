@@ -57,6 +57,14 @@ namespace FPSControllerLPFP
         private FpsInput input;
 #pragma warning restore 649
 
+        [Header("Inverted Reaction Sound")]
+        [Tooltip("The clip that will be played when the inverted controls trigger"), SerializeField]
+        private AudioClip invertedReactionClip;
+        [Tooltip("The inverted audio clip will be played on every nth occurence"), SerializeField]
+        private int invertedAudioInterval;
+        private AudioSource _innerAudioSource;
+        private int invertedCounter = 0;
+
         private PlayerStatus _status;
         private Rigidbody _rigidbody;
         private CapsuleCollider _collider;
@@ -97,6 +105,7 @@ namespace FPSControllerLPFP
 			arms = AssignCharactersCamera();
             _audioSource.clip = walkingSound;
             _audioSource.loop = true;
+            _innerAudioSource = GameObject.Find("PlayerAudioSource").GetComponent<AudioSource>();
             _rotationX = new SmoothRotation(RotationXRaw);
             _rotationY = new SmoothRotation(RotationYRaw);
             _velocityX = new SmoothVelocity();
@@ -186,6 +195,11 @@ namespace FPSControllerLPFP
         // Invert controls
         private void Invert() {
             isInverted = true;
+            if (invertedCounter == 0 || invertedCounter % invertedAudioInterval == 0)
+            {
+                _innerAudioSource.PlayOneShot(invertedReactionClip);
+                invertedCounter++;
+            }
         }
 
         private void StopInvert() {
