@@ -82,8 +82,6 @@ namespace FPSControllerLPFP
 
         // Tatu
         private bool isCrouching = false;
-        // Used when heart rate exceed certain value;
-        public bool forceCrouch = false;
         private bool isInverted = false;
         [Tooltip("Toggle random inversion on/off"), SerializeField]
         public bool toggleInversion = true;
@@ -190,12 +188,12 @@ namespace FPSControllerLPFP
 
         public void Crouch()
         {
-            if(!isCrouching || forceCrouch)
+            if(!isCrouching)
             {
                 isCrouching = true;
                 walkingSpeed = walkingSpeed / 2;
             }
-            else if (!forceCrouch)
+            else
             {
                 isCrouching = false;
                 walkingSpeed = walkingSpeed * 2;

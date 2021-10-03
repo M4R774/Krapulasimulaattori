@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using FPSControllerLPFP;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -11,7 +10,7 @@ public class PlayerStats : MonoBehaviour
     GameObject heart;
     [Tooltip("If this threshold is exceeded to player crouches and moves slower."),SerializeField] double heartRateThreshold;
     Animator heartAnimator;
-    [SerializeField] FpsControllerLPFP fpsController;
+    [SerializeField] Crouch crouchScriprt;
 
     void Start()
     {
@@ -50,11 +49,11 @@ public class PlayerStats : MonoBehaviour
     {
         if (heartRateBPM > heartRateThreshold)
         {
-            fpsController.forceCrouch = true;
+            crouchScriprt.forceCrouch = true;
         }
         else
         {
-            fpsController.forceCrouch = false;
+            crouchScriprt.forceCrouch = false;
         }
         yield return null;
     }
