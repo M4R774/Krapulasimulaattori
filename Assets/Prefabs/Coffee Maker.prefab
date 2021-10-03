@@ -229,6 +229,8 @@ MonoBehaviour:
   messageManager: {fileID: 0}
   itemDescription: Not loaded.*Can't make coffee without coffee.
   makeCoffeeDialogue: I'm boiling my coffee maker.
+  makingCoffeeDialogue: I wish it was already done...
+  coffeeReadyDialogue: Heckin' finally!
 --- !u!54 &8237298761446057244
 Rigidbody:
   m_ObjectHideFlags: 0
