@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2185023314758967939}
   - component: {fileID: 8260042957029765488}
   m_Layer: 0
-  m_Name: kbg741sbsilverjpg.001
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,8 +92,10 @@ GameObject:
   - component: {fileID: 521171761402368100}
   - component: {fileID: 5217073204859775231}
   - component: {fileID: 7363039242448865887}
+  - component: {fileID: 909635955}
+  - component: {fileID: 909635956}
   m_Layer: 0
-  m_Name: kbg741sbsilverjpg.002
+  m_Name: Filter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,6 +164,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &909635955
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3371742984473030857}
+  serializedVersion: 2
+  m_Mass: 0.2
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &909635956
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3371742984473030857}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.003, y: 0.00331464, z: 0.002692592}
+  m_Center: {x: -0.00011072682, y: 0.001632087, z: 1.4197556e-17}
 --- !u!1 &8237298761446057217
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,12 +202,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8726589834240573371}
-  - component: {fileID: 8237298761446057218}
   - component: {fileID: 8237298761446057219}
   - component: {fileID: 8237298761446057244}
+  - component: {fileID: 5328952601302407377}
+  - component: {fileID: 4543139032102531596}
   m_Layer: 6
   m_Name: Coffee Maker
-  m_TagString: Untagged
+  m_TagString: Interact
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -188,7 +220,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8237298761446057217}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -1.406, y: 0.091, z: -0.361}
   m_LocalScale: {x: 0.40000004, y: 0.4, z: 0.40000004}
   m_Children:
@@ -198,19 +230,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!65 &8237298761446057218
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8237298761446057217}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.76355404, y: 0.825189, z: 0.3401693}
-  m_Center: {x: -0.029555738, y: -0.73, z: 0.16249926}
 --- !u!114 &8237298761446057219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,14 +258,40 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8237298761446057217}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 4
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &5328952601302407377
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8237298761446057217}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.27665544, y: 0.7599784, z: 0.31111404}
+  m_Center: {x: 0.20157655, y: -0.7012657, z: 0.18162777}
+--- !u!65 &4543139032102531596
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8237298761446057217}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.78205866, y: 0.064549446, z: 0.3299092}
+  m_Center: {x: 0.004236176, y: -1.1145462, z: 0.15509261}
 --- !u!1 &8326585675807783177
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,9 +303,12 @@ GameObject:
   - component: {fileID: 1337373239974973195}
   - component: {fileID: 6366757272834998892}
   - component: {fileID: 7218315790054184362}
-  m_Layer: 0
-  m_Name: kbg741sbsilverjpg.003
-  m_TagString: Untagged
+  - component: {fileID: 1353111323}
+  - component: {fileID: 1353111322}
+  - component: {fileID: 1353111319}
+  m_Layer: 6
+  m_Name: Pan
+  m_TagString: Interact
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -328,3 +376,49 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &1353111323
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8326585675807783177}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &1353111322
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8326585675807783177}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.004030673, y: 0.003037256, z: 0.002833542}
+  m_Center: {x: -0.0006924095, y: 0.0015545496, z: 1.6568591e-17}
+--- !u!114 &1353111319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8326585675807783177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0f1260c26869491ca76882f6e1d76d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  usable: 0
+  myStatus: 0
+  playerStatusComponent: {fileID: 0}
+  messageManager: {fileID: 0}
+  itemDescription: 

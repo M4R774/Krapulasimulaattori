@@ -10,7 +10,7 @@ public class BeerBottle : Usable
 
     void Awake()
     {
-        Renderer rend = GetComponent<Renderer>();
+        Renderer rend = GetComponentInChildren<Renderer>();
         if(usable)
             rend.material = fullBottleMaterial;
         else
