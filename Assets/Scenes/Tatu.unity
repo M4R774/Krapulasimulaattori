@@ -319,7 +319,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 2122086619750300771}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9db1c5ac145b34da78ace32758b9c11c, type: 3}
   m_Name: 
@@ -2296,7 +2296,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1738933042057194107, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1738933042057194107, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
       propertyPath: shakeAmount
@@ -2375,6 +2375,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 3587621155106502664, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3587621155106502664, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
       propertyPath: input.rotateX
       value: Mouse X
       objectReference: {fileID: 0}
@@ -2388,7 +2392,7 @@ PrefabInstance:
       objectReference: {fileID: 331101003656596470}
     - target: {fileID: 3587621155106502664, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
       propertyPath: toggleInversion
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3587621155106502664, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
       propertyPath: mouseSensitivity
@@ -2406,6 +2410,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5020012152204283656, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
+      propertyPath: cameraShake
+      value: 
+      objectReference: {fileID: 644896217}
+    - target: {fileID: 5020012152204283656, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
+      propertyPath: fpsController
+      value: 
+      objectReference: {fileID: 1637639101}
     - target: {fileID: 5020012152204283656, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
       propertyPath: messageManager
       value: 

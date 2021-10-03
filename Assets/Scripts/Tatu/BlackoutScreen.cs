@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using FPSControllerLPFP;
 
 public class BlackoutScreen : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class BlackoutScreen : MonoBehaviour
     private AudioClip fadeFromBlackReactionClip;
     [SerializeField] string fadeFromBlackReactionText;
     [SerializeField] MessageManager messageManager;
+
+    // Game Start logic
+    [SerializeField] FpsControllerLPFP fpsController;
+    [SerializeField] CameraShake cameraShake;
 
     // Start is called before the first frame update
     void Awake()
@@ -59,6 +64,10 @@ public class BlackoutScreen : MonoBehaviour
             whiteoutSquare.GetComponent<Image>().color = newColor;
             yield return null;
         }
+        fpsController.canMove = true;
+        fpsController.toggleInversion = true;
+        cameraShake.enabled = true;
+        yield return null;
     }
 }
 

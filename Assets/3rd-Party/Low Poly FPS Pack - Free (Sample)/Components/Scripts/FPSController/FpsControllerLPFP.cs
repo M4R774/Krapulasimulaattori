@@ -96,6 +96,7 @@ namespace FPSControllerLPFP
 
         [SerializeField] MessageManager messageManager;
         [SerializeField] string invertedReactionText;
+        public bool canMove = false;
 
         /// Initializes the FpsController on start.
         private void Start()
@@ -166,10 +167,13 @@ namespace FPSControllerLPFP
         /// Processes the character movement and the camera rotation every fixed framerate frame.
         private void FixedUpdate()
         {
-            // FixedUpdate is used instead of Update because this code is dealing with physics and smoothing.
-            RotateCameraAndCharacter();
-            MoveCharacter();
-            _isGrounded = false;
+            if(canMove)
+            {
+                // FixedUpdate is used instead of Update because this code is dealing with physics and smoothing.
+                RotateCameraAndCharacter();
+                MoveCharacter();
+                _isGrounded = false;
+            }
         }
 			
         /// Moves the camera to the character, processes jumping and plays sounds every frame.
