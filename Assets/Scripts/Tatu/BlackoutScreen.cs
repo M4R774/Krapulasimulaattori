@@ -9,7 +9,7 @@ public class BlackoutScreen : MonoBehaviour
     [SerializeField] public GameObject whiteoutSquare;
 
     // First voiceline
-    private AudioSource _audioSource;
+    [SerializeField] private AudioSource _audioSource;
     [Tooltip("The voice line which will play after the screen fades to light"), SerializeField]
     private AudioClip fadeFromBlackReactionClip;
 
