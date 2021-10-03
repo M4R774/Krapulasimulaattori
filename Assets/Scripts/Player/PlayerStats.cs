@@ -86,6 +86,7 @@ public class PlayerStats : MonoBehaviour
         // TODO: Adjust volume
         while (true)
         {
+            heartAudioSource.volume = (float)((heartRateBPM - 100) / 100);
             heartAudioSource.Play();
             yield return new WaitForSeconds((float)(60f / heartRateBPM));
         }
