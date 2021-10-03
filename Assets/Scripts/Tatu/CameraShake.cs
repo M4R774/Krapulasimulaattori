@@ -6,7 +6,15 @@ public class CameraShake : MonoBehaviour
 	// Transform of the camera to shake. Grabs the gameObject's transform
 	// if null.
 	public Transform camTransform;
-	
+
+	// Sounds related to the camera shake
+	[Tooltip("The audio clip that will be played when the screen shake."), SerializeField]
+	private AudioClip shakeReactionClip;
+	private AudioSource _shakeReactionAudioSource;
+	private int shakeCounter = 0;
+	[Tooltip("The sound clip will play every nth occurence of the shake effect"), SerializeField]
+	private int shakeInterval;
+
 	// How long the object should shake for.
 	public float shakeDuration = 0f;
 	
@@ -44,6 +52,7 @@ public class CameraShake : MonoBehaviour
 		startTime = Time.time;
 		startPos = camTransform.localPosition;
 		endPos = Random.insideUnitSphere * shakeAmount;
+		_shakeReactionAudioSource = GetComponent<AudioSource>();
 	}
 
 	void OnEnable()
@@ -95,7 +104,19 @@ public class CameraShake : MonoBehaviour
 		}
 	}
 
-    void SetCooldown() {
+    void SetCooldown()
+    {
         shakeCooldown = (float)UnityEngine.Random.Range(3, 8);
+        playShakeReaction();
+    }
+
+    private void playShakeReaction()
+    {
+        shakeCounter++;
+        Debug.Log(string.Format("Counter is {0} interval is {1} jakojaannos is {2}", shakeCounter, shakeInterval, shakeCounter % shakeInterval));
+        if (shakeCounter == 0 || shakeCounter % shakeInterval == 0)
+        {
+            _shakeReactionAudioSource.PlayOneShot(shakeReactionClip);
+        }
     }
 }
