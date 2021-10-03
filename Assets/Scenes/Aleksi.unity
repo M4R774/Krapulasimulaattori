@@ -449,7 +449,6 @@ MonoBehaviour:
   player: {fileID: 0}
   sleepPosition: {fileID: 1414037467}
   wakeUpPosition: {fileID: 423175197}
-  startMarker: {fileID: 0}
 --- !u!65 &648448382
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3428,7 +3427,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5020012152204283656, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7318665712190799765, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

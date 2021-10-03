@@ -8,7 +8,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] double heartRateBPM; // Heart rate as BPM
     Animator heartAnimator;
 
-    private void Start()
+    void Start()
     {
         GameObject[] heartAnimatorGameObjects = GameObject.FindGameObjectsWithTag("HeartUI");
         if (heartAnimatorGameObjects.Length > 0)
@@ -32,7 +32,7 @@ public class PlayerStats : MonoBehaviour
         // TODO: Näkymän reunoilla näkyvä punainen syke
     }
 
-    void ResetHeartRateToBaseline()
+    public void ResetHeartRateToBaseline()
     {
         SetHeartRate(baselineHeartRate);
     }

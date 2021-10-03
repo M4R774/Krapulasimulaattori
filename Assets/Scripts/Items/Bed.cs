@@ -16,7 +16,7 @@ public class Bed : Usable
 
     [SerializeField] Transform sleepPosition;
     [SerializeField] Transform wakeUpPosition;
-    public Transform startMarker;
+    Transform startMarker;
 
     // Total distance between the markers.
     float journeyLength;
@@ -70,6 +70,7 @@ public class Bed : Usable
         }
 
         yield return new WaitForSeconds(5f);
+        player.GetComponent<PlayerStats>().ResetHeartRateToBaseline();
         // TODO: Make screen dark
         // TODO: Play sound
         // TODO: Make screen light
