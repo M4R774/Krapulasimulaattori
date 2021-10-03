@@ -8,6 +8,12 @@ public class LightSwitch : Usable
 
     public override void OnUseItem() {
         // Toggle whiteout
-        whiteoutSquare.SetActive(!whiteoutSquare.activeSelf);
+        if (whiteoutSquare.activeSelf) {
+            whiteoutSquare.GetComponent<Whiteout>().enabled = false;
+            whiteoutSquare.SetActive(false);
+        } else {
+            whiteoutSquare.SetActive(true);
+            whiteoutSquare.GetComponent<Whiteout>().enabled = true;
+        }
     }
 }

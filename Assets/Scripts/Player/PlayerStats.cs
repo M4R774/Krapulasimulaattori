@@ -10,7 +10,7 @@ public class PlayerStats : MonoBehaviour
     GameObject heart;
     [Tooltip("If this threshold is exceeded to player crouches and moves slower."),SerializeField] double heartRateThreshold;
     Animator heartAnimator;
-    [SerializeField] Crouch crouchScriprt;
+    [SerializeField] Crouch crouchScript;
     [SerializeField] MessageManager messageManager;
 
     void Start()
@@ -35,10 +35,10 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // TODO: Tarkista oletko sängyssä
+        // TODO: Tarkista oletko sï¿½ngyssï¿½
         double newHeartRate = heartRateBPM + Time.deltaTime; // 1s in irl -> +1 BPM to heart rate
         SetHeartRate(newHeartRate);
-        // TODO: Näkymän reunoilla näkyvä punainen syke
+        // TODO: Nï¿½kymï¿½n reunoilla nï¿½kyvï¿½ punainen syke
     }
 
     private void FixedUpdate()
@@ -54,13 +54,13 @@ public class PlayerStats : MonoBehaviour
             if (heartRateBPM > heartRateThreshold)
             {
                 Debug.Log("Forcing crouch");
-                crouchScriprt.forceCrouch = true;
+                crouchScript.forceCrouch = true;
                 messageManager.DisplayDialogue("Hells bells my heart!* It is about to burst!* I need to go to bed!");
                 // TODO add audiosource and audio clip for dialog
             }
             else
             {
-                crouchScriprt.forceCrouch = false;
+                crouchScript.forceCrouch = false;
             }
             yield return new WaitForSeconds(1);
         }
