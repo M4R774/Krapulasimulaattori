@@ -21,7 +21,7 @@ public class BlackoutScreen : MonoBehaviour
 
     private void Start()
     {
-        _audioSource = GetComponent<AudioSource>();
+        _audioSource = GameObject.Find("PlayerAudioSource").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame

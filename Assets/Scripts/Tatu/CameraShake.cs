@@ -52,7 +52,7 @@ public class CameraShake : MonoBehaviour
 		startTime = Time.time;
 		startPos = camTransform.localPosition;
 		endPos = Random.insideUnitSphere * shakeAmount;
-		_shakeReactionAudioSource = GetComponent<AudioSource>();
+		_shakeReactionAudioSource = GameObject.Find("PlayerAudioSource").GetComponent<AudioSource>();
 	}
 
 	void OnEnable()
