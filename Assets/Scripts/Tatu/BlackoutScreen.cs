@@ -20,6 +20,7 @@ public class BlackoutScreen : MonoBehaviour
     [SerializeField] FpsControllerLPFP fpsController;
     [SerializeField] CameraShake cameraShake;
     [SerializeField] Bed bed;
+    [SerializeField] PlayerStatus playerStatus;
 
     // Start is called before the first frame update
     void Awake()
