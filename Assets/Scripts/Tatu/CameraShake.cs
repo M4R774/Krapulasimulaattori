@@ -116,7 +116,7 @@ public class CameraShake : MonoBehaviour
         Debug.Log(string.Format("Counter is {0} interval is {1} jakojaannos is {2}", shakeCounter, shakeInterval, shakeCounter % shakeInterval));
         if (shakeCounter == 0 || shakeCounter % shakeInterval == 0)
         {
-            _shakeReactionAudioSource.PlayOneShot(shakeReactionClip);
+           _shakeReactionAudioSource.PlayOneShot(shakeReactionClip);
         }
     }
 }
