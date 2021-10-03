@@ -35,10 +35,10 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // TODO: Tarkista oletko sängyssä
+        // TODO: Tarkista oletko sï¿½ngyssï¿½
         double newHeartRate = heartRateBPM + Time.deltaTime; // 1s in irl -> +1 BPM to heart rate
         SetHeartRate(newHeartRate);
-        // TODO: Näkymän reunoilla näkyvä punainen syke
+        // TODO: Nï¿½kymï¿½n reunoilla nï¿½kyvï¿½ punainen syke
     }
 
     private void FixedUpdate()
@@ -55,7 +55,7 @@ public class PlayerStats : MonoBehaviour
             {
                 Debug.Log("Forcing crouch");
                 crouchScriprt.forceCrouch = true;
-                messageManager.DisplayDialogue("Hells bells my heart!* It is about to burst!* I need to go to bed!");
+                messageManager.DisplayDialogue("Hells bells my heart!*It is about to burst!*I need to go to bed!");
                 // TODO add audiosource and audio clip for dialog
             }
             else
