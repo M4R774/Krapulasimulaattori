@@ -111,7 +111,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.57, y: 0.015000003, z: 0.8591766}
+  m_Size: {x: 0.52, y: 0.015000003, z: 0.82}
   m_Center: {x: -0.27955177, y: 0, z: 0.4237644}
 --- !u!59 &7098490424864529113
 HingeJoint:
@@ -125,7 +125,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0.0075000017, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -1.7855103, y: 0.17614794, z: 0.5495888}
+  m_ConnectedAnchor: {x: -1.4515002, y: 0.176148, z: 0.5662713}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -359,7 +359,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0.0075000017, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.6565298, y: 0.17614794, z: 0.54296}
+  m_ConnectedAnchor: {x: -0.32249987, y: 0.176148, z: 0.5662713}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -394,5 +394,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.56999993, y: 0.014999998, z: 0.8591764}
+  m_Size: {x: 0.52, y: 0.014999998, z: 0.82}
   m_Center: {x: -0.27955174, y: -2.4088211e-14, z: 0.4237643}

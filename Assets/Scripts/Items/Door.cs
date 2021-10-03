@@ -6,7 +6,10 @@ public class Door : Openable
 {
     void Start()
     {
-        GameEvents.current.onPainKillerConsumed += OnPainKillerConsumed;
+        if (GameEvents.current != null)
+        {
+            GameEvents.current.onPainKillerConsumed += OnPainKillerConsumed;
+        }
     }
     private void OnPainKillerConsumed()
     {
@@ -16,6 +19,9 @@ public class Door : Openable
 
     void OnDestroy()
     {
-        GameEvents.current.onPainKillerConsumed -= OnPainKillerConsumed;
+        if (GameEvents.current != null)
+        {
+            GameEvents.current.onPainKillerConsumed -= OnPainKillerConsumed;
+        }
     }
 }
