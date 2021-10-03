@@ -7,7 +7,13 @@ public class Crouch : MonoBehaviour
 {
     [SerializeField] CapsuleCollider capsuleCollider;
     [SerializeField] GameObject fpsController;
+    float capsuleColliderHeight;
     bool isCrouching = false;
+
+    void Start()
+    {
+        capsuleColliderHeight = capsuleCollider.height;
+    }
 
     void Update()
     {
@@ -20,7 +26,7 @@ public class Crouch : MonoBehaviour
         else if(Input.GetButtonDown("Crouch") && isCrouching)
         {
             isCrouching = false;
-            capsuleCollider.height = 1;
+            capsuleCollider.height = capsuleColliderHeight;
             this.gameObject.SendMessage("Crouch",SendMessageOptions.DontRequireReceiver);
         }
     }
