@@ -7,10 +7,21 @@ public class BlackoutScreen : MonoBehaviour
 {
     [SerializeField] public GameObject blackoutSquare;
     [SerializeField] public GameObject whiteoutSquare;
+
+    // First voiceline
+    private AudioSource _audioSource;
+    [Tooltip("The voice line which will play after the screen fades to light"), SerializeField]
+    private AudioClip fadeFromBlackReactionClip;
+
     // Start is called before the first frame update
     void Awake()
     {
         StartCoroutine(FadeFromBlack());
+    }
+
+    private void Start()
+    {
+        _audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -30,6 +41,7 @@ public class BlackoutScreen : MonoBehaviour
             blackoutSquare.GetComponent<Image>().color = newColor;
             yield return null;
         }
+        _audioSource.PlayOneShot(fadeFromBlackReactionClip);
         yield return StartCoroutine(LightsOn());
     }
 
