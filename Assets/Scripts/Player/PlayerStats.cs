@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using FPSControllerLPFP;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -11,11 +10,12 @@ public class PlayerStats : MonoBehaviour
     GameObject heart;
     [Tooltip("If this threshold is exceeded to player crouches and moves slower."),SerializeField] double heartRateThreshold;
     Animator heartAnimator;
-    [SerializeField] FpsControllerLPFP fpsController;
+    [SerializeField] Crouch crouchScriprt;
+    [SerializeField] MessageManager messageManager;
 
     void Start()
     {
-        StartCoroutine(HeartRateCheckRoutine());
+        StartCoroutine("HeartRateCheckRoutine");
         GameObject[] heartAnimatorGameObjects = GameObject.FindGameObjectsWithTag("HeartUI");
         if (heartAnimatorGameObjects.Length > 0)
         {
@@ -48,15 +48,22 @@ public class PlayerStats : MonoBehaviour
 
     public IEnumerator HeartRateCheckRoutine()
     {
-        if (heartRateBPM > heartRateThreshold)
+        while(true)
         {
-            fpsController.forceCrouch = true;
+            Debug.Log(string.Format("BP {0} threshold {1}", heartRateBPM, heartRateThreshold));
+            if (heartRateBPM > heartRateThreshold)
+            {
+                Debug.Log("Forcing crouch");
+                crouchScriprt.forceCrouch = true;
+                messageManager.DisplayDialogue("Hells bells my heart!* It is about to burst!* I need to go to bed!");
+                // TODO add audiosource and audio clip for dialog
+            }
+            else
+            {
+                crouchScriprt.forceCrouch = false;
+            }
+            yield return new WaitForSeconds(1);
         }
-        else
-        {
-            fpsController.forceCrouch = false;
-        }
-        yield return null;
     }
 
     public void ResetHeartRateToBaseline()
@@ -86,6 +93,7 @@ public class PlayerStats : MonoBehaviour
         // TODO: Adjust volume
         while (true)
         {
+            heartAudioSource.volume = (float)((heartRateBPM - 100) / 100);
             heartAudioSource.Play();
             yield return new WaitForSeconds((float)(60f / heartRateBPM));
         }

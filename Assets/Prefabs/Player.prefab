@@ -1434,7 +1434,6 @@ MonoBehaviour:
   invertedReactionClip: {fileID: 8300000, guid: 2087da861c934cf478811798a10142f7, type: 3}
   invertedAudioInterval: 2
   _cameraShake: {fileID: 1738933042057194107}
-  forceCrouch: 0
   toggleInversion: 1
   minInvertCooldown: 5
   maxInvertCooldown: 15
@@ -1514,6 +1513,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   capsuleCollider: {fileID: 3583708440525084614}
   fpsController: {fileID: 3484394809789389966}
+  forceCrouch: 0
 --- !u!81 &7284714272173737302
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1537,7 +1537,7 @@ MonoBehaviour:
   baselineHeartRate: 90
   heartRateBPM: 0
   heartRateThreshold: 150
-  fpsController: {fileID: 3587621155106502664}
+  crouchScriprt: {fileID: 3484394809789389967}
 --- !u!1 &3484765941082644360
 GameObject:
   m_ObjectHideFlags: 0
