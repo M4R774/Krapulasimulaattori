@@ -84,7 +84,7 @@ namespace FPSControllerLPFP
         private bool isCrouching = false;
         private bool isInverted = false;
         [Tooltip("Toggle random inversion on/off"), SerializeField]
-        private bool toggleInversion = true;
+        public bool toggleInversion = true;
         [Tooltip("Minimum time before next invert."), SerializeField]
         private float minInvertCooldown = 5f;
         [Tooltip("Maximum time before next invert."), SerializeField]
@@ -93,6 +93,9 @@ namespace FPSControllerLPFP
         private float invertCooldown = 5.0f;
         [Tooltip("Current inversion timer. DEBUG"), SerializeField]
         private float invertTimer = 0.0f;
+
+        [SerializeField] MessageManager messageManager;
+        [SerializeField] string invertedReactionText;
 
         /// Initializes the FpsController on start.
         private void Start()
@@ -175,8 +178,8 @@ namespace FPSControllerLPFP
 			arms.position = transform.position + transform.TransformVector(armPosition);
             Jump();
             PlayFootstepSounds();
-            if (_status.HasStatus(Status.needCoffee)) { RandomInvert(); }
-            if (_status.HasStatus(Status.needPainkillers)) { RandomShake(); }
+            if (_status.HasStatus(Status.needCoffee)) { RandomShake(); }
+            if (_status.HasStatus(Status.needPainkillers)) { RandomInvert(); }
         }
 
         public void Crouch()
@@ -198,6 +201,7 @@ namespace FPSControllerLPFP
             if (invertedCounter == 0 || invertedCounter % invertedAudioInterval == 0)
             {
                 _innerAudioSource.PlayOneShot(invertedReactionClip);
+                messageManager.DisplayDialogue(invertedReactionText);
                 invertedCounter++;
             }
         }

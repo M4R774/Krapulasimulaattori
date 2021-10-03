@@ -8,6 +8,8 @@ public class CameraShake : MonoBehaviour
 	public Transform camTransform;
 
 	// Sounds related to the camera shake
+	[SerializeField] MessageManager messageManager;
+	[SerializeField] string shakeReactionText;
 	[Tooltip("The audio clip that will be played when the screen shake."), SerializeField]
 	private AudioClip shakeReactionClip;
 	private AudioSource _shakeReactionAudioSource;
@@ -28,11 +30,9 @@ public class CameraShake : MonoBehaviour
 	Vector3 endPos;
 	Vector3 lastShakedPos; // Where the shake ended
 	float timeElapsed;
-	float lerpDuration = 0.35f;
+	float lerpDuration = 0.05f;
 	float valueToLerp;
-
     float startTime;
-	
 	Vector3 originalPos;
 
     public bool IsShaking {
@@ -116,6 +116,7 @@ public class CameraShake : MonoBehaviour
         if (shakeCounter == 0 || shakeCounter % shakeInterval == 0)
         {
            _shakeReactionAudioSource.PlayOneShot(shakeReactionClip);
+		   messageManager.DisplayDialogue(shakeReactionText);
         }
     }
 }
