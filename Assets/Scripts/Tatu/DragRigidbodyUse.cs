@@ -57,6 +57,7 @@ public class DragRigidbodyUse : MonoBehaviour
     public GameObject playerCam;
     public GameObject pointer;
     public GameObject grabPointer;
+    public GameObject dragPointer;
 
     public string GrabButton = "Grab";
     public string ThrowButton = "Throw";
@@ -72,7 +73,7 @@ public class DragRigidbodyUse : MonoBehaviour
     private float ThrowStrength = 50f;
     private float distance = 3f;
     private float maxDistanceGrab = 4f;
-    private float pointerUseRange = 1.2f;
+    private float pointerUseRange = 1.5f;
 
     private Ray playerAim;
     private GameObject objectHeld;
@@ -151,7 +152,7 @@ public class DragRigidbodyUse : MonoBehaviour
             else // If the item is not in the player's hand
             {
 
-                if (Physics.Raycast(playerAim, out hit, PickupRange, layerMask))
+                if (Physics.Raycast(playerAim, out hit, pointerUseRange, layerMask))
                 {
                     hit.collider.gameObject.SendMessage("UseObject", SendMessageOptions.DontRequireReceiver);
                     objectHeld = null;
@@ -160,13 +161,23 @@ public class DragRigidbodyUse : MonoBehaviour
         }
         if (Physics.Raycast(playerAim, out hit, pointerUseRange, layerMask) && isObjectHeld == false)
         {
-            pointer.SetActive(false);
-            grabPointer.SetActive(true);
+            if(hit.collider.tag != "Door")
+            {
+                pointer.SetActive(false);
+                grabPointer.SetActive(true);
+            }
+            else
+            {
+                pointer.SetActive(false);
+                dragPointer.SetActive(true);
+            }
+            
         }
         else
         {
             pointer.SetActive(true);
             grabPointer.SetActive(false);
+            dragPointer.SetActive(false);
         }
     }
 

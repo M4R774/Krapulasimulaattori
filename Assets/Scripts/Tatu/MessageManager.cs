@@ -59,6 +59,8 @@ public class MessageManager : MonoBehaviour
         }
     }
 
+    // TO DO
+    // Modify this coroutine to expect a list of audio clips
     IEnumerator TextDisplay(TextMeshProUGUI ui, string text)
     {
         if(text.Contains("*"))
