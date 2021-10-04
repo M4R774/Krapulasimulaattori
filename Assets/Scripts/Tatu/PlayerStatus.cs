@@ -41,6 +41,9 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField] GameObject endingScreen;
     [SerializeField] Clock clock;
 
+    [Header("Trigger Volume Logic")]
+    [SerializeField] bool bedroomVolumeTrigger = false;
+
     [Header("Debugging")]
     [SerializeField] bool disableEffects = false;
 
@@ -57,6 +60,10 @@ public class PlayerStatus : MonoBehaviour
         _innerAudioSource = GameObject.Find("PlayerAudioSource").GetComponent<AudioSource>();
         InitStatusList();
         InitTasks();
+        if (GameEvents.current != null)
+        {
+            GameEvents.current.onTriggerVolumeExit += OnTriggerVolumeExit;
+        }
     }
 
     void Update()
@@ -79,9 +86,15 @@ public class PlayerStatus : MonoBehaviour
     void CheckTasks()
     {
         areLightsOn = lightImage.activeSelf;
+        highHeartRate = playerStats.IsHeartRateTooHigh();
         isShaking = cameraShake.enabled;
         isInverted = fpsController.toggleInversion;
-        highHeartRate = playerStats.IsHeartRateTooHigh();
+
+        if(!bedroomVolumeTrigger)
+        {
+            cameraShake.enabled = false;
+            fpsController.toggleInversion = false;
+        }
     }
 
     public void InitStatusList() // public so can be called from outside if needed
@@ -91,11 +104,16 @@ public class PlayerStatus : MonoBehaviour
         statusList.Add(Status.needCoffee);
     }
 
+
+    //
+    // Negative effects are initialised here!
+    // Uncomment lines 118 and 119 to enable negative effects in the beginning
+    //
     public void InitTasks()
     {
         areLightsOn = true; // this will always be true
-        isShaking = cameraShake.enabled;
-        isInverted = fpsController.toggleInversion;
+        //isShaking = cameraShake.enabled;
+        //isInverted = fpsController.toggleInversion;
     }
 
     public bool RemoveStatus(Status st)
@@ -132,7 +150,7 @@ public class PlayerStatus : MonoBehaviour
     IEnumerator EndingScreen()
     {
         TextMeshProUGUI victoryText = endingScreen.GetComponentInChildren<TextMeshProUGUI>();
-        string endingText = "You Managed get to work! \n" +
+        string endingText = "You managed to leave for work! \n" +
             "You left home at: " + clock.hour + ":" + clock.minutes + ":" + clock.seconds + "\n";
         if (clock.hour > 7)
         {
@@ -140,7 +158,7 @@ public class PlayerStatus : MonoBehaviour
         }
         else
         {
-            endingText += "\nYou were on time! You even had " + (((clock.hour - 8) * -60) - clock.minutes) + " minutes left!\n";
+            endingText += "\nYou were on time with " + (((clock.hour - 8) * -60) - clock.minutes) + " minutes to spare!\n";
         }
         endingScreen.SetActive(true);
         victoryText.text = endingText;
@@ -177,6 +195,27 @@ public class PlayerStatus : MonoBehaviour
         }
 
         return toDolist;
+    }
+
+    void OnTriggerVolumeExit(TriggerVolumeID sendersID)
+    {
+        if(sendersID == TriggerVolumeID.bedroom)
+        {
+            if(!bedroomVolumeTrigger)
+            {
+                cameraShake.enabled = true;
+                fpsController.toggleInversion = true;
+            }
+            bedroomVolumeTrigger = true;
+        }
+    }
+
+    void OnDestroy()
+    {
+        if (GameEvents.current != null)
+        {
+            GameEvents.current.onTriggerVolumeExit += OnTriggerVolumeExit;
+        }
     }
 
 }

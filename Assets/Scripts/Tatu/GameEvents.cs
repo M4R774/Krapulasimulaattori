@@ -20,6 +20,7 @@ public class GameEvents : MonoBehaviour
             onPainKillerConsumed();
         }
     }
+
     public event Action onCoffeePackPickedUp;
     public void CoffeePackPickedUp()
     {
@@ -28,12 +29,22 @@ public class GameEvents : MonoBehaviour
             onCoffeePackPickedUp();
         }
     }
+
     public event Action<Vector3, Transform> onCollisionSound;
     public void OnCollisionSound(Vector3 force, Transform impactTransform)
     {
         if(onCollisionSound != null)
         {
             onCollisionSound(force, impactTransform);
+        }
+    }
+
+    public event Action<TriggerVolumeID> onTriggerVolumeExit;
+    public void OnTriggerVolumeExit(TriggerVolumeID sendersID)
+    {
+        if(onTriggerVolumeExit != null)
+        {
+            onTriggerVolumeExit(sendersID);
         }
     }
 

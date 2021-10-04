@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BeerBottle : Usable
 {
@@ -26,7 +27,8 @@ public class BeerBottle : Usable
 
     void Start()
     {
-        _innerAudioSource = GameObject.Find("PlayerAudioSource").GetComponent<AudioSource>();
+        if(SceneManager.GetActiveScene().name != "MainMenu")
+            _innerAudioSource = GameObject.Find("PlayerAudioSource").GetComponent<AudioSource>();
     }
     public override void UseObject()
     {
