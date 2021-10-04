@@ -55,7 +55,7 @@ public class PlayerStats : MonoBehaviour
             {
                 Debug.Log("Forcing crouch");
                 crouchScriprt.forceCrouch = true;
-                messageManager.DisplayDialogue("Hells bells my heart!*It is about to burst!*I need to go to bed!");
+                messageManager.DisplayDialogue("My heart is about to burst!*I need to go back to bed.");
                 // TODO add audiosource and audio clip for dialog
             }
             else
