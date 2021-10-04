@@ -18,6 +18,7 @@ public class MessageManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI dialogueUI;
     private Coroutine messageDisplayCoroutine;
     private string textReference; // current text stored
+    [SerializeField] AudioSource audioSource;
 
     void Update()
     {
@@ -86,6 +87,58 @@ public class MessageManager : MonoBehaviour
         {
             ui.text = text;
             float waitTime = text.Length * 0.15f;
+            yield return new WaitForSeconds(waitTime);
+        }
+        
+        ui.text = "";
+        textReference = null;
+        messageDisplayCoroutine = null;
+        yield return null;
+    }
+
+    public void DisplayDialogueAndPlayAudio(string text, AudioClip[] clips)
+    {
+        if(messageDisplayCoroutine == null)
+        {
+            messageDisplayCoroutine = StartCoroutine(TextDisplayAndAudioPlay(dialogueUI, text, clips));
+        }
+    }
+    IEnumerator TextDisplayAndAudioPlay(TextMeshProUGUI ui, string text, AudioClip[] audioClips)
+    {
+        if(text.Contains("*"))
+        {
+            string[] phrases = text.Split('*');
+            for (int i = 0; i < phrases.Length; i++)
+            {
+                audioSource.PlayOneShot(audioClips[i]);
+                ui.text = phrases[i];
+                // for flow reasons wait time for dialogue phrases can be shorter than otherwise
+                float waitTime = 0.0f;
+                /*if(phrases[i].Length < 10)
+                {
+                    waitTime = phrases[i].Length * (0.10f * (10 / phrases[i].Length));
+                }
+                else
+                {
+                    waitTime = phrases[i].Length * 0.10f;   
+                }*/
+                waitTime = audioClips[i].length;
+                Debug.Log(audioClips[i].length);
+                yield return new WaitForSeconds(waitTime);
+                //yield return null;
+            }
+        }
+        else
+        {
+            audioSource.PlayOneShot(audioClips[0]);
+            ui.text = text;
+            /*float waitTime = text.Length * 0.15f;
+            //yield return new WaitForSeconds(waitTime);
+            while(audioSource.isPlaying)
+                ui.text = text;
+            //yield return new WaitForSeconds(waitTime);
+            yield return null;*/
+            float waitTime = audioClips[0].length;
             yield return new WaitForSeconds(waitTime);
         }
         
