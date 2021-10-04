@@ -132,7 +132,7 @@ public class PlayerStatus : MonoBehaviour
         }
         else
         {
-            endingText += "\nYou on time! You even had " + (((clock.hour - 8) * -60) - clock.minutes) + " minutes left!\n";
+            endingText += "\nYou were on time! You even had " + (((clock.hour - 8) * -60) - clock.minutes) + " minutes left!\n";
         }
         endingScreen.SetActive(true);
         victoryText.text = endingText;
