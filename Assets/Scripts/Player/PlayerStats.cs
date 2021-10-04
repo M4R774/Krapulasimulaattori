@@ -13,6 +13,8 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] Crouch crouchScriprt;
     [SerializeField] MessageManager messageManager;
 
+    bool canDisplayMessage = true;
+
     void Start()
     {
         StartCoroutine("HeartRateCheckRoutine");
@@ -53,7 +55,11 @@ public class PlayerStats : MonoBehaviour
             if (heartRateBPM > heartRateThreshold)
             {
                 crouchScriprt.forceCrouch = true;
-                messageManager.DisplayDialogue("My heart is about to burst!*I need to go back to bed.");
+                if(canDisplayMessage)
+                {
+                    messageManager.DisplayDialogue("My heart is bursting!*I need to go back to bed.");
+                    canDisplayMessage = false;
+                }
                 // TODO add audiosource and audio clip for dialog
             }
             else
@@ -67,6 +73,7 @@ public class PlayerStats : MonoBehaviour
     public void ResetHeartRateToBaseline()
     {
         SetHeartRate(baselineHeartRate);
+        canDisplayMessage = true;
     }
 
     void SetHeartRate(double bpm)
@@ -94,6 +101,16 @@ public class PlayerStats : MonoBehaviour
             heartAudioSource.volume = (float)((heartRateBPM - 100) / 100);
             heartAudioSource.Play();
             yield return new WaitForSeconds((float)(60f / heartRateBPM));
+        }
+    }
+
+    public bool IsHeartRateTooHigh()
+    {
+        if (heartRateBPM > heartRateThreshold)
+            return true;
+        else
+        {
+            return false;
         }
     }
 }
