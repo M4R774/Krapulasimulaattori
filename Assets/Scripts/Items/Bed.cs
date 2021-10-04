@@ -40,7 +40,6 @@ public class Bed : Usable
     }
     IEnumerator MoveToBed()
     {
-        Debug.Log("Clicked bed!");
         fpsController.enabled = false;
         playerRigidbody.isKinematic = true;
         playerCollider.enabled = false;

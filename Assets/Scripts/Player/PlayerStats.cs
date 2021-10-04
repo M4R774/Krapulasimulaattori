@@ -50,10 +50,8 @@ public class PlayerStats : MonoBehaviour
     {
         while(true)
         {
-            Debug.Log(string.Format("BP {0} threshold {1}", heartRateBPM, heartRateThreshold));
             if (heartRateBPM > heartRateThreshold)
             {
-                Debug.Log("Forcing crouch");
                 crouchScriprt.forceCrouch = true;
                 messageManager.DisplayDialogue("My heart is about to burst!*I need to go back to bed.");
                 // TODO add audiosource and audio clip for dialog

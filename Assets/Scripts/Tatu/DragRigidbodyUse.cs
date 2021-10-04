@@ -354,7 +354,6 @@ public class DragRigidbodyUse : MonoBehaviour
 
         if (objectHeld != null && objectHeld.GetComponent<Item>()) // && objectHeld.GetComponent<Item>().usable) // This caused a bug with items that are not usable but emit a message
         {
-            Debug.Log(objectHeld + "UseObject should be called now");
             objectHeld.SendMessage("UseObject", SendMessageOptions.DontRequireReceiver); //Every script attached to the PickupObject that has a UseObject function will be called.
         }
     }
