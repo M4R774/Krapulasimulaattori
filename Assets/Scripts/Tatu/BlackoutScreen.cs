@@ -11,6 +11,7 @@ public class BlackoutScreen : MonoBehaviour
 
     // First voiceline
     [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioSource _bgAudioSource;
     [Tooltip("The voice line which will play after the screen fades to light"), SerializeField]
     private AudioClip fadeFromBlackReactionClip;
     [SerializeField] string fadeFromBlackReactionText;
@@ -53,6 +54,7 @@ public class BlackoutScreen : MonoBehaviour
         }
         _audioSource.PlayOneShot(fadeFromBlackReactionClip);
         messageManager.DisplayDialogue(fadeFromBlackReactionText);
+        _bgAudioSource.Play();
         yield return StartCoroutine(LightsOn());
     }
 
