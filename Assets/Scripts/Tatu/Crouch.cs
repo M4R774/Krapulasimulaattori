@@ -21,16 +21,27 @@ public class Crouch : MonoBehaviour
     {
         if((Input.GetButtonDown("Crouch") || forceCrouch) && !isCrouching)
         {
-            isCrouching = true;
-            capsuleCollider.height = 0;
-            this.gameObject.SendMessage("Crouch",SendMessageOptions.DontRequireReceiver);
+            GoToCrouch();
         }
         else if(Input.GetButtonDown("Crouch") && isCrouching && !forceCrouch)
         {
-            isCrouching = false;
-            capsuleCollider.height = capsuleColliderHeight;
-            this.gameObject.SendMessage("Crouch",SendMessageOptions.DontRequireReceiver);
+            StandUp();
         }
+    }
+
+    public void StandUp()
+    {
+        isCrouching = false;
+        capsuleCollider.height = capsuleColliderHeight;
+        this.gameObject.SendMessage("Crouch", SendMessageOptions.DontRequireReceiver);
+        forceCrouch = false;
+    }
+
+    public void GoToCrouch()
+    {
+        isCrouching = true;
+        capsuleCollider.height = 0;
+        this.gameObject.SendMessage("Crouch", SendMessageOptions.DontRequireReceiver);
     }
 }
 

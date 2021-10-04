@@ -18,25 +18,20 @@ public class Bed : Usable
     float journeyLength;
     float startTime;
 
-    private void Awake()
+    private void Start()
     {
         player = GameObject.Find("Player");
         fpsController = player.GetComponent<FpsControllerLPFP>();
         playerRigidbody = player.GetComponent<Rigidbody>();
         playerCollider = player.GetComponent<Collider>();
     }
-    /*private void Start()
-    {
-        player = GameObject.Find("Player");
-        fpsController = player.GetComponent<FpsControllerLPFP>();
-        playerRigidbody = player.GetComponent<Rigidbody>();
-        playerCollider = player.GetComponent<Collider>();
-    }*/
 
-    public override void OnUseItem() {
-        
-        if(sleepCoroutine == null)
+    public override void OnUseItem() 
+    {
+        if (sleepCoroutine == null)
+        {
             sleepCoroutine = StartCoroutine("MoveToBed");
+        }
     }
     IEnumerator MoveToBed()
     {
@@ -86,7 +81,7 @@ public class Bed : Usable
         fpsController.enabled = true;
         playerRigidbody.isKinematic = false;
         playerCollider.enabled = true;
-
+        player.GetComponent<Crouch>().StandUp();
         sleepCoroutine = null;
         yield return null;
 
