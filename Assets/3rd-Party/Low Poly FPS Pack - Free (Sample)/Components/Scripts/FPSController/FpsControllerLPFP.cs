@@ -245,7 +245,7 @@ namespace FPSControllerLPFP
                         invertCooldown = 0.0f;
                     }
                 } else {
-                    InvertFor((float)UnityEngine.Random.Range(2, 6));
+                    InvertFor(3);
                 }
             }
             

@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 1321519639297721123}
   - component: {fileID: 5020012152204283656}
   - component: {fileID: 3333696394210053248}
+  - component: {fileID: 1381048169007909222}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -195,11 +196,12 @@ MonoBehaviour:
   blackoutSquare: {fileID: 1866214738183698923}
   whiteoutSquare: {fileID: 6572714179375620700}
   _audioSource: {fileID: 0}
-  fadeFromBlackReactionClip: {fileID: 8300000, guid: e14a99d69422c0442af46225e3f9453b, type: 3}
-  fadeFromBlackReactionText: 
+  _bgAudioSource: {fileID: 1381048169007909222}
+  fadeFromBlackReactionClip: {fileID: 8300000, guid: 947c8214e7ca24b7db65801581ff400d, type: 3}
+  fadeFromBlackReactionText: My head...*Am I dead?
   messageManager: {fileID: 0}
-  fpsController: {fileID: 0}
-  cameraShake: {fileID: 0}
+  fpsController: {fileID: 3587621155106502664}
+  cameraShake: {fileID: 1738933042057194107}
   bed: {fileID: 0}
   playerStatus: {fileID: 0}
 --- !u!225 &3333696394210053248
@@ -214,6 +216,102 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!82 &1381048169007909222
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321519639297721125}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 23cc2e835246d4271a8dd5acb2ae9a6a, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.3
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1321519639375395460
 GameObject:
   m_ObjectHideFlags: 0
@@ -1421,7 +1519,7 @@ MonoBehaviour:
   runningSpeed: 3
   movementSmoothness: 0.125
   jumpForce: 15
-  mouseSensitivity: 2
+  mouseSensitivity: 5
   rotationSmoothness: 0.05
   minVerticalAngle: -90
   maxVerticalAngle: 90
@@ -1432,16 +1530,17 @@ MonoBehaviour:
     strafe: Vertical
     run: Fire3
     jump: Jump
-  invertedReactionClip: {fileID: 8300000, guid: 2087da861c934cf478811798a10142f7, type: 3}
+  invertedReactionClip: {fileID: 8300000, guid: 093f10ca183e14bd997eb5b03aa7c91c, type: 3}
   invertedAudioInterval: 2
   _cameraShake: {fileID: 1738933042057194107}
+  isCrouching: 0
   toggleInversion: 1
   minInvertCooldown: 5
   maxInvertCooldown: 15
   invertCooldown: 5
   invertTimer: 0
   messageManager: {fileID: 0}
-  invertedReactionText: 
+  invertedReactionText: Can't even move right.*I need painkillers.
   canMove: 0
 --- !u!114 &3484394809789389964
 MonoBehaviour:
@@ -1500,6 +1599,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
+  objectHeldUI: {fileID: 0}
 --- !u!114 &3484394809789389967
 MonoBehaviour:
   m_ObjectHideFlags: 0
