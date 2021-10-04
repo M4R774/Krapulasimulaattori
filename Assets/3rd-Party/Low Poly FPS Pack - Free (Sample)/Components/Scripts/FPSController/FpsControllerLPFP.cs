@@ -81,7 +81,7 @@ namespace FPSControllerLPFP
         private readonly RaycastHit[] _wallCastResults = new RaycastHit[8];
 
         // Tatu
-        private bool isCrouching = false;
+        public bool isCrouching = false;
         private bool isInverted = false;
         [Tooltip("Toggle random inversion on/off"), SerializeField]
         public bool toggleInversion = true;
