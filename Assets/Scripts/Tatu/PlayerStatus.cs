@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using FPSControllerLPFP;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 //
 // Tracks and changes player's status
@@ -39,6 +41,8 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField] string stillShakingText;
     [TextArea]
     [SerializeField] string controlsInvertedText;
+    [SerializeField] GameObject endingScreen;
+    [SerializeField] Clock clock;
 
     void Start()
     {
@@ -106,6 +110,31 @@ public class PlayerStatus : MonoBehaviour
     public void EndGame()
     {
         Debug.Log("You won!");
+        StartCoroutine("EndingScreen");
+    }
+    IEnumerator EndingScreen()
+    {
+        TextMeshProUGUI victoryText = endingScreen.GetComponentInChildren<TextMeshProUGUI>();
+        string endingText = "You Managed get to work! \n" +
+            "You left home at: " + clock.hour + ":" + clock.minutes + ":" + clock.seconds + "\n";
+        if (clock.hour > 7)
+        {
+            endingText += "\nYou were " + (((clock.hour-8)*60) + clock.minutes) + " minutes late.\n";
+        }
+        else
+        {
+            endingText += "\nYou on time! You even had " + (((clock.hour - 8) * -60) - clock.minutes) + " minutes left!\n";
+        }
+        endingScreen.SetActive(true);
+        victoryText.text = endingText;
+        for (float i = 0; i < 1; i += 0.01f)
+        {
+            endingScreen.GetComponent<Image>().color = new Color(1, 1, 1, i);
+            victoryText.color = new Color(0, 0, 0, i);
+            yield return new WaitForFixedUpdate();
+        }
+        yield return new WaitForSeconds(10f);
+        SceneManager.LoadScene("MainMenu");
     }
 
     public string TaskList()

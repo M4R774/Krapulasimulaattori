@@ -18,7 +18,7 @@ public class Bed : Usable
     float journeyLength;
     float startTime;
 
-    private void Start()
+    private void Awake()
     {
         player = GameObject.Find("Player");
         fpsController = player.GetComponent<FpsControllerLPFP>();

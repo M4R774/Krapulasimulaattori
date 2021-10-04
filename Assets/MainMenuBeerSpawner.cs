@@ -11,6 +11,7 @@ public class MainMenuBeerSpawner : MonoBehaviour
     private void Start()
     {
         nextSpawn = Time.time + spawnInterval;
+        Cursor.visible = true;
     }
 
     // Update is called once per frame

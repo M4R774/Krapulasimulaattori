@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -40,7 +41,7 @@ public class MainMenuManager : MonoBehaviour
             blackscreen.color = new Color(0, 0, 0, i);
             yield return new WaitForFixedUpdate();
         }
-        
+
         yield return new WaitForSeconds(20);
         SceneManager.LoadScene("Gameplay");
     }
