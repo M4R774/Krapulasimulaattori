@@ -26,7 +26,7 @@ public class BeerBottle : Usable
             messageManager.DisplayDialogue(phrases[0]);
         } else {
             messageManager.DisplayDialogue(phrases[1]);
-            Destroy(transform, 1);
+            //Destroy(transform, 1);
         }
     }
 }
