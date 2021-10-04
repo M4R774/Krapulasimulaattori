@@ -201,6 +201,7 @@ MonoBehaviour:
   fpsController: {fileID: 0}
   cameraShake: {fileID: 0}
   bed: {fileID: 0}
+  playerStatus: {fileID: 0}
 --- !u!225 &3333696394210053248
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1538,6 +1539,7 @@ MonoBehaviour:
   heartRateBPM: 0
   heartRateThreshold: 150
   crouchScriprt: {fileID: 3484394809789389967}
+  messageManager: {fileID: 0}
 --- !u!1 &3484765941082644360
 GameObject:
   m_ObjectHideFlags: 0
@@ -1803,6 +1805,7 @@ GameObject:
   - component: {fileID: 5735523330054291379}
   - component: {fileID: 5496115755596083838}
   - component: {fileID: 8235282106868221164}
+  - component: {fileID: 7318754264540071842}
   m_Layer: 0
   m_Name: Light
   m_TagString: Untagged
@@ -1867,6 +1870,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7318754264540071842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6572714179375620700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f1202b698df14c90ae347a8151b09f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7275117835801522686
 PrefabInstance:
   m_ObjectHideFlags: 0
