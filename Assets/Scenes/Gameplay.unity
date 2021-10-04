@@ -705,7 +705,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 8adf2511f30f79c42b5ea4a6ec2aa908, type: 2}
     - target: {fileID: -6984776481328746167, guid: e7a03bae382810c4db2d09288faac3af, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: -6293623783225092490, guid: e7a03bae382810c4db2d09288faac3af, type: 3}
       propertyPath: m_Layer
@@ -729,7 +729,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5229761341527490446, guid: e7a03bae382810c4db2d09288faac3af, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: -5229761341527490446, guid: e7a03bae382810c4db2d09288faac3af, type: 3}
       propertyPath: m_LocalPosition.x
@@ -785,7 +785,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4145714021466459549, guid: e7a03bae382810c4db2d09288faac3af, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -3662628294869679673, guid: e7a03bae382810c4db2d09288faac3af, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -865,7 +865,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3601795349796891713, guid: e7a03bae382810c4db2d09288faac3af, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4131980748472140153, guid: e7a03bae382810c4db2d09288faac3af, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -879,6 +879,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b4b65ce490825fb41868e68e0a42c788, type: 2}
+    - target: {fileID: 5045749634568473709, guid: e7a03bae382810c4db2d09288faac3af, type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 6479137908180158667, guid: e7a03bae382810c4db2d09288faac3af, type: 3}
       propertyPath: m_Name
       value: Bed wrong
@@ -1991,6 +1995,7 @@ MonoBehaviour:
   messageManager: {fileID: 331101003656596470}
   itemDescription: Ahh.*That hits the spot.
   fpsController: {fileID: 1637639101}
+  reactionClip: {fileID: 0}
 --- !u!54 &916717263
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2752,6 +2757,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4784656562476665506, guid: f9f997b48288f41268bb63a49a11e1d5, type: 3}
+      propertyPath: reactionClip1
+      value: 
+      objectReference: {fileID: 8300000, guid: 2cce558d266024c4eaa8cf3cc86e933a, type: 3}
+    - target: {fileID: 4784656562476665506, guid: f9f997b48288f41268bb63a49a11e1d5, type: 3}
+      propertyPath: reactionClip2
+      value: 
+      objectReference: {fileID: 8300000, guid: 8152ff67de3da1a498059bec300195c6, type: 3}
+    - target: {fileID: 4784656562476665506, guid: f9f997b48288f41268bb63a49a11e1d5, type: 3}
       propertyPath: messageManager
       value: 
       objectReference: {fileID: 331101003656596470}
@@ -2964,6 +2977,10 @@ PrefabInstance:
       propertyPath: cameraShake
       value: 
       objectReference: {fileID: 644896217}
+    - target: {fileID: 1353111319, guid: 28140a9add2d6b04d9f02e20a07d6411, type: 3}
+      propertyPath: reactionClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4fa26073767664b41b22aa51589f7335, type: 3}
     - target: {fileID: 1353111319, guid: 28140a9add2d6b04d9f02e20a07d6411, type: 3}
       propertyPath: messageManager
       value: 
@@ -4928,6 +4945,7 @@ MonoBehaviour:
   endingScreen: {fileID: 1845703896}
   clock: {fileID: 1219227173}
   disableEffects: 0
+  cantleave: {fileID: 8300000, guid: 0cf92d88d182e364cb3b16b9f2392fa1, type: 3}
 --- !u!114 &331101003656596470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5040,6 +5058,10 @@ PrefabInstance:
       value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 1738933042057194107, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
+      propertyPath: reactionClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7bcc48a083285e4488d4720910e00da3, type: 3}
+    - target: {fileID: 1738933042057194107, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
       propertyPath: messageManager
       value: 
       objectReference: {fileID: 331101003656596470}
@@ -5049,7 +5071,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1866214738183698923, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2204391954253969889, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
       propertyPath: m_IsActive
@@ -5176,6 +5198,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3587621155106502664, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
+      propertyPath: invertedReactionClip
+      value: 
+      objectReference: {fileID: 8300000, guid: cd1605ce923618c42b36ed69fdc2c424, type: 3}
+    - target: {fileID: 3587621155106502664, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
       propertyPath: invertedReactionText
       value: Can't even move right.*I need painkillers.
       objectReference: {fileID: 0}
@@ -5208,6 +5234,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 331101003656596470}
     - target: {fileID: 5020012152204283656, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
+      propertyPath: fadeFromBlackReactionClip
+      value: 
+      objectReference: {fileID: 8300000, guid: efea37da4105faa46b12c8634d5285be, type: 3}
+    - target: {fileID: 5020012152204283656, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
       propertyPath: fadeFromBlackReactionText
       value: My head...*Am I dead?
       objectReference: {fileID: 0}
@@ -5236,9 +5266,29 @@ PrefabInstance:
       value: 4289659135
       objectReference: {fileID: 0}
     - target: {fileID: 5699882975123623764, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
+      propertyPath: reactionClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0016706a83dc4ef468ec9762f0901fd3, type: 3}
+    - target: {fileID: 5699882975123623764, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
       propertyPath: messageManager
       value: 
       objectReference: {fileID: 331101003656596470}
+    - target: {fileID: 6381563152369265292, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6381563152369265292, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6381563152369265292, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6381563152369265292, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7318665712190799765, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -4.376

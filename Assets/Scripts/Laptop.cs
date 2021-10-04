@@ -7,12 +7,16 @@ public class Laptop : Item
     [SerializeField] float breakForce = 4.0f;
     [SerializeField] Material breakMaterial;
     [SerializeField] bool broken = false;
-
     MeshRenderer meshRenderer;
     AudioSource audioSource;
 
+    // Reaction audio
+    [SerializeField] AudioClip reactionClip;
+    AudioSource _innerAudioSource;
+
     void Start()
     {
+        _innerAudioSource = GameObject.Find("PlayerAudioSource").GetComponent<AudioSource>();
         audioSource = GetComponent<AudioSource>();
         meshRenderer = GetComponent<MeshRenderer>();
     }
@@ -30,5 +34,6 @@ public class Laptop : Item
 
     public virtual void UseObject() {
         messageManager.DisplayDialogue(itemDescription);
+        _innerAudioSource.PlayOneShot(reactionClip);
     }
 }

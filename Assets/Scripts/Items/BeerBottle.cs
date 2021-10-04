@@ -8,6 +8,11 @@ public class BeerBottle : Usable
     [SerializeField] Material fullBottleMaterial;
     public GameObject whiteoutSquare;
 
+    // Reaction audio
+    [SerializeField] AudioClip reactionClip1;
+    [SerializeField] AudioClip reactionClip2;
+    private AudioSource _innerAudioSource;
+
     void Awake()
     {
         Renderer rend = GetComponentInChildren<Renderer>();
@@ -18,14 +23,21 @@ public class BeerBottle : Usable
             rend.material = emptyBottleMaterial;
         }
     }
+
+    void Start()
+    {
+        _innerAudioSource = GameObject.Find("PlayerAudioSource").GetComponent<AudioSource>();
+    }
     public override void UseObject()
     {
         // Separates the itemDescription according to if the item is usable or not
         string[] phrases = itemDescription.Split('*');
-        if (usable) {
+        if (Random.Range(0, 100) > 50) {
             messageManager.DisplayDialogue(phrases[0]);
+            _innerAudioSource.PlayOneShot(reactionClip1);
         } else {
             messageManager.DisplayDialogue(phrases[1]);
+            _innerAudioSource.PlayOneShot(reactionClip2);
             //Destroy(transform, 1);
         }
     }

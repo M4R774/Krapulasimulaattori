@@ -134,3 +134,4 @@ MonoBehaviour:
   breakForce: 4
   breakMaterial: {fileID: 2100000, guid: 93778a6b5376b444b9610576440325a9, type: 2}
   broken: 0
+  reactionClip: {fileID: 8300000, guid: a475931b70f90af4a8388a57bdef4e82, type: 3}

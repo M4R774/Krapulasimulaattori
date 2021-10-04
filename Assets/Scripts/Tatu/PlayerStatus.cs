@@ -44,8 +44,17 @@ public class PlayerStatus : MonoBehaviour
     [Header("Debugging")]
     [SerializeField] bool disableEffects = false;
 
+    // Reaction audio
+    [SerializeField] AudioClip cantleave;
+    private AudioClip shaking;
+    private AudioClip cantmove;
+    private AudioClip lights;
+    private AudioClip heart;
+    private AudioSource _innerAudioSource;
+
     void Start()
     {
+        _innerAudioSource = GameObject.Find("PlayerAudioSource").GetComponent<AudioSource>();
         InitStatusList();
         InitTasks();
     }
@@ -148,8 +157,10 @@ public class PlayerStatus : MonoBehaviour
     public string TaskList()
     {
         string toDolist = "I can't leave yet.";
-        if(areLightsOn)
+        _innerAudioSource.PlayOneShot(cantleave);
+        if (areLightsOn)
         {
+            // TODO: Figure out how to queue voicelines....
             toDolist = toDolist + "*" + lightsAreOnText;
         }
         if(isShaking)

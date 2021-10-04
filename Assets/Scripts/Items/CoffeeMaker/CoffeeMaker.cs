@@ -12,8 +12,14 @@ public class CoffeeMaker : Usable
     private bool coffeeReady = false;
     private bool coffeeTimerStarted = false;
     private float coffeeTimer = 0f;
+
+    // Reaction audio
+    [SerializeField] AudioClip reactionClip;
+    AudioSource _innerAudioSource;
+
     void Start()
     {
+        _innerAudioSource = GameObject.Find("PlayerAudioSource").GetComponent<AudioSource>();
         GameEvents.current.onCoffeePackPickedUp += OnCoffeePackPickedUp;
     }
 
@@ -51,6 +57,7 @@ public class CoffeeMaker : Usable
         }
         else
         {
+            _innerAudioSource.PlayOneShot(reactionClip);
             messageManager.DisplayDialogue(itemDescription);
         }
     }

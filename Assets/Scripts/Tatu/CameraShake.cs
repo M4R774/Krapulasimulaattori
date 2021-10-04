@@ -38,6 +38,10 @@ public class CameraShake : MonoBehaviour
 	// Shake reaction
 	bool canTalk = true;
 
+	// Reaction audio
+    [SerializeField] AudioClip reactionClip;
+    AudioSource _innerAudioSource;
+
     public bool IsShaking {
         get { return shakeDuration > 0; }
     }
@@ -52,6 +56,7 @@ public class CameraShake : MonoBehaviour
 	
 	void Start()
 	{
+		_innerAudioSource = GameObject.Find("PlayerAudioSource").GetComponent<AudioSource>();
 		startTime = Time.time;
 		startPos = camTransform.localPosition;
 		endPos = Random.insideUnitSphere * shakeAmount;
@@ -72,6 +77,7 @@ public class CameraShake : MonoBehaviour
 			if(canTalk)
 			{
 				canTalk = false;
+				_innerAudioSource.PlayOneShot(reactionClip);
 				messageManager.DisplayDialogue(shakeReactionText);
 			}
 			if (timeElapsed < lerpDuration)

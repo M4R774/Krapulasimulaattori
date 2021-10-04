@@ -15,8 +15,13 @@ public class PlayerStats : MonoBehaviour
 
     bool canDisplayMessage = true;
 
+    // Reaction audio
+    [SerializeField] AudioClip reactionClip;
+    AudioSource _innerAudioSource;
+
     void Start()
     {
+        _innerAudioSource = GameObject.Find("PlayerAudioSource").GetComponent<AudioSource>();
         StartCoroutine("HeartRateCheckRoutine");
         GameObject[] heartAnimatorGameObjects = GameObject.FindGameObjectsWithTag("HeartUI");
         if (heartAnimatorGameObjects.Length > 0)
@@ -57,10 +62,10 @@ public class PlayerStats : MonoBehaviour
                 crouchScriprt.forceCrouch = true;
                 if(canDisplayMessage)
                 {
+                    _innerAudioSource.PlayOneShot(reactionClip);
                     messageManager.DisplayDialogue("My heart is bursting!*I need to go back to bed.");
                     canDisplayMessage = false;
                 }
-                // TODO add audiosource and audio clip for dialog
             }
             else
             {
