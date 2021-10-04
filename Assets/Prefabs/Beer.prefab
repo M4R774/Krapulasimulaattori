@@ -133,8 +133,8 @@ MonoBehaviour:
   playerStatusComponent: {fileID: 0}
   messageManager: {fileID: 0}
   itemDescription: 
-  emptyBottleMaterial: {fileID: 0}
-  fullBottleMaterial: {fileID: 0}
+  emptyBottleMaterial: {fileID: 2100000, guid: 8805bb72d30b2634c90b9af419b968c0, type: 2}
+  fullBottleMaterial: {fileID: 2100000, guid: e34627f0d2dfaf84997078dad0268da0, type: 2}
   whiteoutSquare: {fileID: 0}
 --- !u!54 &4784656562476665507
 Rigidbody:
