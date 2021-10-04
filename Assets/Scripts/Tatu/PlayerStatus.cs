@@ -40,6 +40,9 @@ public class PlayerStatus : MonoBehaviour
     [TextArea]
     [SerializeField] string controlsInvertedText;
 
+    [Header("Debugging")]
+    [SerializeField] bool disableEffects = false;
+
     void Start()
     {
         InitStatusList();
@@ -48,12 +51,18 @@ public class PlayerStatus : MonoBehaviour
 
     void Update()
     {
-        if (statusList.Count != 0)
+        /*if (statusList.Count != 0)
             statusText.text = statusList[0].ToString();
         else
-            statusText.text = "";
+            statusText.text = "";*/
         
         CheckTasks();
+        if(disableEffects)
+        {
+            lightImage.SetActive(false);
+            cameraShake.enabled = false;
+            fpsController.toggleInversion = false;
+        }
     }
 
     void CheckTasks()

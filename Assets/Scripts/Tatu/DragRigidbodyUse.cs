@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 
 [System.Serializable]
 public class GrabObjectClass
@@ -80,6 +81,7 @@ public class DragRigidbodyUse : MonoBehaviour
     private float objectAngularDrag;
 
     [SerializeField] LayerMask layerMask;
+    [SerializeField] TextMeshProUGUI objectHeldUI;
 
     void Start()
     {
@@ -90,6 +92,12 @@ public class DragRigidbodyUse : MonoBehaviour
 
     void Update()
     {
+        if(objectHeld != null)
+            objectHeldUI.text = objectHeld.ToString();
+        else
+        {
+            objectHeldUI.text = "No item held atm.";
+        }
         if (Input.GetButton(GrabButton) || (GetTriggerFloat() > 0.5f))
         {
             if (!isObjectHeld)
@@ -140,12 +148,13 @@ public class DragRigidbodyUse : MonoBehaviour
                 //tryPickupObject = false;
                 Use();
             }
-            else
+            else // If the item is not in the player's hand
             {
 
                 if (Physics.Raycast(playerAim, out hit, PickupRange, layerMask))
                 {
                     hit.collider.gameObject.SendMessage("UseObject", SendMessageOptions.DontRequireReceiver);
+                    objectHeld = null;
                 }
             }
         }
@@ -182,12 +191,12 @@ public class DragRigidbodyUse : MonoBehaviour
 
         if (Physics.Raycast(playerAim, out hit, PickupRange, layerMask))
         {
-            objectHeld = hit.collider.gameObject;
             //Debug.Log(objectHeld);
 
             // Props that are movable
             if (hit.collider.tag == Tags.m_InteractTag && tryPickupObject)
             {
+                objectHeld = hit.collider.gameObject;
                 isObjectHeld = true;
                 objectHeld.GetComponent<Rigidbody>().useGravity = false;
                 if (ObjectGrab.m_FreezeRotation)
@@ -213,6 +222,7 @@ public class DragRigidbodyUse : MonoBehaviour
             // Items
             if (hit.collider.tag == Tags.m_InteractItemsTag && tryPickupObject)
             {
+                objectHeld = hit.collider.gameObject;
                 isObjectHeld = true;
                 objectHeld.GetComponent<Rigidbody>().useGravity = true;
                 if (ItemGrab.m_FreezeRotation)
@@ -240,6 +250,7 @@ public class DragRigidbodyUse : MonoBehaviour
             // Post it notes
             if (hit.collider.tag == Tags.m_NoteTag && tryPickupObject)
             {
+                //objectHeld = hit.collider.gameObject;
                 /*isObjectHeld = true;
                 objectHeld.GetComponent<Rigidbody>().useGravity = true;
                 if (ItemGrab.m_FreezeRotation)
@@ -254,12 +265,13 @@ public class DragRigidbodyUse : MonoBehaviour
                 ThrowStrength = NoteGrab.m_ItemThrow;
                 distance = NoteGrab.m_ItemDistance;
                 maxDistanceGrab = NoteGrab.m_ItemMaxGrab;*/
-				objectHeld.SendMessage("UseObject", SendMessageOptions.DontRequireReceiver);
+				//objectHeld.SendMessage("UseObject", SendMessageOptions.DontRequireReceiver);
             }
 
             // Doors
             if (hit.collider.tag == Tags.m_DoorsTag && tryPickupObject)
             {
+                objectHeld = hit.collider.gameObject;
                 isObjectHeld = true;
                 //objectHeld.GetComponent<Rigidbody>().useGravity = true;
                 //objectHeld.GetComponent<Rigidbody>().freezeRotation = false;
@@ -355,6 +367,7 @@ public class DragRigidbodyUse : MonoBehaviour
         if (objectHeld != null && objectHeld.GetComponent<Item>()) // && objectHeld.GetComponent<Item>().usable) // This caused a bug with items that are not usable but emit a message
         {
             objectHeld.SendMessage("UseObject", SendMessageOptions.DontRequireReceiver); //Every script attached to the PickupObject that has a UseObject function will be called.
+            //objectHeld = null;
         }
     }
 

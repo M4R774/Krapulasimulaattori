@@ -27,4 +27,8 @@ public class Laptop : Item
             audioSource.Play();
         }
     }
+
+    public virtual void UseObject() {
+        messageManager.DisplayDialogue(itemDescription);
+    }
 }
