@@ -4340,6 +4340,14 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3587621155106502664, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
+      propertyPath: maxInvertCooldown
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3587621155106502664, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
+      propertyPath: minInvertCooldown
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3587621155106502664, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
       propertyPath: invertedReactionText
       value: Can't even move right.*I need painkillers.
       objectReference: {fileID: 0}
