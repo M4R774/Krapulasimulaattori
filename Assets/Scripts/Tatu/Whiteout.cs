@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class Whiteout : MonoBehaviour
 {
-    private bool ascending = true;
-
     void OnEnable() {
         StartCoroutine(Intensify());
     }
