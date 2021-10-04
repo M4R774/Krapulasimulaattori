@@ -6,11 +6,6 @@ using FPSControllerLPFP;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-//
-// Tracks and changes player's status
-// Statuses are things the player needs to get rid of
-//
-
 public enum Status
 {
     needSunglasses,
@@ -33,7 +28,7 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField] bool isInverted;
     [SerializeField] FpsControllerLPFP fpsController;
     [SerializeField] bool highHeartRate;
-    [SerializeField] GameObject heart;
+    [SerializeField] PlayerStats playerStats;
 
     [TextArea]
     [SerializeField] string lightsAreOnText;
@@ -41,6 +36,8 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField] string stillShakingText;
     [TextArea]
     [SerializeField] string controlsInvertedText;
+    [TextArea]
+    [SerializeField] string highHeartRateText;
     [SerializeField] GameObject endingScreen;
     [SerializeField] Clock clock;
 
@@ -66,6 +63,7 @@ public class PlayerStatus : MonoBehaviour
             lightImage.SetActive(false);
             cameraShake.enabled = false;
             fpsController.toggleInversion = false;
+            highHeartRate = false;
         }
     }
 
@@ -74,6 +72,7 @@ public class PlayerStatus : MonoBehaviour
         areLightsOn = lightImage.activeSelf;
         isShaking = cameraShake.enabled;
         isInverted = fpsController.toggleInversion;
+        highHeartRate = playerStats.IsHeartRateTooHigh();
     }
 
     public void InitStatusList() // public so can be called from outside if needed
@@ -108,7 +107,7 @@ public class PlayerStatus : MonoBehaviour
 
     public bool CanOpenDoor()
     {
-        if(!isShaking && !isInverted && !areLightsOn)
+        if(!isShaking && !isInverted && !areLightsOn && !highHeartRate)
             return true;
         else
         {
@@ -160,6 +159,10 @@ public class PlayerStatus : MonoBehaviour
         if(isInverted)
         {
             toDolist = toDolist + "*" + controlsInvertedText;
+        }
+        if(highHeartRate)
+        {
+            toDolist = toDolist + "*" + highHeartRateText;
         }
 
         return toDolist;
