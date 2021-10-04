@@ -2,12 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
+    [SerializeField] Image blackscreen;
+    [SerializeField] AudioSource ambientSounds;
+    [SerializeField] AudioSource guitarSounds;
+    [SerializeField] AudioSource introSounds;
+    Coroutine startCoroutine;
+
     public void playGame()
     {
-        SceneManager.LoadScene("Gameplay");
+        if (startCoroutine == null)
+        {
+            startCoroutine = StartCoroutine("StartGame");
+        }
     }
 
     public void quitGame()
@@ -15,4 +25,20 @@ public class MainMenuManager : MonoBehaviour
         Application.Quit();
     }
 
+    IEnumerator StartGame()
+    {
+        // TODO: Play audio
+        ambientSounds.Stop();
+        //guitarSounds.Stop();
+        introSounds.Play();
+
+        for (float i = 0; i < 1; i+=0.001f)
+        {
+            blackscreen.color = new Color(0, 0, 0, i);
+            yield return new WaitForFixedUpdate();
+        }
+        
+        yield return new WaitForSeconds(20);
+        SceneManager.LoadScene("Gameplay");
+    }
 }
