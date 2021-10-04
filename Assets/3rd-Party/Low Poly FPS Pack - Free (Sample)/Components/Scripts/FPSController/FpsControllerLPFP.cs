@@ -317,7 +317,7 @@ namespace FPSControllerLPFP
 
             var direction = isInverted ? new Vector3(-input.Move, 0f, -input.Strafe).normalized : new Vector3(input.Move, 0f, input.Strafe).normalized;
             var worldDirection = transform.TransformDirection(direction);
-            var velocity = worldDirection * (input.Run ? runningSpeed : walkingSpeed);
+            var velocity = worldDirection * walkingSpeed;
             //Checks for collisions so that the character does not stuck when jumping against walls.
             var intersectsWall = CheckCollisionsWithWalls(velocity);
             if (intersectsWall)
