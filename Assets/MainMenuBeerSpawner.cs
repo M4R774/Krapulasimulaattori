@@ -18,7 +18,9 @@ public class MainMenuBeerSpawner : MonoBehaviour
     {
         if (Time.time > nextSpawn)
         {
+            Vector3 randomOffset = new Vector3(Random.Range(-.1f, .1f), Random.Range(-.1f, .1f), Random.Range(-.1f, .1f));
             GameObject beerBottle = Instantiate(beerBottlePrefab, transform);
+            beerBottle.transform.position += randomOffset;
             Destroy(beerBottle, 120f);
             nextSpawn = Time.time + spawnInterval;
         }

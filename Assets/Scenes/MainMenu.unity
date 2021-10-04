@@ -176,6 +176,9 @@ MonoBehaviour:
   ambientSounds: {fileID: 0}
   guitarSounds: {fileID: 0}
   introSounds: {fileID: 0}
+  globalVolume: {fileID: 0}
+  mainMenuSkybox: {fileID: 0}
+  gameplaySkybox: {fileID: 0}
 --- !u!1 &163055545
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,6 +819,10 @@ PrefabInstance:
       propertyPath: isGlobal
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2942909509567861880, guid: 3485a320fb2384cadb4ab2be114bf1dc, type: 3}
+      propertyPath: sharedProfile
+      value: 
+      objectReference: {fileID: 11400000, guid: 25882e2b899eb3a45a60a26a12c0f162, type: 2}
     - target: {fileID: 2942909509567861881, guid: 3485a320fb2384cadb4ab2be114bf1dc, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -1505,6 +1512,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9f997b48288f41268bb63a49a11e1d5, type: 3}
+--- !u!1 &889886399 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2942909509567861883, guid: 3485a320fb2384cadb4ab2be114bf1dc, type: 3}
+  m_PrefabInstance: {fileID: 338468034}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &895129787
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1608,6 +1620,9 @@ MonoBehaviour:
   ambientSounds: {fileID: 226319731}
   guitarSounds: {fileID: 0}
   introSounds: {fileID: 987633709}
+  globalVolume: {fileID: 889886399}
+  mainMenuSkybox: {fileID: 8900000, guid: 6628d6b0bc0820747a08fb692478a012, type: 3}
+  gameplaySkybox: {fileID: 8900000, guid: c8f21f62fdb3e43c5b32917c84683698, type: 3}
 --- !u!224 &987633708
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1751,7 +1766,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1243577079}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.028000005, y: 1.2045001, z: -9.075001}
+  m_LocalPosition: {x: 0.038, y: 1.2045001, z: -9.235}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

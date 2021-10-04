@@ -11,6 +11,9 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] AudioSource guitarSounds;
     [SerializeField] AudioSource introSounds;
     Coroutine startCoroutine;
+    [SerializeField] GameObject globalVolume;
+    [SerializeField] Texture mainMenuSkybox;
+    [SerializeField] Texture gameplaySkybox;
 
     public void playGame()
     {
