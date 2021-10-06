@@ -177,7 +177,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usable: 1
-  myStatus: 0
   playerStatusComponent: {fileID: 0}
   messageManager: {fileID: 0}
   itemDescription: 
@@ -392,7 +391,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usable: 0
-  myStatus: 0
   playerStatusComponent: {fileID: 0}
   messageManager: {fileID: 0}
   itemDescription: Never drinking again.*Another empty bottle.
@@ -715,7 +713,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usable: 1
-  myStatus: 0
   playerStatusComponent: {fileID: 0}
   messageManager: {fileID: 0}
   itemDescription: 
@@ -933,7 +930,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usable: 0
-  myStatus: 0
   playerStatusComponent: {fileID: 0}
   messageManager: {fileID: 0}
   itemDescription: Never drinking again.*Another empty bottle.
@@ -1096,7 +1092,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usable: 1
-  myStatus: 0
   playerStatusComponent: {fileID: 0}
   messageManager: {fileID: 0}
   itemDescription: 
@@ -1152,7 +1147,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usable: 1
-  myStatus: 0
   playerStatusComponent: {fileID: 0}
   messageManager: {fileID: 0}
   itemDescription: Never drinking again.*Another empty bottle.
@@ -1331,7 +1325,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usable: 0
-  myStatus: 0
   playerStatusComponent: {fileID: 0}
   messageManager: {fileID: 0}
   itemDescription: 1592 unread emails.
@@ -1642,7 +1635,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usable: 0
-  myStatus: 0
   playerStatusComponent: {fileID: 0}
   messageManager: {fileID: 0}
   itemDescription: Ahh.*That hits the spot.
@@ -1790,7 +1782,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usable: 0
-  myStatus: 0
   playerStatusComponent: {fileID: 0}
   messageManager: {fileID: 0}
   itemDescription: Broken.*I probably look like shit.
@@ -2258,7 +2249,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usable: 0
-  myStatus: 0
   playerStatusComponent: {fileID: 0}
   messageManager: {fileID: 0}
   itemDescription: Never drinking again.*Another empty bottle.
@@ -2358,7 +2348,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usable: 0
-  myStatus: 0
   playerStatusComponent: {fileID: 0}
   messageManager: {fileID: 0}
   itemDescription: Never drinking again.*Another empty bottle.
@@ -2696,7 +2685,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usable: 0
-  myStatus: 0
   playerStatusComponent: {fileID: 0}
   messageManager: {fileID: 0}
   itemDescription: Never drinking again.*Another empty bottle.
@@ -2844,7 +2832,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usable: 1
-  myStatus: 0
   playerStatusComponent: {fileID: 0}
   messageManager: {fileID: 0}
   itemDescription: 
@@ -2912,7 +2899,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usable: 0
-  myStatus: 2
   playerStatusComponent: {fileID: 0}
   messageManager: {fileID: 0}
   itemDescription: Not loaded.*Can't make coffee without coffee.
@@ -4110,6 +4096,7 @@ Transform:
   - {fileID: 4232164116083576790}
   - {fileID: 8367973835295994048}
   - {fileID: 3856499031096708154}
+  - {fileID: 7603126817218636587}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4239,7 +4226,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usable: 1
-  myStatus: 0
   playerStatusComponent: {fileID: 0}
   messageManager: {fileID: 0}
   itemDescription: Oh man, coffee.*Goodbye shaking!
@@ -5019,7 +5005,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usable: 1
-  myStatus: 0
   playerStatusComponent: {fileID: 0}
   messageManager: {fileID: 0}
   itemDescription: Noniin.
@@ -5115,7 +5100,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usable: 0
-  myStatus: 0
   playerStatusComponent: {fileID: 0}
   messageManager: {fileID: 0}
   itemDescription: Never drinking again.*Another empty bottle.
@@ -5263,6 +5247,172 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 3671124377080654647, guid: e7a03bae382810c4db2d09288faac3af, type: 3}
+--- !u!1 &8175412428827429918
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7603126817218636587}
+  - component: {fileID: 8358917982282733436}
+  - component: {fileID: 7259170566015776740}
+  - component: {fileID: 3862369632611891407}
+  - component: {fileID: 2101007978172578697}
+  - component: {fileID: 1979902980183217381}
+  - component: {fileID: 6973111764500293398}
+  m_Layer: 6
+  m_Name: Kitchen Door (1)
+  m_TagString: Door
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7603126817218636587
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8175412428827429918}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: 1.56, y: 1.0056, z: -2.3875}
+  m_LocalScale: {x: 1.6242019, y: 1.84, z: 1.9942179}
+  m_Children: []
+  m_Father: {fileID: 5966374105700198747}
+  m_RootOrder: 37
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
+--- !u!33 &8358917982282733436
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8175412428827429918}
+  m_Mesh: {fileID: 5443359084879468973, guid: e7a03bae382810c4db2d09288faac3af, type: 3}
+--- !u!23 &7259170566015776740
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8175412428827429918}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 6035a674d482c914bacbcbae166ca038, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &3862369632611891407
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8175412428827429918}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &2101007978172578697
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8175412428827429918}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.46303415, y: 0.05007965, z: 1}
+  m_Center: {x: 0.22835502, y: -0.018178167, z: -0.0000000010873668}
+--- !u!59 &1979902980183217381
+HingeJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8175412428827429918}
+  m_ConnectedBody: {fileID: 0}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_Anchor: {x: 0, y: -0.06, z: 0}
+  m_Axis: {x: 0, y: 0, z: -90}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: 1.4496, y: 1.0056, z: -2.3875}
+  m_UseSpring: 0
+  m_Spring:
+    spring: 0
+    damper: 0
+    targetPosition: 0
+  m_UseMotor: 0
+  m_Motor:
+    targetVelocity: 0
+    force: 0
+    freeSpin: 0
+  m_UseLimits: 1
+  m_Limits:
+    min: 0
+    max: 90
+    bounciness: 0
+    bounceMinVelocity: 0.2
+    contactDistance: 0
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
+--- !u!114 &6973111764500293398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8175412428827429918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5cc024f728ad2418f7faa85b41afd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 3862369632611891407}
+  isOpenable: 1
+  messageManager: {fileID: 0}
+  lockedDescription: 
 --- !u!1 &8286554582011250195
 GameObject:
   m_ObjectHideFlags: 0
@@ -5521,7 +5671,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usable: 1
-  myStatus: 0
   playerStatusComponent: {fileID: 0}
   messageManager: {fileID: 0}
   itemDescription: 

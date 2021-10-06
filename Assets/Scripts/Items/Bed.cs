@@ -99,6 +99,8 @@ public class Bed : Usable
         startTime = Time.time;
         journeyLength = Vector3.Distance(player.transform.position, wakeUpPosition.position);
 
+        speed = 0.005f;
+
         while (Vector3.Distance(player.transform.position, wakeUpPosition.position) > .01f)
         {
             // Distance moved equals elapsed time times speed..
