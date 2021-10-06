@@ -5,18 +5,22 @@ using UnityEngine;
 public class MainMenuCamera : MonoBehaviour
 {
     [SerializeField] GameObject table;
+    [SerializeField] bool rotateCamera = false;
 
     private void Start()
     {
-        table = GameObject.Find("table");
+        //table = GameObject.Find("table");
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
     }
 
     void Update()
     {
-        transform.LookAt(table.transform);
-        transform.Translate(Vector3.right * Time.deltaTime * .1f);
+        if(rotateCamera)
+        {
+            transform.LookAt(table.transform);
+            transform.Translate(Vector3.right * Time.deltaTime * .1f);
+        }
         //Cursor.visible = true;
     }
 }
