@@ -99,7 +99,7 @@ public class Bed : Usable
         startTime = Time.time;
         journeyLength = Vector3.Distance(player.transform.position, wakeUpPosition.position);
 
-        speed = 0.005f;
+        speed = 0.001f;
 
         while (Vector3.Distance(player.transform.position, wakeUpPosition.position) > .01f)
         {
