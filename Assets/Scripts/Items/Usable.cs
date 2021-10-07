@@ -5,11 +5,11 @@ using UnityEngine;
 public class Usable : Item
 {
     public virtual void UseObject() {
-        //messageManager.DisplayDialogue(itemDescription);
         OnUseItem();
     }
 
-    public virtual void OnUseItem() {
+    public virtual void OnUseItem()
+    {
         messageManager.DisplayDialogueAndPlayAudio(itemDescription, audioClips);
     }
 }

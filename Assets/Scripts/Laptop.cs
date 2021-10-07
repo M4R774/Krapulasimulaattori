@@ -10,13 +10,8 @@ public class Laptop : Item
     MeshRenderer meshRenderer;
     AudioSource audioSource;
 
-    // Reaction audio
-    [SerializeField] AudioClip reactionClip;
-    AudioSource _innerAudioSource;
-
     void Start()
     {
-        _innerAudioSource = GameObject.Find("PlayerAudioSource").GetComponent<AudioSource>();
         audioSource = GetComponent<AudioSource>();
         meshRenderer = GetComponent<MeshRenderer>();
     }
@@ -34,6 +29,5 @@ public class Laptop : Item
 
     public virtual void UseObject() {
         messageManager.DisplayDialogueAndPlayAudio(itemDescription, audioClips);
-        //_innerAudioSource.PlayOneShot(reactionClip);
     }
 }

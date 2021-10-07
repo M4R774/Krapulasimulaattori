@@ -583,7 +583,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2725252456062494556, guid: 913cbc77b2783594d95c5c450f8e8ba2, type: 3}
       propertyPath: text
-      value: Another empty bottle.
+      value: Another empty bottle.*I need coffee.
       objectReference: {fileID: 0}
     - target: {fileID: 2725252456062494556, guid: 913cbc77b2783594d95c5c450f8e8ba2, type: 3}
       propertyPath: messageManager

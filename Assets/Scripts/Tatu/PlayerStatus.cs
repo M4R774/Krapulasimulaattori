@@ -50,7 +50,7 @@ public class PlayerStatus : MonoBehaviour
     [Header("Debugging")]
     [SerializeField] bool disableEffects = false;
 
-    // Reaction audio
+    [Header("Reaction audio")]
     [SerializeField] AudioClip cantleave;
     private AudioClip shaking;
     private AudioClip cantmove;

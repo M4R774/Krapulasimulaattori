@@ -17,5 +17,6 @@ public class LightSwitch : Usable
             whiteoutSquare.GetComponent<Whiteout>().enabled = true;
             itemDescription = "Ouch the light hurts my eyes!";
         }
+        messageManager.DisplayDialogueAndPlayAudio(itemDescription, audioClips);
     }
 }

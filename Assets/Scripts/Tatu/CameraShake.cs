@@ -12,8 +12,6 @@ public class CameraShake : MonoBehaviour
 	[SerializeField] MessageManager messageManager;
 	[SerializeField] string shakeReactionText;
 	[Tooltip("The audio clip that will be played when the screen shake."), SerializeField]
-	private AudioClip shakeReactionClip;
-	private AudioSource _shakeReactionAudioSource;
 	private int shakeCounter = 0;
 	[Tooltip("The sound clip will play every nth occurence of the shake effect"), SerializeField]
 	private int shakeInterval;
@@ -38,10 +36,6 @@ public class CameraShake : MonoBehaviour
 
 	// Shake reaction
 	bool canTalk = true;
-
-	// Reaction audio
-    [SerializeField] AudioClip reactionClip;
-    AudioSource _innerAudioSource;
 	[SerializeField] protected List<AudioClip> audioClips;
 
     public bool IsShaking {
@@ -58,11 +52,9 @@ public class CameraShake : MonoBehaviour
 	
 	void Start()
 	{
-		_innerAudioSource = GameObject.Find("PlayerAudioSource").GetComponent<AudioSource>();
 		startTime = Time.time;
 		startPos = camTransform.localPosition;
 		endPos = Random.insideUnitSphere * shakeAmount;
-		_shakeReactionAudioSource = GameObject.Find("PlayerAudioSource").GetComponent<AudioSource>();
 	}
 
 	void OnEnable()
@@ -135,7 +127,7 @@ public class CameraShake : MonoBehaviour
         shakeCounter++;
         if (shakeCounter == 0 || shakeCounter % shakeInterval == 0)
         {
-           //_shakeReactionAudioSource.PlayOneShot(shakeReactionClip);
+           
         }
     }
 }

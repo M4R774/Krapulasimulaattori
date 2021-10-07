@@ -11,10 +11,10 @@ public abstract class Item : MonoBehaviour
     //public Status myStatus;
     public PlayerStatus playerStatusComponent;
     [SerializeField] protected MessageManager messageManager;
-    [SerializeField] protected List<AudioClip> audioClips;
-
     [TextArea(5,5)]
     public string itemDescription;
+    [SerializeField] protected List<AudioClip> audioClips;
+
 
     void Awake()
     {
@@ -23,11 +23,4 @@ public abstract class Item : MonoBehaviour
         if(playerStatusComponent == null)
             playerStatusComponent = FindObjectOfType<PlayerStatus>();
     }
-
-    //void OnCollisionEnter(Collision col)
-    //{
-    //    Vector3 collisionForce = col.impulse / Time.fixedDeltaTime;
-    //    Debug.Log(collisionForce);
-    //    GameEvents.current.OnCollisionSound(collisionForce, this.transform);
-    //}
 }

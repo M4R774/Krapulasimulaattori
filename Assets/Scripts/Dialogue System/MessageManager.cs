@@ -106,7 +106,17 @@ public class MessageManager : MonoBehaviour
                 //isAudioClipListEmpty = true;
                 missingAudioClipHack = 0;
             }
-            else if(text.Contains("*"))
+            else if(tempClips.Count == 0 && text.Contains("*"))
+            {
+                string[] phrases = text.Split('*');
+                while(phrases.Length > tempClips.Count)
+                {
+                    tempClips.Add(placeholderForEmptyList[0]);
+                }
+                //isAudioClipListEmpty = true;
+                missingAudioClipHack = 0;
+            }
+            else if(tempClips.Count != 0 && text.Contains("*"))
             {
                 string[] phrases = text.Split('*');
                 if(phrases.Length > tempClips.Count)
@@ -126,7 +136,6 @@ public class MessageManager : MonoBehaviour
                 }
             }
             messageDisplayCoroutine = StartCoroutine(TextDisplayAndAudioPlay(dialogueUI, text, tempClips));
-            //clips = origClips;
         }
     }
     IEnumerator TextDisplayAndAudioPlay(TextMeshProUGUI ui, string text, List<AudioClip> audioClips)
@@ -139,8 +148,11 @@ public class MessageManager : MonoBehaviour
             for (int i = 0; i < phrases.Length; i++)
             {
                 if(missingAudioClipHack > 0)
+                {
                     //audioSource.PlayOneShot(audioClips[i]);
                     AudioSource.PlayClipAtPoint(audioClips[i], playerAudioSource.position);
+                    GameObject.Find("One shot audio").transform.SetParent(playerAudioSource);
+                }
                 ui.text = phrases[i];
                 if(missingAudioClipHack > 0)
                     waitTime = audioClips[i].length;
@@ -163,8 +175,11 @@ public class MessageManager : MonoBehaviour
         else
         {
             if(!isAudioClipListEmpty && missingAudioClipHack > 0)
+            {
                 //audioSource.PlayOneShot(audioClips[0]);
                 AudioSource.PlayClipAtPoint(audioClips[0], playerAudioSource.position);
+                GameObject.Find("One shot audio").transform.SetParent(playerAudioSource);
+            }
             ui.text = text;
             if(!isAudioClipListEmpty && missingAudioClipHack > 0)
                 waitTime = audioClips[0].length;
