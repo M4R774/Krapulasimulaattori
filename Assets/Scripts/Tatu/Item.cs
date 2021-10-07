@@ -8,7 +8,7 @@ using UnityEngine;
 public abstract class Item : MonoBehaviour
 {
     public bool usable;
-    public Status myStatus;
+    //public Status myStatus;
     public PlayerStatus playerStatusComponent;
     [SerializeField] protected MessageManager messageManager;
     [SerializeField] protected List<AudioClip> audioClips;
@@ -20,6 +20,8 @@ public abstract class Item : MonoBehaviour
     {
         if(messageManager == null)
             messageManager = FindObjectOfType<MessageManager>();
+        if(playerStatusComponent == null)
+            playerStatusComponent = FindObjectOfType<PlayerStatus>();
     }
 
     //void OnCollisionEnter(Collision col)
