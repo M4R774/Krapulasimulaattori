@@ -200,6 +200,7 @@ MonoBehaviour:
   fadeFromBlackReactionClip: {fileID: 8300000, guid: 947c8214e7ca24b7db65801581ff400d, type: 3}
   fadeFromBlackReactionText: My head...*Am I dead?
   messageManager: {fileID: 0}
+  audioClips: []
   fpsController: {fileID: 3587621155106502664}
   cameraShake: {fileID: 1738933042057194107}
   bed: {fileID: 0}
@@ -1302,6 +1303,8 @@ MonoBehaviour:
   shakeAmount: 0.3
   decreaseFactor: 0.75
   shakeCooldown: 0
+  reactionClip: {fileID: 0}
+  audioClips: []
 --- !u!1 &3484271724344047772
 GameObject:
   m_ObjectHideFlags: 0
@@ -1541,6 +1544,7 @@ MonoBehaviour:
   invertTimer: 0
   messageManager: {fileID: 0}
   invertedReactionText: Can't even move right.*I need painkillers.
+  audioClips: []
   canMove: 0
 --- !u!114 &3484394809789389964
 MonoBehaviour:
@@ -1557,6 +1561,7 @@ MonoBehaviour:
   playerCam: {fileID: 3484199021066931564}
   pointer: {fileID: 1321519639375395460}
   grabPointer: {fileID: 1269171985094059212}
+  dragPointer: {fileID: 0}
   GrabButton: Grab
   ThrowButton: Throw
   UseButton: Use
@@ -1640,6 +1645,8 @@ MonoBehaviour:
   heartRateThreshold: 150
   crouchScriprt: {fileID: 3484394809789389967}
   messageManager: {fileID: 0}
+  audioClips: []
+  reactionClip: {fileID: 0}
 --- !u!1 &3484765941082644360
 GameObject:
   m_ObjectHideFlags: 0

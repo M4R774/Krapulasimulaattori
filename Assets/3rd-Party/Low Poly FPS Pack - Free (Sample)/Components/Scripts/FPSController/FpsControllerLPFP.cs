@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace FPSControllerLPFP
@@ -96,6 +98,7 @@ namespace FPSControllerLPFP
 
         [SerializeField] MessageManager messageManager;
         [SerializeField] string invertedReactionText;
+        [SerializeField] protected List<AudioClip> audioClips;
         public bool canMove = false;
 
         /// Initializes the FpsController on start.
@@ -204,8 +207,8 @@ namespace FPSControllerLPFP
             isInverted = true;
             if (invertedCounter == 0 || invertedCounter % invertedAudioInterval == 0)
             {
-                _innerAudioSource.PlayOneShot(invertedReactionClip);
-                messageManager.DisplayDialogue(invertedReactionText);
+                //_innerAudioSource.PlayOneShot(invertedReactionClip);
+                messageManager.DisplayDialogueAndPlayAudio(invertedReactionText, audioClips);
                 invertedCounter++;
             }
         }

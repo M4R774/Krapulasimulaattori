@@ -33,13 +33,18 @@ public class BeerBottle : Usable
     public override void UseObject()
     {
         // Separates the itemDescription according to if the item is usable or not
+        // Send audio clip 0 or 1 depending on if item is usable or not
         string[] phrases = itemDescription.Split('*');
         if (Random.Range(0, 100) > 50) {
-            messageManager.DisplayDialogue(phrases[0]);
-            _innerAudioSource.PlayOneShot(reactionClip1);
+            List<AudioClip> usableBeerAudio = new List<AudioClip>();
+            usableBeerAudio.Add(audioClips[0]);
+            messageManager.DisplayDialogueAndPlayAudio(phrases[0], usableBeerAudio);
+            //_innerAudioSource.PlayOneShot(reactionClip1);
         } else {
-            messageManager.DisplayDialogue(phrases[1]);
-            _innerAudioSource.PlayOneShot(reactionClip2);
+            List<AudioClip> unusableBeerAudio = new List<AudioClip>();
+            unusableBeerAudio.Add(audioClips[1]);
+            messageManager.DisplayDialogueAndPlayAudio(phrases[1], unusableBeerAudio);
+            //_innerAudioSource.PlayOneShot(reactionClip2);
             //Destroy(transform, 1);
         }
     }

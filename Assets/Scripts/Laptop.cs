@@ -33,7 +33,7 @@ public class Laptop : Item
     }
 
     public virtual void UseObject() {
-        messageManager.DisplayDialogue(itemDescription);
-        _innerAudioSource.PlayOneShot(reactionClip);
+        messageManager.DisplayDialogueAndPlayAudio(itemDescription, audioClips);
+        //_innerAudioSource.PlayOneShot(reactionClip);
     }
 }

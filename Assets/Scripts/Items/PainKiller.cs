@@ -18,8 +18,8 @@ public class PainKiller : Consumable
 
     public override void OnUseItem()
     {
-        _innerAudioSource.PlayOneShot(reactionClip);
-        messageManager.DisplayDialogue(itemDescription);
+        //_innerAudioSource.PlayOneShot(reactionClip);
+        messageManager.DisplayDialogueAndPlayAudio(itemDescription, audioClips);
         GameEvents.current.PainKillerConsumed();
         fpsController.toggleInversion = false;
     }

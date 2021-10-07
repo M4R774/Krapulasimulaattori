@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CameraShake : MonoBehaviour
 {
@@ -41,6 +42,7 @@ public class CameraShake : MonoBehaviour
 	// Reaction audio
     [SerializeField] AudioClip reactionClip;
     AudioSource _innerAudioSource;
+	[SerializeField] protected List<AudioClip> audioClips;
 
     public bool IsShaking {
         get { return shakeDuration > 0; }
@@ -77,8 +79,8 @@ public class CameraShake : MonoBehaviour
 			if(canTalk)
 			{
 				canTalk = false;
-				_innerAudioSource.PlayOneShot(reactionClip);
-				messageManager.DisplayDialogue(shakeReactionText);
+				//_innerAudioSource.PlayOneShot(reactionClip);
+				messageManager.DisplayDialogueAndPlayAudio(shakeReactionText, audioClips);
 			}
 			if (timeElapsed < lerpDuration)
 			{
@@ -133,7 +135,7 @@ public class CameraShake : MonoBehaviour
         shakeCounter++;
         if (shakeCounter == 0 || shakeCounter % shakeInterval == 0)
         {
-           _shakeReactionAudioSource.PlayOneShot(shakeReactionClip);
+           //_shakeReactionAudioSource.PlayOneShot(shakeReactionClip);
         }
     }
 }

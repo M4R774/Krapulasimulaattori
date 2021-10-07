@@ -10,6 +10,7 @@ using TMPro;
 // while retaining the ability to interrupt messages. It's important that in all cases the information delivered to the player.
 //
 
+[RequireComponent(typeof(AudioSource))]
 public class MessageManager : MonoBehaviour
 {
     [Header("Messages")]
@@ -18,18 +19,10 @@ public class MessageManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI dialogueUI;
     private Coroutine messageDisplayCoroutine;
     private string textReference; // current text stored
-
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.N))
-        {
-            DisplayDialogue("Aah.");
-        }
-        if(Input.GetKeyDown(KeyCode.M))
-        {
-            DisplayPickUpMessage("kitchen key");
-        }
-    }
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioManager audioManager;
+    List<AudioClip> audioToBePlayed = new List<AudioClip>();
+    [SerializeField] Transform player;
 
     // The method is complicated to make sure that the coroutine is only started once
     // even if this method would be called multiple times
@@ -51,13 +44,13 @@ public class MessageManager : MonoBehaviour
             messageDisplayCoroutine = StartCoroutine(TextDisplay(messageUI, message));
         }
     }
-    public void DisplayDialogue(string text)
+    /*public void DisplayDialogue(string text)
     {
         if(messageDisplayCoroutine == null)
         {
             messageDisplayCoroutine = StartCoroutine(TextDisplay(dialogueUI, text));
         }
-    }
+    }*/
 
     // TO DO
     // Modify this coroutine to expect a list of audio clips
@@ -93,5 +86,67 @@ public class MessageManager : MonoBehaviour
         textReference = null;
         messageDisplayCoroutine = null;
         yield return null;
+    }
+
+    public void DisplayDialogueAndPlayAudio(string text, List<AudioClip> clips)
+    {
+        if(messageDisplayCoroutine == null)
+        {
+            messageDisplayCoroutine = StartCoroutine(TextDisplayAndAudioPlay(dialogueUI, text, clips));
+        }
+    }
+    IEnumerator TextDisplayAndAudioPlay(TextMeshProUGUI ui, string text, List<AudioClip> audioClips)
+    {
+        if(text.Contains("*"))
+        {
+            string[] phrases = text.Split('*');
+            for (int i = 0; i < phrases.Length; i++)
+            {
+                AudioSource.PlayClipAtPoint(audioClips[i], player.position);
+                ui.text = phrases[i];
+                // for flow reasons wait time for dialogue phrases can be shorter than otherwise
+                float waitTime = 0.0f;
+                /*if(phrases[i].Length < 10)
+                {
+                    waitTime = phrases[i].Length * (0.10f * (10 / phrases[i].Length));
+                }
+                else
+                {
+                    waitTime = phrases[i].Length * 0.10f;   
+                }*/
+                waitTime = audioClips[i].length;
+                Debug.Log(audioClips[i].length);
+                yield return new WaitForSeconds(waitTime);
+                //yield return null;
+            }
+        }
+        else
+        {
+            AudioSource.PlayClipAtPoint(audioClips[0], player.position);
+            ui.text = text;
+            //audioSource.PlayOneShot(audioClips[0]);
+            /*float waitTime = text.Length * 0.15f;
+            //yield return new WaitForSeconds(waitTime);
+            while(audioSource.isPlaying)
+                ui.text = text;
+            //yield return new WaitForSeconds(waitTime);
+            yield return null;*/
+            float waitTime = audioClips[0].length;
+            yield return new WaitForSeconds(waitTime);
+        }
+        
+        ui.text = "";
+        textReference = null;
+        messageDisplayCoroutine = null;
+        yield return null;
+    }
+
+    public void DisplayDialogueAndPlayAudioTest(string text, audioID id)
+    {
+        audioToBePlayed = audioManager.audioClips(id);
+        if(messageDisplayCoroutine == null)
+        {
+            messageDisplayCoroutine = StartCoroutine(TextDisplayAndAudioPlay(dialogueUI, text, audioToBePlayed));
+        }
     }
 }

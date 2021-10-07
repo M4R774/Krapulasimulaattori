@@ -11,6 +11,7 @@ public abstract class Item : MonoBehaviour
     public Status myStatus;
     public PlayerStatus playerStatusComponent;
     [SerializeField] protected MessageManager messageManager;
+    [SerializeField] protected List<AudioClip> audioClips;
 
     [TextArea(5,5)]
     public string itemDescription;

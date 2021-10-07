@@ -17,7 +17,7 @@ public class Pan : Usable
 
     public override void OnUseItem()
     {
-        _innerAudioSource.PlayOneShot(reactionClip);
+        //_innerAudioSource.PlayOneShot(reactionClip);
         cameraShake.enabled = false;
     }
 }

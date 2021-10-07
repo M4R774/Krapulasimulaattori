@@ -12,6 +12,7 @@ public class PlayerStats : MonoBehaviour
     Animator heartAnimator;
     [SerializeField] Crouch crouchScriprt;
     [SerializeField] MessageManager messageManager;
+    [SerializeField] protected List<AudioClip> audioClips;
 
     bool canDisplayMessage = true;
 
@@ -62,8 +63,8 @@ public class PlayerStats : MonoBehaviour
                 crouchScriprt.forceCrouch = true;
                 if(canDisplayMessage)
                 {
-                    _innerAudioSource.PlayOneShot(reactionClip);
-                    messageManager.DisplayDialogue("My heart is bursting!*I need to go back to bed.");
+                    //_innerAudioSource.PlayOneShot(reactionClip);
+                    messageManager.DisplayDialogueAndPlayAudio("My heart is bursting!*I need to go back to bed.", audioClips);
                     canDisplayMessage = false;
                 }
             }

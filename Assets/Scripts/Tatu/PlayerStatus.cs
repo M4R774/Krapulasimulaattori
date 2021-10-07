@@ -175,7 +175,7 @@ public class PlayerStatus : MonoBehaviour
     public string TaskList()
     {
         string toDolist = "I can't leave yet.";
-        _innerAudioSource.PlayOneShot(cantleave);
+        //_innerAudioSource.PlayOneShot(cantleave);
         if (areLightsOn)
         {
             // TODO: Figure out how to queue voicelines....
