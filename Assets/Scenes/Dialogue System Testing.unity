@@ -533,6 +533,26 @@ PrefabInstance:
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 87250144}
+    - target: {fileID: 331101004453912701, guid: de5edb3d994b1ff488fe747846823b86, type: 3}
+      propertyPath: playerAudioSource
+      value: 
+      objectReference: {fileID: 1153653111}
+    - target: {fileID: 331101004453912701, guid: de5edb3d994b1ff488fe747846823b86, type: 3}
+      propertyPath: placeholderAudioClips.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 331101004453912701, guid: de5edb3d994b1ff488fe747846823b86, type: 3}
+      propertyPath: placeholderForEmptyList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 331101004453912701, guid: de5edb3d994b1ff488fe747846823b86, type: 3}
+      propertyPath: placeholderAudioClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: e3bad5557261242b7bb5cbacf7ae1e08, type: 3}
+    - target: {fileID: 331101004453912701, guid: de5edb3d994b1ff488fe747846823b86, type: 3}
+      propertyPath: placeholderForEmptyList.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: e3bad5557261242b7bb5cbacf7ae1e08, type: 3}
     - target: {fileID: 331101004453912702, guid: de5edb3d994b1ff488fe747846823b86, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -563,7 +583,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2725252456062494556, guid: 913cbc77b2783594d95c5c450f8e8ba2, type: 3}
       propertyPath: text
-      value: Another empty bottle.*I'm still shaking.*Oh man coffee.
+      value: Another empty bottle.
       objectReference: {fileID: 0}
     - target: {fileID: 2725252456062494556, guid: 913cbc77b2783594d95c5c450f8e8ba2, type: 3}
       propertyPath: messageManager
@@ -571,20 +591,32 @@ PrefabInstance:
       objectReference: {fileID: 548641089}
     - target: {fileID: 2725252456062494556, guid: 913cbc77b2783594d95c5c450f8e8ba2, type: 3}
       propertyPath: audioClips.Array.size
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2725252456062494556, guid: 913cbc77b2783594d95c5c450f8e8ba2, type: 3}
       propertyPath: audioClips.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: 8152ff67de3da1a498059bec300195c6, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 2725252456062494556, guid: 913cbc77b2783594d95c5c450f8e8ba2, type: 3}
       propertyPath: audioClips.Array.data[1]
       value: 
-      objectReference: {fileID: 8300000, guid: 5bde8c9abc8e8034ab6f9544e1e1df45, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 2725252456062494556, guid: 913cbc77b2783594d95c5c450f8e8ba2, type: 3}
       propertyPath: audioClips.Array.data[2]
       value: 
-      objectReference: {fileID: 8300000, guid: 4fa26073767664b41b22aa51589f7335, type: 3}
+      objectReference: {fileID: 8300000, guid: 5bde8c9abc8e8034ab6f9544e1e1df45, type: 3}
+    - target: {fileID: 2725252456062494556, guid: 913cbc77b2783594d95c5c450f8e8ba2, type: 3}
+      propertyPath: audioClips.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 5bde8c9abc8e8034ab6f9544e1e1df45, type: 3}
+    - target: {fileID: 2725252456062494556, guid: 913cbc77b2783594d95c5c450f8e8ba2, type: 3}
+      propertyPath: audioClips.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 5bde8c9abc8e8034ab6f9544e1e1df45, type: 3}
+    - target: {fileID: 2725252456062494556, guid: 913cbc77b2783594d95c5c450f8e8ba2, type: 3}
+      propertyPath: audioClips.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 5bde8c9abc8e8034ab6f9544e1e1df45, type: 3}
     - target: {fileID: 2725252456062494557, guid: 913cbc77b2783594d95c5c450f8e8ba2, type: 3}
       propertyPath: m_RootOrder
       value: 4

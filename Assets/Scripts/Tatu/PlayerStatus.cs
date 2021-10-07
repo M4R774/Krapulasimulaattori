@@ -23,9 +23,9 @@ public class PlayerStatus : MonoBehaviour
     [Header("Tasks")]
     [SerializeField] bool areLightsOn;
     [SerializeField] GameObject lightImage;
-    [SerializeField] bool isShaking;
+    public bool isShaking;
     [SerializeField] CameraShake cameraShake;
-    [SerializeField] bool isInverted;
+    public bool isInverted;
     [SerializeField] FpsControllerLPFP fpsController;
     [SerializeField] bool highHeartRate;
     [SerializeField] PlayerStats playerStats;

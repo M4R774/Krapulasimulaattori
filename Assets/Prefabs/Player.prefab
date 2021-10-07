@@ -121,8 +121,10 @@ MonoBehaviour:
   _audioSource: {fileID: 0}
   _bgAudioSource: {fileID: 1381048169007909222}
   fadeFromBlackReactionClip: {fileID: 8300000, guid: efea37da4105faa46b12c8634d5285be, type: 3}
-  fadeFromBlackReactionText: My head...*Am I dead?
+  fadeFromBlackReactionText: My head... Am I dead?
   messageManager: {fileID: 0}
+  audioClips:
+  - {fileID: 8300000, guid: efea37da4105faa46b12c8634d5285be, type: 3}
   fpsController: {fileID: 3587621155106502664}
   cameraShake: {fileID: 1738933042057194107}
   bed: {fileID: 0}
@@ -920,9 +922,7 @@ GameObject:
   - component: {fileID: 5768796081279723347}
   - component: {fileID: 3582508614041306913}
   - component: {fileID: 2852946176925480368}
-  - component: {fileID: 2471459716504253539}
   - component: {fileID: 1511707626329068297}
-  - component: {fileID: 7351796798234885107}
   m_Layer: 0
   m_Name: Pointer Canvas
   m_TagString: Untagged
@@ -1014,29 +1014,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &2471459716504253539
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2557826348129418137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc9c3828b861f4f88a93576bd394e0c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blackoutSquare: {fileID: 0}
-  whiteoutSquare: {fileID: 0}
-  _audioSource: {fileID: 0}
-  _bgAudioSource: {fileID: 7351796798234885107}
-  fadeFromBlackReactionClip: {fileID: 8300000, guid: efea37da4105faa46b12c8634d5285be, type: 3}
-  fadeFromBlackReactionText: My head...*Am I dead?
-  messageManager: {fileID: 0}
-  fpsController: {fileID: 3587621155106502664}
-  cameraShake: {fileID: 1738933042057194107}
-  bed: {fileID: 0}
-  playerStatus: {fileID: 0}
 --- !u!225 &1511707626329068297
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1049,102 +1026,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
---- !u!82 &7351796798234885107
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2557826348129418137}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 23cc2e835246d4271a8dd5acb2ae9a6a, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.3
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &2902835461673908469
 GameObject:
   m_ObjectHideFlags: 0
@@ -1656,6 +1537,7 @@ MonoBehaviour:
   decreaseFactor: 0.75
   shakeCooldown: 0
   reactionClip: {fileID: 0}
+  audioClips: []
 --- !u!1 &3484271724344047772
 GameObject:
   m_ObjectHideFlags: 0
@@ -1896,6 +1778,7 @@ MonoBehaviour:
   invertTimer: 0
   messageManager: {fileID: 0}
   invertedReactionText: Can't even move right.*I need painkillers.
+  audioClips: []
   canMove: 0
 --- !u!114 &3484394809789389964
 MonoBehaviour:
@@ -1996,6 +1879,7 @@ MonoBehaviour:
   heartRateThreshold: 150
   crouchScriprt: {fileID: 3484394809789389967}
   messageManager: {fileID: 0}
+  audioClips: []
   reactionClip: {fileID: 8300000, guid: 0016706a83dc4ef468ec9762f0901fd3, type: 3}
 --- !u!1 &3484765941082644360
 GameObject:
