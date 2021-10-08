@@ -15,6 +15,15 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] GameObject globalVolume;
     [SerializeField] Texture mainMenuSkybox;
     [SerializeField] Texture gameplaySkybox;
+    [Header("Platform specific settings")]
+    [SerializeField] GameObject quitOptions;
+
+    void Start()
+    {
+        #if UNITY_WEBGL
+            quitOptions.SetActive(false);
+        #endif
+    }
 
     public void playGame()
     {
