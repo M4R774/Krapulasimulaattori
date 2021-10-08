@@ -129,6 +129,7 @@ MonoBehaviour:
   cameraShake: {fileID: 1738933042057194107}
   bed: {fileID: 0}
   playerStatus: {fileID: 0}
+  pointerCanvas: {fileID: 0}
 --- !u!225 &3333696394210053248
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1780,6 +1781,7 @@ MonoBehaviour:
   invertedReactionText: Can't even move right.*I need painkillers.
   audioClips: []
   canMove: 0
+  bed: {fileID: 0}
 --- !u!114 &3484394809789389964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1854,6 +1856,9 @@ MonoBehaviour:
   capsuleCollider: {fileID: 3583708440525084614}
   fpsController: {fileID: 3484394809789389966}
   forceCrouch: 0
+  playerStats: {fileID: 5699882975123623764}
+  messageManager: {fileID: 0}
+  canForceCrouch: 1
 --- !u!81 &7284714272173737302
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1879,8 +1884,8 @@ MonoBehaviour:
   heartRateThreshold: 150
   crouchScriprt: {fileID: 3484394809789389967}
   messageManager: {fileID: 0}
-  audioClips: []
-  reactionClip: {fileID: 8300000, guid: 0016706a83dc4ef468ec9762f0901fd3, type: 3}
+  audioClips:
+  - {fileID: 8300000, guid: 0016706a83dc4ef468ec9762f0901fd3, type: 3}
 --- !u!1 &3484765941082644360
 GameObject:
   m_ObjectHideFlags: 0

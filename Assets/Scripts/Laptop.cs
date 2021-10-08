@@ -23,7 +23,8 @@ public class Laptop : Item
             Debug.Log(collision.relativeVelocity.magnitude);
             broken = true;
             meshRenderer.material = breakMaterial;
-            audioSource.Play();
+            if(audioSource != null && audioSource.clip != null)
+                audioSource.Play();
         }
     }
 

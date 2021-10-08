@@ -82,6 +82,7 @@ public class DragRigidbodyUse : MonoBehaviour
     private float objectAngularDrag;
 
     [SerializeField] LayerMask layerMask;
+    [Header("Debugging")]
     [SerializeField] TextMeshProUGUI objectHeldUI;
 
     void Start()

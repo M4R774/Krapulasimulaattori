@@ -100,6 +100,9 @@ namespace FPSControllerLPFP
         [SerializeField] string invertedReactionText;
         [SerializeField] protected List<AudioClip> audioClips;
         public bool canMove = false;
+        [SerializeField] Bed bed;
+        float origWalkingSpeed;
+        [SerializeField] PlayerStats playerStats;
 
         /// Initializes the FpsController on start.
         private void Start()
@@ -120,6 +123,9 @@ namespace FPSControllerLPFP
             //_cameraShake = transform.Find("Main Camera").GetComponent<CameraShake>();
             Cursor.lockState = CursorLockMode.Locked;
             ValidateRotationRestriction();
+            if(bed==null)
+                bed = FindObjectOfType<Bed>();
+            origWalkingSpeed = walkingSpeed;
         }
 			
         private Transform AssignCharactersCamera()
@@ -187,6 +193,8 @@ namespace FPSControllerLPFP
             PlayFootstepSounds();
             if (_status.isShaking) { RandomShake(); }
             if (_status.isInverted) { RandomInvert(); }
+            if(playerStats.IsHeartRateTooHigh()) // Stops player from abusing momentart speed gained from standing up
+                walkingSpeed = origWalkingSpeed / 2;
         }
 
         public void Crouch()
@@ -202,6 +210,12 @@ namespace FPSControllerLPFP
                 walkingSpeed = walkingSpeed * 2;
             }
         }
+        public void ResetCrouch()
+        {
+            isCrouching = false;
+            walkingSpeed = origWalkingSpeed;
+        }
+
         // Invert controls
         private void Invert() {
             isInverted = true;
@@ -367,7 +381,7 @@ namespace FPSControllerLPFP
 
         private void PlayFootstepSounds()
         {
-            if (_isGrounded && _rigidbody.velocity.sqrMagnitude > 0.1f)
+            if (_isGrounded && _rigidbody.velocity.sqrMagnitude > 0.1f && bed.sleepCoroutine == null)
             {
                 _audioSource.clip = input.Run ? runningSound : walkingSound;
                 if (!_audioSource.isPlaying)

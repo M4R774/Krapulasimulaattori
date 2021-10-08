@@ -1903,6 +1903,10 @@ PrefabInstance:
       propertyPath: whiteoutSquare
       value: 
       objectReference: {fileID: 914274283}
+    - target: {fileID: 2557826348129418137, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2902835461673908469, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1999,10 +2003,34 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3484394809789389967, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3484394809789389967, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
+      propertyPath: messageManager
+      value: 
+      objectReference: {fileID: 580494298}
+    - target: {fileID: 3587621155106502664, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
+      propertyPath: bed
+      value: 
+      objectReference: {fileID: 1097789001}
+    - target: {fileID: 3587621155106502664, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
+      propertyPath: playerStats
+      value: 
+      objectReference: {fileID: 2122086619750300774}
     - target: {fileID: 3587621155106502664, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
       propertyPath: messageManager
       value: 
       objectReference: {fileID: 580494298}
+    - target: {fileID: 3587621155106502664, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
+      propertyPath: maxVerticalAngle
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3587621155106502664, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
+      propertyPath: minVerticalAngle
+      value: -60
+      objectReference: {fileID: 0}
     - target: {fileID: 3587621155106502664, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
       propertyPath: invertedReactionText
       value: Can't move. I need painkillers.
@@ -2040,6 +2068,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 580494297}
     - target: {fileID: 5020012152204283656, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
+      propertyPath: pointerCanvas
+      value: 
+      objectReference: {fileID: 863965666}
+    - target: {fileID: 5020012152204283656, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
       propertyPath: messageManager
       value: 
       objectReference: {fileID: 580494298}
@@ -2072,13 +2104,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 580494298}
     - target: {fileID: 5699882975123623764, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
-      propertyPath: audioClips.Array.size
-      value: 1
+      propertyPath: heartRateThreshold
+      value: 100
       objectReference: {fileID: 0}
-    - target: {fileID: 5699882975123623764, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
-      propertyPath: audioClips.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: 0016706a83dc4ef468ec9762f0901fd3, type: 3}
     - target: {fileID: 5768796081279723347, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
       propertyPath: m_Camera
       value: 

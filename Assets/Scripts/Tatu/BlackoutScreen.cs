@@ -23,6 +23,7 @@ public class BlackoutScreen : MonoBehaviour
     [SerializeField] CameraShake cameraShake;
     [SerializeField] Bed bed;
     [SerializeField] PlayerStatus playerStatus;
+    [SerializeField] GameObject pointerCanvas;
 
     // Start is called before the first frame update
     void Awake()
@@ -68,6 +69,7 @@ public class BlackoutScreen : MonoBehaviour
         fpsController.canMove = true;
         fpsController.toggleInversion = true;
         cameraShake.enabled = true;
+        pointerCanvas.SetActive(true);
         yield return null;
     }
 }
