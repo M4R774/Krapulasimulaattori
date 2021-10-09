@@ -1759,8 +1759,8 @@ MonoBehaviour:
   jumpForce: 15
   mouseSensitivity: 5
   rotationSmoothness: 0.05
-  minVerticalAngle: -90
-  maxVerticalAngle: 90
+  minVerticalAngle: -75
+  maxVerticalAngle: 45
   input:
     rotateX: Mouse X
     rotateY: Mouse Y
@@ -1782,6 +1782,7 @@ MonoBehaviour:
   audioClips: []
   canMove: 0
   bed: {fileID: 0}
+  playerStats: {fileID: 0}
 --- !u!114 &3484394809789389964
 MonoBehaviour:
   m_ObjectHideFlags: 0
