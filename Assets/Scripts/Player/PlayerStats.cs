@@ -12,17 +12,12 @@ public class PlayerStats : MonoBehaviour
     Animator heartAnimator;
     [SerializeField] Crouch crouchScriprt;
     [SerializeField] MessageManager messageManager;
-
+    public List<AudioClip> audioClips;
     bool canDisplayMessage = true;
-
-    // Reaction audio
-    [SerializeField] AudioClip reactionClip;
-    AudioSource _innerAudioSource;
 
     void Start()
     {
-        _innerAudioSource = GameObject.Find("PlayerAudioSource").GetComponent<AudioSource>();
-        StartCoroutine("HeartRateCheckRoutine");
+        //StartCoroutine("HeartRateCheckRoutine");
         GameObject[] heartAnimatorGameObjects = GameObject.FindGameObjectsWithTag("HeartUI");
         if (heartAnimatorGameObjects.Length > 0)
         {
@@ -48,12 +43,7 @@ public class PlayerStats : MonoBehaviour
         // TODO: N�kym�n reunoilla n�kyv� punainen syke
     }
 
-    private void FixedUpdate()
-    {
-        
-    }
-
-    public IEnumerator HeartRateCheckRoutine()
+    /*public IEnumerator HeartRateCheckRoutine()
     {
         while(true)
         {
@@ -62,8 +52,8 @@ public class PlayerStats : MonoBehaviour
                 crouchScriprt.forceCrouch = true;
                 if(canDisplayMessage)
                 {
-                    _innerAudioSource.PlayOneShot(reactionClip);
-                    messageManager.DisplayDialogue("My heart is bursting!*I need to go back to bed.");
+                    //_innerAudioSource.PlayOneShot(reactionClip);
+                    messageManager.DisplayDialogueAndPlayAudio("My heart is bursting!*I need to go back to bed.", audioClips);
                     canDisplayMessage = false;
                 }
             }
@@ -73,12 +63,15 @@ public class PlayerStats : MonoBehaviour
             }
             yield return new WaitForSeconds(1);
         }
-    }
+    }*/
 
     public void ResetHeartRateToBaseline()
     {
         SetHeartRate(baselineHeartRate);
         canDisplayMessage = true;
+        crouchScriprt.canForceCrouch = true;
+        this.gameObject.SendMessage("ResetCrouch", SendMessageOptions.DontRequireReceiver);
+        crouchScriprt.ResetCrouchAfterSleeping();
     }
 
     void SetHeartRate(double bpm)

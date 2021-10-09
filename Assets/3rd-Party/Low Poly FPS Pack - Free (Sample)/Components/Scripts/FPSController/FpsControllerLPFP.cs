@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace FPSControllerLPFP
@@ -96,7 +98,11 @@ namespace FPSControllerLPFP
 
         [SerializeField] MessageManager messageManager;
         [SerializeField] string invertedReactionText;
+        [SerializeField] protected List<AudioClip> audioClips;
         public bool canMove = false;
+        [SerializeField] Bed bed;
+        float origWalkingSpeed;
+        [SerializeField] PlayerStats playerStats;
 
         /// Initializes the FpsController on start.
         private void Start()
@@ -117,6 +123,9 @@ namespace FPSControllerLPFP
             //_cameraShake = transform.Find("Main Camera").GetComponent<CameraShake>();
             Cursor.lockState = CursorLockMode.Locked;
             ValidateRotationRestriction();
+            if(bed==null)
+                bed = FindObjectOfType<Bed>();
+            origWalkingSpeed = walkingSpeed;
         }
 			
         private Transform AssignCharactersCamera()
@@ -182,8 +191,10 @@ namespace FPSControllerLPFP
 			arms.position = transform.position + transform.TransformVector(armPosition);
             Jump();
             PlayFootstepSounds();
-            if (_status.HasStatus(Status.needCoffee)) { RandomShake(); }
-            if (_status.HasStatus(Status.needPainkillers)) { RandomInvert(); }
+            if (_status.isShaking) { RandomShake(); }
+            if (_status.isInverted) { RandomInvert(); }
+            if(playerStats.IsHeartRateTooHigh()) // Stops player from abusing momentart speed gained from standing up
+                walkingSpeed = origWalkingSpeed / 2;
         }
 
         public void Crouch()
@@ -199,13 +210,19 @@ namespace FPSControllerLPFP
                 walkingSpeed = walkingSpeed * 2;
             }
         }
+        public void ResetCrouch()
+        {
+            isCrouching = false;
+            walkingSpeed = origWalkingSpeed;
+        }
+
         // Invert controls
         private void Invert() {
             isInverted = true;
             if (invertedCounter == 0 || invertedCounter % invertedAudioInterval == 0)
             {
-                _innerAudioSource.PlayOneShot(invertedReactionClip);
-                messageManager.DisplayDialogue(invertedReactionText);
+                //_innerAudioSource.PlayOneShot(invertedReactionClip);
+                messageManager.DisplayDialogueAndPlayAudio(invertedReactionText, audioClips);
                 invertedCounter++;
             }
         }
@@ -364,7 +381,7 @@ namespace FPSControllerLPFP
 
         private void PlayFootstepSounds()
         {
-            if (_isGrounded && _rigidbody.velocity.sqrMagnitude > 0.1f)
+            if (_isGrounded && _rigidbody.velocity.sqrMagnitude > 0.1f && bed.sleepCoroutine == null)
             {
                 _audioSource.clip = input.Run ? runningSound : walkingSound;
                 if (!_audioSource.isPlaying)

@@ -10,13 +10,8 @@ public class Laptop : Item
     MeshRenderer meshRenderer;
     AudioSource audioSource;
 
-    // Reaction audio
-    [SerializeField] AudioClip reactionClip;
-    AudioSource _innerAudioSource;
-
     void Start()
     {
-        _innerAudioSource = GameObject.Find("PlayerAudioSource").GetComponent<AudioSource>();
         audioSource = GetComponent<AudioSource>();
         meshRenderer = GetComponent<MeshRenderer>();
     }
@@ -28,12 +23,12 @@ public class Laptop : Item
             Debug.Log(collision.relativeVelocity.magnitude);
             broken = true;
             meshRenderer.material = breakMaterial;
-            audioSource.Play();
+            if(audioSource != null && audioSource.clip != null)
+                audioSource.Play();
         }
     }
 
     public virtual void UseObject() {
-        messageManager.DisplayDialogue(itemDescription);
-        _innerAudioSource.PlayOneShot(reactionClip);
+        messageManager.DisplayDialogueAndPlayAudio(itemDescription, audioClips);
     }
 }

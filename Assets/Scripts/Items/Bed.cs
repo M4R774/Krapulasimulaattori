@@ -12,7 +12,7 @@ public class Bed : Usable
     FpsControllerLPFP fpsController;
     Rigidbody playerRigidbody;
     Collider playerCollider;
-    Coroutine sleepCoroutine;
+    public Coroutine sleepCoroutine;
 
     Transform startMarker;
     float journeyLength;
@@ -81,7 +81,7 @@ public class Bed : Usable
         fpsController.enabled = true;
         playerRigidbody.isKinematic = false;
         playerCollider.enabled = true;
-        player.GetComponent<Crouch>().StandUp();
+        //player.GetComponent<Crouch>().StandUp();
         sleepCoroutine = null;
         yield return null;
 
@@ -98,6 +98,8 @@ public class Bed : Usable
         startMarker = player.transform;
         startTime = Time.time;
         journeyLength = Vector3.Distance(player.transform.position, wakeUpPosition.position);
+
+        speed = 0.001f;
 
         while (Vector3.Distance(player.transform.position, wakeUpPosition.position) > .01f)
         {
@@ -116,6 +118,7 @@ public class Bed : Usable
         playerRigidbody.isKinematic = false;
         playerCollider.enabled = true;
         sleepCoroutine = null;
+        speed = 0.01f;
         yield return null;
     }
 }

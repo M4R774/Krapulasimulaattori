@@ -14,7 +14,7 @@ public class FrontDoor : Door
         }
         else
         {
-            messageManager.DisplayDialogue(playerStatus.TaskList());
+            messageManager.DisplayDialogueAndPlayAudio(playerStatus.TaskList(), audioClips);
         }
     }
 }

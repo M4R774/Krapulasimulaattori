@@ -23,9 +23,9 @@ public class PlayerStatus : MonoBehaviour
     [Header("Tasks")]
     [SerializeField] bool areLightsOn;
     [SerializeField] GameObject lightImage;
-    [SerializeField] bool isShaking;
+    public bool isShaking;
     [SerializeField] CameraShake cameraShake;
-    [SerializeField] bool isInverted;
+    public bool isInverted;
     [SerializeField] FpsControllerLPFP fpsController;
     [SerializeField] bool highHeartRate;
     [SerializeField] PlayerStats playerStats;
@@ -38,7 +38,10 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField] string controlsInvertedText;
     [TextArea]
     [SerializeField] string highHeartRateText;
+    [Header("Ending")]
     [SerializeField] GameObject endingScreen;
+    [SerializeField] GameObject heartGO;
+    [SerializeField] GameObject pointerCanvas;
     [SerializeField] Clock clock;
 
     [Header("Trigger Volume Logic")]
@@ -47,7 +50,7 @@ public class PlayerStatus : MonoBehaviour
     [Header("Debugging")]
     [SerializeField] bool disableEffects = false;
 
-    // Reaction audio
+    [Header("Reaction audio")]
     [SerializeField] AudioClip cantleave;
     private AudioClip shaking;
     private AudioClip cantmove;
@@ -144,7 +147,9 @@ public class PlayerStatus : MonoBehaviour
 
     public void EndGame()
     {
-        Debug.Log("You won!");
+        heartGO.SetActive(false);
+        pointerCanvas.SetActive(false);
+        dragRigidbodyUse.enabled = false;
         StartCoroutine("EndingScreen");
     }
     IEnumerator EndingScreen()
@@ -164,8 +169,8 @@ public class PlayerStatus : MonoBehaviour
         victoryText.text = endingText;
         for (float i = 0; i < 1; i += 0.01f)
         {
-            endingScreen.GetComponent<Image>().color = new Color(1, 1, 1, i);
-            victoryText.color = new Color(0, 0, 0, i);
+            endingScreen.GetComponent<Image>().color = new Color(0, 0, 0, i);
+            victoryText.color = new Color(1, 1, 1, i);
             yield return new WaitForFixedUpdate();
         }
         yield return new WaitForSeconds(10f);
@@ -175,7 +180,7 @@ public class PlayerStatus : MonoBehaviour
     public string TaskList()
     {
         string toDolist = "I can't leave yet.";
-        _innerAudioSource.PlayOneShot(cantleave);
+        //_innerAudioSource.PlayOneShot(cantleave);
         if (areLightsOn)
         {
             // TODO: Figure out how to queue voicelines....

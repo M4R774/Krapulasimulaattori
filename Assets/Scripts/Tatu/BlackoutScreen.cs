@@ -16,12 +16,14 @@ public class BlackoutScreen : MonoBehaviour
     private AudioClip fadeFromBlackReactionClip;
     [SerializeField] string fadeFromBlackReactionText;
     [SerializeField] MessageManager messageManager;
+    [SerializeField] protected List<AudioClip> audioClips;
 
     // Game Start logic
     [SerializeField] FpsControllerLPFP fpsController;
     [SerializeField] CameraShake cameraShake;
     [SerializeField] Bed bed;
     [SerializeField] PlayerStatus playerStatus;
+    [SerializeField] GameObject pointerCanvas;
 
     // Start is called before the first frame update
     void Awake()
@@ -31,14 +33,9 @@ public class BlackoutScreen : MonoBehaviour
 
     private void Start()
     {
-        _audioSource = GameObject.Find("PlayerAudioSource").GetComponent<AudioSource>();
+        if(_audioSource == null)
+            _audioSource = GameObject.Find("PlayerAudioSource").GetComponent<AudioSource>();
         bed.WakeUp();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public IEnumerator FadeFromBlack(float fadeSpeed = 0.15f) {
@@ -52,8 +49,8 @@ public class BlackoutScreen : MonoBehaviour
             blackoutSquare.GetComponent<Image>().color = newColor;
             yield return null;
         }
-        _audioSource.PlayOneShot(fadeFromBlackReactionClip);
-        messageManager.DisplayDialogue(fadeFromBlackReactionText);
+        //_audioSource.PlayOneShot(fadeFromBlackReactionClip);
+        messageManager.DisplayDialogueAndPlayAudio(fadeFromBlackReactionText, audioClips);
         _bgAudioSource.Play();
         yield return StartCoroutine(LightsOn());
     }
@@ -72,6 +69,7 @@ public class BlackoutScreen : MonoBehaviour
         fpsController.canMove = true;
         fpsController.toggleInversion = true;
         cameraShake.enabled = true;
+        pointerCanvas.SetActive(true);
         yield return null;
     }
 }
