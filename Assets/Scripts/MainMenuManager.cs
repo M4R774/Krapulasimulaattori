@@ -15,6 +15,15 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] GameObject globalVolume;
     [SerializeField] Texture mainMenuSkybox;
     [SerializeField] Texture gameplaySkybox;
+    [Header("Platform specific settings")]
+    [SerializeField] GameObject quitOptions;
+
+    void Start()
+    {
+        #if UNITY_WEBGL
+            quitOptions.SetActive(false);
+        #endif
+    }
 
     public void playGame()
     {
@@ -36,13 +45,13 @@ public class MainMenuManager : MonoBehaviour
         //guitarSounds.Stop();
         introSounds.Play();
 
-        for (float i = 0; i < 1; i+=0.001f)
+        for (float i = 0; i < 1; i+=0.002f)
         {
             blackscreen.color = new Color(0, 0, 0, i);
             yield return new WaitForFixedUpdate();
         }
 
-        yield return new WaitForSeconds(20);
+        yield return new WaitForSeconds(3);
         SceneManager.LoadScene("Gameplay");
     }
 }

@@ -41,14 +41,14 @@ public class CoffeeMaker : Usable
         if(usable)
         {
             if (!makingCoffee && !coffeeReady) {
-                messageManager.DisplayDialogue(makeCoffeeDialogue);
+                messageManager.DisplayDialogueAndPlayAudio(makeCoffeeDialogue, audioClips);
                 makingCoffee = true;
                 coffeeTimer = 10f;
                 coffeeTimerStarted = true;
             } else if(makingCoffee && !coffeeReady ) {
-                messageManager.DisplayDialogue(makingCoffeeDialogue);
+                messageManager.DisplayDialogueAndPlayAudio(makingCoffeeDialogue, audioClips);
             } else {
-                messageManager.DisplayDialogue(coffeeReadyDialogue);
+                messageManager.DisplayDialogueAndPlayAudio(coffeeReadyDialogue, audioClips);
             }
             //if(playerStatusComponent.statusList[0] == myStatus && playerStatusComponent.RemoveStatus(myStatus))
             //{
@@ -57,8 +57,8 @@ public class CoffeeMaker : Usable
         }
         else
         {
-            _innerAudioSource.PlayOneShot(reactionClip);
-            messageManager.DisplayDialogue(itemDescription);
+            //_innerAudioSource.PlayOneShot(reactionClip);
+            messageManager.DisplayDialogueAndPlayAudio(itemDescription, audioClips);
         }
     }
 

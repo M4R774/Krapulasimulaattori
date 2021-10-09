@@ -82,6 +82,7 @@ public class DragRigidbodyUse : MonoBehaviour
     private float objectAngularDrag;
 
     [SerializeField] LayerMask layerMask;
+    [Header("Debugging")]
     [SerializeField] TextMeshProUGUI objectHeldUI;
 
     void Start()
@@ -93,12 +94,6 @@ public class DragRigidbodyUse : MonoBehaviour
 
     void Update()
     {
-        if(objectHeld != null)
-            objectHeldUI.text = objectHeld.ToString();
-        else
-        {
-            objectHeldUI.text = "No item held atm.";
-        }
         if (Input.GetButton(GrabButton) || (GetTriggerFloat() > 0.5f))
         {
             if (!isObjectHeld)

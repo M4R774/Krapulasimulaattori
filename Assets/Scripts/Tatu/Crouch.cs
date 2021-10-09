@@ -11,37 +11,70 @@ public class Crouch : MonoBehaviour
     float capsuleColliderHeight;
     // Used when heart rate exceed certain value;
     public bool forceCrouch = false;
+    [SerializeField] PlayerStats playerStats;
+    Coroutine crouchCoroutine = null;
+    [SerializeField] MessageManager messageManager;
+    bool isCrouching = false;
+    public bool canForceCrouch = true;
 
     void Start()
     {
         capsuleColliderHeight = capsuleCollider.height;
+        if(messageManager == null)
+            messageManager = FindObjectOfType<MessageManager>();
     }
 
     void Update()
     {
-        if((Input.GetButtonDown("Crouch") || forceCrouch) && !fpsController.GetComponent<FpsControllerLPFP>().isCrouching)
+        if((Input.GetButtonDown("Crouch") || forceCrouch) && !isCrouching)
         {
             GoToCrouch();
         }
-        else if(Input.GetButtonDown("Crouch") && fpsController.GetComponent<FpsControllerLPFP>().isCrouching && !forceCrouch)
+        else if(Input.GetButtonDown("Crouch") && isCrouching && !forceCrouch)
         {
             StandUp();
+            if(playerStats.IsHeartRateTooHigh())
+            {
+                if(crouchCoroutine == null)
+                    crouchCoroutine = StartCoroutine(CrouchRoutine());
+            }
+        }
+        if(playerStats.IsHeartRateTooHigh() && canForceCrouch)
+        {
+            Debug.Log("Hearrate is too high");
+            crouchCoroutine =  StartCoroutine(CrouchRoutine());
+            canForceCrouch = false;
         }
     }
 
     public void StandUp()
     {
-        // fpsController.GetComponent<FpsControllerLPFP>().isCrouching = false;
+        isCrouching = false;
         capsuleCollider.height = capsuleColliderHeight;
         this.gameObject.SendMessage("Crouch", SendMessageOptions.DontRequireReceiver);
-        forceCrouch = false;
     }
 
     public void GoToCrouch()
     {
-        // fpsController.GetComponent<FpsControllerLPFP>().isCrouching = true;
+        isCrouching = true;
         capsuleCollider.height = 0;
         this.gameObject.SendMessage("Crouch", SendMessageOptions.DontRequireReceiver);
     }
-}
 
+    IEnumerator CrouchRoutine()
+    {
+        Debug.Log("Started crouch routine");
+        yield return new WaitForSeconds(.5f);
+        GoToCrouch();
+        messageManager.DisplayDialogueAndPlayAudio("My heart is bursting!*I need to go back to bed.", playerStats.audioClips);
+        crouchCoroutine = null;
+        Debug.Log("ending crouch routine");
+        yield return null;
+    }
+
+    public void ResetCrouchAfterSleeping()
+    {
+        isCrouching = false;
+        capsuleCollider.height = capsuleColliderHeight;
+    }
+}
