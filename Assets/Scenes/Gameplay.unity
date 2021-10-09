@@ -2024,14 +2024,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 580494298}
     - target: {fileID: 3587621155106502664, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
-      propertyPath: maxVerticalAngle
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 3587621155106502664, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
-      propertyPath: minVerticalAngle
-      value: -60
-      objectReference: {fileID: 0}
-    - target: {fileID: 3587621155106502664, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
       propertyPath: invertedReactionText
       value: Can't move. I need painkillers.
       objectReference: {fileID: 0}
@@ -2103,10 +2095,6 @@ PrefabInstance:
       propertyPath: messageManager
       value: 
       objectReference: {fileID: 580494298}
-    - target: {fileID: 5699882975123623764, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
-      propertyPath: heartRateThreshold
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 5768796081279723347, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
       propertyPath: m_Camera
       value: 
