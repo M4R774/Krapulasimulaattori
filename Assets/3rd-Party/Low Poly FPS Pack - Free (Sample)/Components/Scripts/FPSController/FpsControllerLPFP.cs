@@ -84,7 +84,7 @@ namespace FPSControllerLPFP
 
         // Tatu
         public bool isCrouching = false;
-        private bool isInverted = false;
+        public bool isInverted = false;
         [Tooltip("Toggle random inversion on/off"), SerializeField]
         public bool toggleInversion = true;
         [Tooltip("Minimum time before next invert."), SerializeField]

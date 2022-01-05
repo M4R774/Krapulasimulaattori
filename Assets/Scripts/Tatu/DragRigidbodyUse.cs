@@ -56,8 +56,9 @@ public class DragRigidbodyUse : MonoBehaviour
 
     public GameObject playerCam;
     public GameObject pointer;
-    public GameObject grabPointer;
-    public GameObject dragPointer;
+    //public GameObject grabPointer;
+    //public GameObject dragPointer;
+    [SerializeField] TextMeshProUGUI pointerUI;
 
     public string GrabButton = "Grab";
     public string ThrowButton = "Throw";
@@ -159,20 +160,23 @@ public class DragRigidbodyUse : MonoBehaviour
             if(hit.collider.tag != "Door")
             {
                 pointer.SetActive(false);
-                grabPointer.SetActive(true);
+                //grabPointer.SetActive(true);
+                pointerUI.text = "PRESS F";
             }
             else
             {
                 pointer.SetActive(false);
-                dragPointer.SetActive(true);
+                //dragPointer.SetActive(true);
+                pointerUI.text = "DRAG";
             }
             
         }
         else
         {
             pointer.SetActive(true);
-            grabPointer.SetActive(false);
-            dragPointer.SetActive(false);
+            pointerUI.text = "";
+            //grabPointer.SetActive(false);
+            //dragPointer.SetActive(false);
         }
     }
 

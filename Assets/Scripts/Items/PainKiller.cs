@@ -12,5 +12,6 @@ public class PainKiller : Consumable
         messageManager.DisplayDialogueAndPlayAudio(itemDescription, audioClips);
         GameEvents.current.PainKillerConsumed();
         fpsController.toggleInversion = false;
+        fpsController.isInverted = false;
     }
 }

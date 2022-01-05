@@ -6,7 +6,7 @@ public class Shower : Usable
 {
     [SerializeField] private Animator animator;
     private bool isShowerOn = false;
-
+    [SerializeField] private AudioSource audioSource;
     public override void OnUseItem() {
 
         // Toggle shower's water
@@ -14,11 +14,13 @@ public class Shower : Usable
         {
             animator.SetTrigger("ShowerOn");
             isShowerOn = true;
+            audioSource.Play();
         }
         else if(isShowerOn)
         {
             animator.SetTrigger("ShowerOff");
             isShowerOn = false;
+            audioSource.Stop();
         }
     }
 }
