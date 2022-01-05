@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightSwitch : Usable
+public class Shower : Usable
 {
-    public GameObject whiteoutSquare;
+    [SerializeField] private Animator animator;
+    private bool isShowerOn = false;
 
     public override void OnUseItem() {
-        // Toggle whiteout
-        if (whiteoutSquare.activeSelf)
+
+        // Toggle shower's water
+        if(!isShowerOn)
         {
-            whiteoutSquare.GetComponent<Whiteout>().enabled = false;
-            whiteoutSquare.SetActive(false);
-            itemDescription = "Lights out.";
+            animator.SetTrigger("ShowerOn");
+            isShowerOn = true;
+        }
+        else if(isShowerOn)
+        {
+            animator.SetTrigger("ShowerOff");
+            isShowerOn = false;
         }
     }
 }
