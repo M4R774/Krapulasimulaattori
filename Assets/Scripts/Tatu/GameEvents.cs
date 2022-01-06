@@ -48,4 +48,13 @@ public class GameEvents : MonoBehaviour
         }
     }
 
+    public event Action<string> onShowerEnter;
+    public void OnShowerEnter(string sendersID)
+    {
+        if(onShowerEnter != null)
+        {
+            onShowerEnter(sendersID);
+        }
+    }
+
 }

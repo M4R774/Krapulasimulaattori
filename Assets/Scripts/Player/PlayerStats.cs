@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//
+// Monitors player's heartrate, so name is a bit confusing
+//
+
 public class PlayerStats : MonoBehaviour
 {
     [SerializeField] double baselineHeartRate = 90; // BPM

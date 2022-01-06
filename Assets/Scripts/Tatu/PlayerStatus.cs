@@ -6,16 +6,23 @@ using FPSControllerLPFP;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+//
+// Acts as something like a task manager, that tracks player's progress
+//
+
 public enum Status
 {
     needSunglasses,
     needPainkillers,
-    needCoffee
+    needCoffee,
+    needShower,
+    needEarplugs,
 }
 public class PlayerStatus : MonoBehaviour
 {
     [SerializeField] public List<Status> statusList;
     [SerializeField] DragRigidbodyUse dragRigidbodyUse;
+    [SerializeField] MessageManager messageManager;
 
     [Header("UI")]
     [SerializeField] TextMeshProUGUI statusText;
@@ -29,7 +36,13 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField] FpsControllerLPFP fpsController;
     [SerializeField] bool highHeartRate;
     [SerializeField] PlayerStats playerStats;
+    public bool hasShowered = false;
+    [TextArea]
+    [SerializeField] string textToDisplayWhenShowered;
+    [SerializeField] List<AudioClip> audioToPlayWhenShowered;
 
+    // The following texts are what are displayed if the player tries to exit
+    // and they haven't done all the tasks
     [TextArea]
     [SerializeField] string lightsAreOnText;
     [TextArea]
@@ -38,6 +51,9 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField] string controlsInvertedText;
     [TextArea]
     [SerializeField] string highHeartRateText;
+    [TextArea]
+    [SerializeField] string hasShoweredText;
+
     [Header("Ending")]
     [SerializeField] GameObject endingScreen;
     [SerializeField] GameObject heartGO;
@@ -46,9 +62,6 @@ public class PlayerStatus : MonoBehaviour
 
     [Header("Trigger Volume Logic")]
     [SerializeField] bool bedroomVolumeTrigger = false;
-
-    [Header("Debugging")]
-    [SerializeField] bool disableEffects = false;
 
     [Header("Reaction audio")]
     [SerializeField] AudioClip cantleave;
@@ -66,6 +79,7 @@ public class PlayerStatus : MonoBehaviour
         if (GameEvents.current != null)
         {
             GameEvents.current.onTriggerVolumeExit += OnTriggerVolumeExit;
+            GameEvents.current.onShowerEnter += OnShowerEnter;
         }
     }
 
@@ -77,13 +91,6 @@ public class PlayerStatus : MonoBehaviour
             statusText.text = "";*/
         
         CheckTasks();
-        if(disableEffects)
-        {
-            lightImage.SetActive(false);
-            cameraShake.enabled = false;
-            fpsController.toggleInversion = false;
-            highHeartRate = false;
-        }
     }
 
     void CheckTasks()
@@ -95,6 +102,8 @@ public class PlayerStatus : MonoBehaviour
 
         if(!bedroomVolumeTrigger)
         {
+            // randomly choosing effects could go here
+            // or earlier if the player should know them right away
             cameraShake.enabled = false;
             fpsController.toggleInversion = false;
         }
@@ -107,10 +116,9 @@ public class PlayerStatus : MonoBehaviour
         statusList.Add(Status.needCoffee);
     }
 
-
     //
     // Negative effects are initialised here!
-    // Uncomment lines 118 and 119 to enable negative effects in the beginning
+    // Uncomment lines isShaking and isInverted to enable those negative effects in the beginning
     //
     public void InitTasks()
     {
@@ -215,11 +223,22 @@ public class PlayerStatus : MonoBehaviour
         }
     }
 
+    void OnShowerEnter(string sendersID)
+    {
+        if(sendersID == "Water")
+        {   
+            hasShowered = true;
+            messageManager.DisplayDialogueAndPlayAudio(textToDisplayWhenShowered, audioToPlayWhenShowered);
+            GameEvents.current.onShowerEnter -= OnShowerEnter; // No need to listen to showering anymore
+        }
+    }
+
     void OnDestroy()
     {
         if (GameEvents.current != null)
         {
-            GameEvents.current.onTriggerVolumeExit += OnTriggerVolumeExit;
+            GameEvents.current.onTriggerVolumeExit -= OnTriggerVolumeExit;
+            GameEvents.current.onShowerEnter -= OnShowerEnter;
         }
     }
 
