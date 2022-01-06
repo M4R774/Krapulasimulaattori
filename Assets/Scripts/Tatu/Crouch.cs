@@ -66,7 +66,7 @@ public class Crouch : MonoBehaviour
         Debug.Log("Started crouch routine");
         yield return new WaitForSeconds(.5f);
         GoToCrouch();
-        messageManager.DisplayDialogueAndPlayAudio("My heart is bursting!*I need to go back to bed.", playerStats.audioClips);
+        messageManager.DisplayDialogueAndPlayAudio("My heart's about to burst'!*I need to go back to bed.", playerStats.audioClips);
         crouchCoroutine = null;
         Debug.Log("ending crouch routine");
         yield return null;

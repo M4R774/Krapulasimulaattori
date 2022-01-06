@@ -1154,7 +1154,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1433729420
 Transform:
   m_ObjectHideFlags: 0
@@ -2178,6 +2178,22 @@ PrefabInstance:
       propertyPath: messageManager
       value: 
       objectReference: {fileID: 580494298}
+    - target: {fileID: 5699882975123623764, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
+      propertyPath: audioClips.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5699882975123623764, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
+      propertyPath: audioClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: e482142a7cf6da240bc5920ad7a328b1, type: 3}
+    - target: {fileID: 5699882975123623764, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
+      propertyPath: audioClips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: b31a3569c4d1c42409a80ac6d36150b6, type: 3}
+    - target: {fileID: 5699882975123623764, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
+      propertyPath: audioClips.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: b31a3569c4d1c42409a80ac6d36150b6, type: 3}
     - target: {fileID: 5768796081279723347, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
       propertyPath: m_Camera
       value: 
@@ -2533,7 +2549,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2820320123932559335, guid: 2329f0e8cf396e04290dea06a040cf74, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2984348737865833223, guid: 2329f0e8cf396e04290dea06a040cf74, type: 3}
       propertyPath: messageManager
@@ -2576,21 +2592,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3264935375724658763, guid: 2329f0e8cf396e04290dea06a040cf74, type: 3}
-      propertyPath: itemDescription
-      value: Ahh. That hits the spot.
-      objectReference: {fileID: 0}
-    - target: {fileID: 3264935375724658763, guid: 2329f0e8cf396e04290dea06a040cf74, type: 3}
-      propertyPath: audioClips.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3264935375724658763, guid: 2329f0e8cf396e04290dea06a040cf74, type: 3}
       propertyPath: playerStatusComponent
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 3264935375724658763, guid: 2329f0e8cf396e04290dea06a040cf74, type: 3}
-      propertyPath: audioClips.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: e3bad5557261242b7bb5cbacf7ae1e08, type: 3}
     - target: {fileID: 3947817113064824921, guid: 2329f0e8cf396e04290dea06a040cf74, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -2601,7 +2605,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4008207865016882916, guid: 2329f0e8cf396e04290dea06a040cf74, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 4056113074265720082, guid: 2329f0e8cf396e04290dea06a040cf74, type: 3}
       propertyPath: m_IsActive
@@ -2633,15 +2637,19 @@ PrefabInstance:
       objectReference: {fileID: 580494297}
     - target: {fileID: 5204125065850108381, guid: 2329f0e8cf396e04290dea06a040cf74, type: 3}
       propertyPath: m_RootOrder
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 5356888898142322681, guid: 2329f0e8cf396e04290dea06a040cf74, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5505299994164762527, guid: 2329f0e8cf396e04290dea06a040cf74, type: 3}
       propertyPath: m_RootOrder
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627613409504776547, guid: 2329f0e8cf396e04290dea06a040cf74, type: 3}
+      propertyPath: m_RootOrder
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 5965347410740285165, guid: 2329f0e8cf396e04290dea06a040cf74, type: 3}
       propertyPath: messageManager
@@ -2741,7 +2749,7 @@ PrefabInstance:
       objectReference: {fileID: 580494298}
     - target: {fileID: 6144714045073352081, guid: 2329f0e8cf396e04290dea06a040cf74, type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 6144714045073352082, guid: 2329f0e8cf396e04290dea06a040cf74, type: 3}
       propertyPath: messageManager
@@ -2961,7 +2969,7 @@ PrefabInstance:
       objectReference: {fileID: 580494297}
     - target: {fileID: 7083363582116785679, guid: 2329f0e8cf396e04290dea06a040cf74, type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7155219990198708236, guid: 2329f0e8cf396e04290dea06a040cf74, type: 3}
       propertyPath: messageManager
@@ -3025,7 +3033,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8056962730308969139, guid: 2329f0e8cf396e04290dea06a040cf74, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8175412428827429918, guid: 2329f0e8cf396e04290dea06a040cf74, type: 3}
       propertyPath: m_Name
@@ -3040,9 +3048,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8454175378550875133, guid: 2329f0e8cf396e04290dea06a040cf74, type: 3}
+      propertyPath: audioClips.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8454175378550875133, guid: 2329f0e8cf396e04290dea06a040cf74, type: 3}
       propertyPath: playerStatusComponent
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8454175378550875133, guid: 2329f0e8cf396e04290dea06a040cf74, type: 3}
+      propertyPath: audioClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: bd2bde98979c1df478e2106603a5a4a4, type: 3}
+    - target: {fileID: 8454175378550875133, guid: 2329f0e8cf396e04290dea06a040cf74, type: 3}
+      propertyPath: audioClips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: fb9777069e807754ab988923cee469fc, type: 3}
     - target: {fileID: 8826361652510791787, guid: 2329f0e8cf396e04290dea06a040cf74, type: 3}
       propertyPath: m_RootOrder
       value: 22
