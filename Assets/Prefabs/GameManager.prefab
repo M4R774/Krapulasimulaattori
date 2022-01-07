@@ -59,6 +59,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statusList: 
   dragRigidbodyUse: {fileID: 0}
+  messageManager: {fileID: 331101004453912701}
   statusText: {fileID: 0}
   areLightsOn: 0
   lightImage: {fileID: 0}
@@ -68,15 +69,22 @@ MonoBehaviour:
   fpsController: {fileID: 0}
   highHeartRate: 0
   playerStats: {fileID: 0}
-  lightsAreOnText: 
-  stillShakingText: 
-  controlsInvertedText: 
-  highHeartRateText: 
+  hasShowered: 0
+  textToDisplayWhenShowered: The water's great.*Feeling fresh again!
+  audioToPlayWhenShowered: []
+  hasEaten: 0
+  lightsAreOnText: The lights are still on.
+  stillShakingText: I'm still shaking.
+  controlsInvertedText: I can't walk straight.
+  highHeartRateText: My heart is pumping too fast.
+  hasShoweredText: I smell too bad.
+  hasEatenText: I'm too hungry.
   endingScreen: {fileID: 0}
+  heartGO: {fileID: 0}
+  pointerCanvas: {fileID: 0}
   clock: {fileID: 0}
   bedroomVolumeTrigger: 0
-  disableEffects: 0
-  cantleave: {fileID: 0}
+  cantleave: {fileID: 8300000, guid: 0cf92d88d182e364cb3b16b9f2392fa1, type: 3}
 --- !u!114 &331101004453912701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,3 +100,5 @@ MonoBehaviour:
   messageUI: {fileID: 0}
   dialogueUI: {fileID: 0}
   audioSource: {fileID: 0}
+  playerAudioSource: {fileID: 0}
+  placeholderForEmptyList: []

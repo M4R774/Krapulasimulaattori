@@ -40,9 +40,11 @@ public class PlayerStatus : MonoBehaviour
     [TextArea]
     [SerializeField] string textToDisplayWhenShowered;
     [SerializeField] List<AudioClip> audioToPlayWhenShowered;
+    [SerializeField] bool hasEaten = false;
 
     // The following texts are what are displayed if the player tries to exit
     // and they haven't done all the tasks
+    [Header("Door opening reactions")]
     [TextArea]
     [SerializeField] string lightsAreOnText;
     [TextArea]
@@ -53,6 +55,8 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField] string highHeartRateText;
     [TextArea]
     [SerializeField] string hasShoweredText;
+    [TextArea]
+    [SerializeField] string hasEatenText;
 
     [Header("Ending")]
     [SerializeField] GameObject endingScreen;
@@ -80,6 +84,7 @@ public class PlayerStatus : MonoBehaviour
         {
             GameEvents.current.onTriggerVolumeExit += OnTriggerVolumeExit;
             GameEvents.current.onShowerEnter += OnShowerEnter;
+            GameEvents.current.onGrillFoodEaten += OnGrillFoodEaten;
         }
     }
 
@@ -229,8 +234,12 @@ public class PlayerStatus : MonoBehaviour
         {   
             hasShowered = true;
             messageManager.DisplayDialogueAndPlayAudio(textToDisplayWhenShowered, audioToPlayWhenShowered);
-            GameEvents.current.onShowerEnter -= OnShowerEnter; // No need to listen to showering anymore
         }
+    }
+
+    void OnGrillFoodEaten()
+    {
+        hasEaten = true;
     }
 
     void OnDestroy()
@@ -239,6 +248,7 @@ public class PlayerStatus : MonoBehaviour
         {
             GameEvents.current.onTriggerVolumeExit -= OnTriggerVolumeExit;
             GameEvents.current.onShowerEnter -= OnShowerEnter;
+            GameEvents.current.onGrillFoodEaten -= OnGrillFoodEaten;
         }
     }
 

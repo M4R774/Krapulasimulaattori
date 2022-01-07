@@ -56,5 +56,13 @@ public class GameEvents : MonoBehaviour
             onShowerEnter(sendersID);
         }
     }
+    public event Action onGrillFoodEaten;
+    public void OnGrillFoodEaten()
+    {
+        if(onGrillFoodEaten != null)
+        {
+            onGrillFoodEaten();
+        }
+    }
 
 }
