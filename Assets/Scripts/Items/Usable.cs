@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Usable : Item
 {
-    public virtual void UseObject() {
+    public virtual void UseObject()
+    {
         OnUseItem();
     }
 

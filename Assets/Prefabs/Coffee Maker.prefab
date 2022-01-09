@@ -206,9 +206,9 @@ GameObject:
   - component: {fileID: 8237298761446057244}
   - component: {fileID: 5328952601302407377}
   - component: {fileID: 4543139032102531596}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Coffee Maker
-  m_TagString: Interact
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -237,19 +237,20 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8237298761446057217}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5be1e2cb1e65af44caceaee15d779fcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   usable: 0
-  myStatus: 2
   playerStatusComponent: {fileID: 0}
   messageManager: {fileID: 0}
   itemDescription: Not loaded.*Can't make coffee without coffee.
+  audioClips: []
   makeCoffeeDialogue: I'm boiling my coffee maker.
   makingCoffeeDialogue: I wish it was already done...
   coffeeReadyDialogue: Heckin' finally!
+  reactionClip: {fileID: 0}
 --- !u!54 &8237298761446057244
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -418,7 +419,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usable: 0
-  myStatus: 0
   playerStatusComponent: {fileID: 0}
   messageManager: {fileID: 0}
-  itemDescription: 
+  itemDescription: Oh man, coffee.*Goodbye shaking!
+  audioClips:
+  - {fileID: 8300000, guid: bd2bde98979c1df478e2106603a5a4a4, type: 3}
+  - {fileID: 8300000, guid: fb9777069e807754ab988923cee469fc, type: 3}
+  cameraShake: {fileID: 0}

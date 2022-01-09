@@ -2,19 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Consumable : Usable
+public class LerpTest : MonoBehaviour
 {
-    protected float lerpDuration = 0.25f;
-    protected Coroutine itemPickUpCoroutine;
+    private float lerpDuration = 0.4f;
+    private Coroutine pickUpCoroutine;
+    public Transform targetTransform;
 
-    public override void UseObject()
+    /*void Start()
     {
-        base.UseObject();
-        if(itemPickUpCoroutine == null)
-            itemPickUpCoroutine = StartCoroutine(ItemPickUp(Camera.main.transform.position - new Vector3(0,0.05f,0), lerpDuration));
+        StartCoroutine(ItemPickUp(targetTransform.position, lerpDuration));
+    }*/
+
+    public void ActivateItemPickUp(Vector3 pos)
+    {
+        StartCoroutine(ItemPickUp(pos, lerpDuration));
     }
     private IEnumerator ItemPickUp(Vector3 targetPosition, float duration)
     {
+        //yield return new WaitForSeconds(2f);
         float time = 0;
         Vector3 startPosition = transform.position;
         Vector3 startScale = transform.localScale;
@@ -24,6 +29,7 @@ public class Consumable : Usable
         while (time < duration)
         {
             transform.position = Vector3.Lerp(startPosition, targetPosition, time / duration);
+            //transform.localScale = startScale * Vector3.Distance(transform.position, targetPosition);
             transform.localScale = Vector3.Lerp(startScale, targetScale, time / duration);
             time += Time.deltaTime;
             yield return null;  
@@ -32,5 +38,11 @@ public class Consumable : Usable
         transform.localScale = targetScale;
         Destroy(this.gameObject);
         yield return null;
+    }
+
+    void MoveTowards()
+    {
+        float step =  lerpDuration * Time.deltaTime; // calculate distance to move
+        transform.position = Vector3.MoveTowards(transform.position, Camera.main.transform.position, step);
     }
 }

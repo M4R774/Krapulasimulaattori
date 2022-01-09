@@ -17,12 +17,16 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] Texture gameplaySkybox;
     [Header("Platform specific settings")]
     [SerializeField] GameObject quitOptions;
+    [Header("Game Settings")]
+    [SerializeField] List<GameObject> strobeYesNo;
+    private bool areWhiteStrobesEnabled = true;
 
     void Start()
     {
         #if UNITY_WEBGL
             quitOptions.SetActive(false);
         #endif
+        Debug.Log(Application.persistentDataPath);
     }
 
     public void playGame()
@@ -53,5 +57,35 @@ public class MainMenuManager : MonoBehaviour
 
         yield return new WaitForSeconds(3);
         SceneManager.LoadScene("Gameplay");
+    }
+    public class GameSettings
+    {
+        public bool areWhiteStrobesEnabled = true;
+    }
+
+    public void ToggleWhiteStrobing()
+    {  
+        if(areWhiteStrobesEnabled)
+        {
+            areWhiteStrobesEnabled = false;
+            strobeYesNo[0].SetActive(true);
+            strobeYesNo[1].SetActive(false);
+
+            GameSettings gameSettings = new GameSettings();
+            gameSettings.areWhiteStrobesEnabled = false;
+            string gameSettingsString = JsonUtility.ToJson(gameSettings);
+            System.IO.File.WriteAllText(Application.persistentDataPath + "/GameSettings.json", gameSettingsString);
+        }
+        else if(!areWhiteStrobesEnabled)
+        {
+            areWhiteStrobesEnabled = true;
+            strobeYesNo[0].SetActive(false);
+            strobeYesNo[1].SetActive(true);
+
+            GameSettings gameSettings = new GameSettings();
+            gameSettings.areWhiteStrobesEnabled = true;
+            string gameSettingsString = JsonUtility.ToJson(gameSettings);
+            System.IO.File.WriteAllText(Application.persistentDataPath + "/GameSettings.json", gameSettingsString);
+        }
     }
 }

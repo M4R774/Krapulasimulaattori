@@ -131,10 +131,10 @@ MonoBehaviour:
   usable: 0
   playerStatusComponent: {fileID: 0}
   messageManager: {fileID: 0}
+  itemDescription: Never drinking again.*Another empty bottle.
   audioClips:
   - {fileID: 8300000, guid: 2cce558d266024c4eaa8cf3cc86e933a, type: 3}
   - {fileID: 8300000, guid: 8152ff67de3da1a498059bec300195c6, type: 3}
-  itemDescription: Never drinking again.*Another empty bottle.
   emptyBottleMaterial: {fileID: 2100000, guid: 8805bb72d30b2634c90b9af419b968c0, type: 2}
   fullBottleMaterial: {fileID: 2100000, guid: e34627f0d2dfaf84997078dad0268da0, type: 2}
   whiteoutSquare: {fileID: 0}

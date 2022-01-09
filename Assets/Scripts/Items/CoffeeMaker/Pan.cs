@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pan : Usable
+public class Pan : Consumable
 {
     [SerializeField] CameraShake cameraShake;
 
