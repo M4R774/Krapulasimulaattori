@@ -35,7 +35,6 @@ public class MainMenuCamera : MonoBehaviour
                 transform.Translate(Vector3.right * Time.deltaTime * .1f);
             else if(moveLeft)
                 transform.Translate(Vector3.left * Time.deltaTime * .1f);
-            Debug.Log(transform.localEulerAngles.y);
         }
         //Cursor.visible = true;
     }

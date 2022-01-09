@@ -5,8 +5,11 @@ using UnityEngine.UI;
 
 public class Whiteout : MonoBehaviour
 {
-    void OnEnable() {
-        StartCoroutine(Intensify());
+    public bool canUseEffect = true;
+    void OnEnable()
+    {
+        if(canUseEffect)
+            StartCoroutine(Intensify());
     }
 
     public IEnumerator Intensify() {
@@ -34,6 +37,5 @@ public class Whiteout : MonoBehaviour
         }
         yield return StartCoroutine(Intensify());
     }
-
 
 }

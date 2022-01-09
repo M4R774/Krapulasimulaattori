@@ -1,3 +1,4 @@
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,7 +27,7 @@ public class MainMenuManager : MonoBehaviour
         #if UNITY_WEBGL
             quitOptions.SetActive(false);
         #endif
-        Debug.Log(Application.persistentDataPath);
+        CheckSettings();
     }
 
     public void playGame()
@@ -58,9 +59,32 @@ public class MainMenuManager : MonoBehaviour
         yield return new WaitForSeconds(3);
         SceneManager.LoadScene("Gameplay");
     }
-    public class GameSettings
+    void CheckSettings()
     {
-        public bool areWhiteStrobesEnabled = true;
+        GameSettings gameSettings;
+        if(Directory.Exists(Application.persistentDataPath))
+        {
+            string settingsPath = Application.persistentDataPath;
+            DirectoryInfo directoryInfo = new DirectoryInfo(settingsPath);
+            foreach (var file in directoryInfo.GetFiles("*.json"))
+            {
+                StreamReader reader = file.OpenText();
+                gameSettings = JsonUtility.FromJson<GameSettings>(reader.ReadToEnd());
+                if(gameSettings.areWhiteStrobesEnabled)
+                {
+                    areWhiteStrobesEnabled = true;
+                    strobeYesNo[0].SetActive(false);
+                    strobeYesNo[1].SetActive(true);
+                }
+                else if(!gameSettings.areWhiteStrobesEnabled)
+                {
+                    areWhiteStrobesEnabled = false;
+                    strobeYesNo[0].SetActive(true);
+                    strobeYesNo[1].SetActive(false);
+                }
+            }
+        }
+
     }
 
     public void ToggleWhiteStrobing()
