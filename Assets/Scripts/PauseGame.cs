@@ -8,6 +8,7 @@ public class PauseGame : MonoBehaviour
     [SerializeField] GameObject menuItems;
     bool isGamePaused = false;
     [SerializeField] HideCursor hideCursor;
+    [SerializeField] GameObject endingScreen;
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
@@ -22,7 +23,7 @@ public class PauseGame : MonoBehaviour
         menuItems.SetActive(isGamePaused);
         hideCursor.enabled = isGamePaused;
         Cursor.visible = isGamePaused;
-        if(isGamePaused)
+        if(isGamePaused && !endingScreen.activeSelf)
         {
             Cursor.lockState = CursorLockMode.None;
             Time.timeScale = 0;
@@ -36,6 +37,8 @@ public class PauseGame : MonoBehaviour
 
     public void BackToMainMenu()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
     }
 }

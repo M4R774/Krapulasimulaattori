@@ -1048,7 +1048,7 @@ PrefabInstance:
       objectReference: {fileID: 914274285}
     - target: {fileID: 2971552130832428268, guid: de5edb3d994b1ff488fe747846823b86, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2971552130832428268, guid: de5edb3d994b1ff488fe747846823b86, type: 3}
       propertyPath: menuItems
@@ -1058,6 +1058,10 @@ PrefabInstance:
       propertyPath: hideCursor
       value: 
       objectReference: {fileID: 580494299}
+    - target: {fileID: 2971552130832428268, guid: de5edb3d994b1ff488fe747846823b86, type: 3}
+      propertyPath: endingScreen
+      value: 
+      objectReference: {fileID: 1138387972}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de5edb3d994b1ff488fe747846823b86, type: 3}
 --- !u!114 &580494297 stripped
@@ -1099,7 +1103,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 580494296}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed21343b31a64b54dbb83607448c78dd, type: 3}
   m_Name: 

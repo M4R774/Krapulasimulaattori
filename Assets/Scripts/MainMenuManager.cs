@@ -16,11 +16,17 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] GameObject globalVolume;
     [SerializeField] Texture mainMenuSkybox;
     [SerializeField] Texture gameplaySkybox;
+
     [Header("Platform specific settings")]
     [SerializeField] GameObject quitOptions;
+
     [Header("Game Settings")]
     [SerializeField] List<GameObject> strobeYesNo;
     private bool areWhiteStrobesEnabled = true;
+
+    [Header("Menu sounds")]
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip menuClickSound;
 
     void Start()
     {
@@ -48,7 +54,7 @@ public class MainMenuManager : MonoBehaviour
         // TODO: Play audio
         ambientSounds.Stop();
         //guitarSounds.Stop();
-        introSounds.Play();
+        //introSounds.Play();
 
         for (float i = 0; i < 1; i+=0.002f)
         {
@@ -111,5 +117,10 @@ public class MainMenuManager : MonoBehaviour
             string gameSettingsString = JsonUtility.ToJson(gameSettings);
             System.IO.File.WriteAllText(Application.persistentDataPath + "/GameSettings.json", gameSettingsString);
         }
+    }
+
+    public void PlayMenuClickSound()
+    {
+        audioSource.PlayOneShot(menuClickSound);
     }
 }

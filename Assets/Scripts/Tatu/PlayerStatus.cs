@@ -63,6 +63,7 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField] GameObject heartGO;
     [SerializeField] GameObject pointerCanvas;
     [SerializeField] Clock clock;
+    float timer = 0.0f;
 
     [Header("Trigger Volume Logic")]
     [SerializeField] bool bedroomVolumeTrigger = false;
@@ -96,6 +97,7 @@ public class PlayerStatus : MonoBehaviour
             statusText.text = "";*/
         
         CheckTasks();
+        timer += Time.deltaTime;
     }
 
     void CheckTasks()
@@ -168,7 +170,19 @@ public class PlayerStatus : MonoBehaviour
     IEnumerator EndingScreen()
     {
         TextMeshProUGUI victoryText = endingScreen.GetComponentInChildren<TextMeshProUGUI>();
-        string endingText = "You managed to leave for work! \n" +
+        float timerTime = Mathf.Round(timer);
+        string endingText;
+        if(clock.hour < 7)
+        {
+            endingText = "You managed to leave for work in time. \n" +
+            "It only took you " + timerTime % 60 +" seconds!";
+        }
+        else
+        {
+            endingText = "You were late for work. \n" +
+            "It took you " + timerTime % 60 +" seconds to leave.";
+        }
+        /*string endingText = "You managed to leave for work! \n" +
             "You left home at: " + clock.hour + ":" + clock.minutes + ":" + clock.seconds + "\n";
         if (clock.hour > 7)
         {
@@ -177,7 +191,7 @@ public class PlayerStatus : MonoBehaviour
         else
         {
             endingText += "\nYou were on time with " + (((clock.hour - 8) * -60) - clock.minutes) + " minutes to spare!\n";
-        }
+        }*/
         endingScreen.SetActive(true);
         victoryText.text = endingText;
         for (float i = 0; i < 1; i += 0.01f)
