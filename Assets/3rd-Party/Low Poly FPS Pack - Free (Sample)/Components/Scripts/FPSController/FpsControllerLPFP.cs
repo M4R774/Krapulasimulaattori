@@ -126,6 +126,9 @@ namespace FPSControllerLPFP
             if(bed==null)
                 bed = FindObjectOfType<Bed>();
             origWalkingSpeed = walkingSpeed;
+#if UNITY_WEBGL
+            mouseSensitivity = mouseSensitivity / 10;
+#endif
         }
 			
         private Transform AssignCharactersCamera()

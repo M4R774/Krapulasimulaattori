@@ -9,9 +9,10 @@ public class PauseGame : MonoBehaviour
     bool isGamePaused = false;
     [SerializeField] HideCursor hideCursor;
     [SerializeField] GameObject endingScreen;
+    bool canPause = true;
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(Input.GetKeyDown(KeyCode.Escape) && canPause)
         {
             TogglePause();
         }
@@ -41,4 +42,9 @@ public class PauseGame : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
     }
+
+    public void DisablePause()
+    {
+        canPause = false;
+    }	
 }

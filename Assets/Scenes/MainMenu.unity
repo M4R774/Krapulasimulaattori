@@ -2222,6 +2222,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 163055547}
+    - target: {fileID: 1439297370465690883, guid: 732f62ab838bdb24f85f5baec681b4cd, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1439297370465690885, guid: 732f62ab838bdb24f85f5baec681b4cd, type: 3}
       propertyPath: m_Name
       value: Menu Items Canvas

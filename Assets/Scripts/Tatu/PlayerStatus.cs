@@ -78,6 +78,7 @@ public class PlayerStatus : MonoBehaviour
 
     void Start()
     {
+        timer = 0.0f;
         _innerAudioSource = GameObject.Find("PlayerAudioSource").GetComponent<AudioSource>();
         InitStatusList();
         InitTasks();
@@ -98,6 +99,7 @@ public class PlayerStatus : MonoBehaviour
         
         CheckTasks();
         timer += Time.deltaTime;
+        //Debug.Log(Mathf.Round(timer));
     }
 
     void CheckTasks()
@@ -166,21 +168,22 @@ public class PlayerStatus : MonoBehaviour
         pointerCanvas.SetActive(false);
         dragRigidbodyUse.enabled = false;
         StartCoroutine("EndingScreen");
+        GameObject.Find("GameManager").GetComponent<PauseGame>().DisablePause();
     }
     IEnumerator EndingScreen()
     {
         TextMeshProUGUI victoryText = endingScreen.GetComponentInChildren<TextMeshProUGUI>();
         float timerTime = Mathf.Round(timer);
         string endingText;
-        if(clock.hour < 7)
+        if(timer < 300)
         {
             endingText = "You managed to leave for work in time. \n" +
-            "It only took you " + timerTime % 60 +" seconds!";
+            "It only took you " + timerTime +" seconds!";
         }
         else
         {
             endingText = "You were late for work. \n" +
-            "It took you " + timerTime % 60 +" seconds to leave.";
+            "It took you " + timerTime +" seconds to leave.";
         }
         /*string endingText = "You managed to leave for work! \n" +
             "You left home at: " + clock.hour + ":" + clock.minutes + ":" + clock.seconds + "\n";
