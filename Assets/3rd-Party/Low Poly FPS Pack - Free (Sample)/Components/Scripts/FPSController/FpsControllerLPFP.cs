@@ -42,7 +42,7 @@ namespace FPSControllerLPFP
 
 		[Header("Look Settings")]
         [Tooltip("Rotation speed of the fps controller."), SerializeField]
-        private float mouseSensitivity = 7f;
+        public float mouseSensitivity = 7f;
 
         [Tooltip("Approximately the amount of time it will take for the fps controller to reach maximum rotation speed."), SerializeField]
         private float rotationSmoothness = 0.05f;

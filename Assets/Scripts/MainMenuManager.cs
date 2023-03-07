@@ -21,8 +21,10 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] GameObject quitOptions;
 
     [Header("Game Settings")]
+    public GameSettings currentGameSettings;
     [SerializeField] List<GameObject> strobeYesNo;
-    private bool areWhiteStrobesEnabled = true;
+    private bool areWhiteStrobesEnabled;
+    public float lookSensitivity;
 
     [Header("Menu sounds")]
     [SerializeField] AudioSource audioSource;
@@ -69,54 +71,75 @@ public class MainMenuManager : MonoBehaviour
     {
         GameSettings gameSettings;
         if(Directory.Exists(Application.persistentDataPath))
-        {
+        {   
             string settingsPath = Application.persistentDataPath;
             DirectoryInfo directoryInfo = new DirectoryInfo(settingsPath);
-            foreach (var file in directoryInfo.GetFiles("*.json"))
+            // if there is not save game file
+            if( directoryInfo.GetFiles("*.json").Length == 0)
             {
-                StreamReader reader = file.OpenText();
-                gameSettings = JsonUtility.FromJson<GameSettings>(reader.ReadToEnd());
-                if(gameSettings.areWhiteStrobesEnabled)
-                {
-                    areWhiteStrobesEnabled = true;
-                    strobeYesNo[0].SetActive(false);
-                    strobeYesNo[1].SetActive(true);
-                }
-                else if(!gameSettings.areWhiteStrobesEnabled)
-                {
-                    areWhiteStrobesEnabled = false;
-                    strobeYesNo[0].SetActive(true);
-                    strobeYesNo[1].SetActive(false);
+                Debug.Log("No saved game settings found. Creating one with default settings.");
+                gameSettings = new GameSettings();
+                gameSettings.areWhiteStrobesEnabled = false;
+                areWhiteStrobesEnabled = true;
+                strobeYesNo[0].SetActive(true);
+                gameSettings.lookSensitivity = 2.5f;
+                string gameSettingsString = JsonUtility.ToJson(gameSettings);
+                System.IO.File.WriteAllText(Application.persistentDataPath + "/GameSettings.json", gameSettingsString);
+                currentGameSettings = gameSettings;
+            }
+            else
+            {
+                 foreach (var file in directoryInfo.GetFiles("*.json"))
+                {   
+                    Debug.Log("Game settings found.");
+                    StreamReader reader = file.OpenText();
+                    gameSettings = JsonUtility.FromJson<GameSettings>(reader.ReadToEnd());
+                    areWhiteStrobesEnabled = !gameSettings.areWhiteStrobesEnabled;
+                    if(!areWhiteStrobesEnabled)
+                    {
+                        strobeYesNo[0].SetActive(false);
+                        strobeYesNo[1].SetActive(true);
+                    }
+                    else if(areWhiteStrobesEnabled)
+                    {
+                        strobeYesNo[0].SetActive(true);
+                        strobeYesNo[1].SetActive(false);
+                    }
+                    lookSensitivity = gameSettings.lookSensitivity;
+
+                    currentGameSettings = gameSettings;
                 }
             }
         }
-
     }
 
     public void ToggleWhiteStrobing()
-    {  
+    {
+        Debug.Log("strobing toggled");
+        areWhiteStrobesEnabled = !areWhiteStrobesEnabled;
         if(areWhiteStrobesEnabled)
         {
-            areWhiteStrobesEnabled = false;
             strobeYesNo[0].SetActive(true);
             strobeYesNo[1].SetActive(false);
-
-            GameSettings gameSettings = new GameSettings();
-            gameSettings.areWhiteStrobesEnabled = false;
-            string gameSettingsString = JsonUtility.ToJson(gameSettings);
-            System.IO.File.WriteAllText(Application.persistentDataPath + "/GameSettings.json", gameSettingsString);
+            Debug.Log("strobing toggled 0");
         }
         else if(!areWhiteStrobesEnabled)
         {
-            areWhiteStrobesEnabled = true;
             strobeYesNo[0].SetActive(false);
             strobeYesNo[1].SetActive(true);
-
-            GameSettings gameSettings = new GameSettings();
-            gameSettings.areWhiteStrobesEnabled = true;
-            string gameSettingsString = JsonUtility.ToJson(gameSettings);
-            System.IO.File.WriteAllText(Application.persistentDataPath + "/GameSettings.json", gameSettingsString);
+            Debug.Log("strobing toggled 1");
         }
+    }
+
+    // When back button is pressed settings get saved
+    public void SaveSettings()
+    {
+        GameSettings gameSettings = new GameSettings();
+        gameSettings.areWhiteStrobesEnabled = !areWhiteStrobesEnabled;
+        gameSettings.lookSensitivity = lookSensitivity;
+        string gameSettingsString = JsonUtility.ToJson(gameSettings);
+        System.IO.File.WriteAllText(Application.persistentDataPath + "/GameSettings.json", gameSettingsString);
+        currentGameSettings = gameSettings;
     }
 
     public void PlayMenuClickSound()

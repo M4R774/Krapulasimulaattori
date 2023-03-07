@@ -2,6 +2,7 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FPSControllerLPFP;
 
 //
 // Checks changes made into game settings json that can be chnaged in the main menu
@@ -13,8 +14,16 @@ public class GameSettingsManager : MonoBehaviour
     [SerializeField] private Whiteout whiteout;
     [SerializeField] private Whiteout simpleWhiteout;
     private GameSettings gameSettings;
+
+    [SerializeField] FpsControllerLPFP fpsController;
+
     void Start()
     { 
+        UpdateSettings();
+    }
+
+    public void UpdateSettings()
+    {
         if(Directory.Exists(Application.persistentDataPath))
         {
             string settingsPath = Application.persistentDataPath;
@@ -24,8 +33,19 @@ public class GameSettingsManager : MonoBehaviour
                 StreamReader reader = file.OpenText();
                 gameSettings = JsonUtility.FromJson<GameSettings>(reader.ReadToEnd());
             }
-            if(!gameSettings.areWhiteStrobesEnabled)
-                whiteout.canUseEffect = false;
+
+            if(gameSettings.areWhiteStrobesEnabled)
+            {
+                whiteout.isStrobeEffectActive = true;
+                whiteout.StartStrobingWhiteout();
+            }
+            else
+            {
+                whiteout.StopStrobingWhiteout();
+            }
+            fpsController.mouseSensitivity = gameSettings.lookSensitivity;
+
+            Debug.Log(fpsController.mouseSensitivity);
         }
     }
 }
