@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1321519639297721122}
+  - component: {fileID: 5020012152204283656}
   - component: {fileID: 1321519639297721121}
   - component: {fileID: 1321519639297721120}
   - component: {fileID: 1321519639297721123}
-  - component: {fileID: 5020012152204283656}
   - component: {fileID: 3333696394210053248}
   - component: {fileID: 1381048169007909222}
   m_Layer: 0
@@ -43,6 +43,32 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &5020012152204283656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321519639297721125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc9c3828b861f4f88a93576bd394e0c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blackoutSquare: {fileID: 1866214738183698923}
+  whiteoutSquare: {fileID: 6572714179375620700}
+  _audioSource: {fileID: 0}
+  _bgAudioSource: {fileID: 1381048169007909222}
+  fadeFromBlackReactionClip: {fileID: 8300000, guid: efea37da4105faa46b12c8634d5285be, type: 3}
+  fadeFromBlackReactionText: My head... Am I dead?
+  messageManager: {fileID: 0}
+  audioClips:
+  - {fileID: 8300000, guid: efea37da4105faa46b12c8634d5285be, type: 3}
+  fpsController: {fileID: 3587621155106502664}
+  cameraShake: {fileID: 1738933042057194107}
+  bed: {fileID: 0}
+  playerStatus: {fileID: 0}
+  pointerCanvas: {fileID: 0}
 --- !u!223 &1321519639297721121
 Canvas:
   m_ObjectHideFlags: 0
@@ -104,32 +130,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &5020012152204283656
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321519639297721125}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc9c3828b861f4f88a93576bd394e0c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blackoutSquare: {fileID: 1866214738183698923}
-  whiteoutSquare: {fileID: 6572714179375620700}
-  _audioSource: {fileID: 0}
-  _bgAudioSource: {fileID: 1381048169007909222}
-  fadeFromBlackReactionClip: {fileID: 8300000, guid: efea37da4105faa46b12c8634d5285be, type: 3}
-  fadeFromBlackReactionText: My head... Am I dead?
-  messageManager: {fileID: 0}
-  audioClips:
-  - {fileID: 8300000, guid: efea37da4105faa46b12c8634d5285be, type: 3}
-  fpsController: {fileID: 3587621155106502664}
-  cameraShake: {fileID: 1738933042057194107}
-  bed: {fileID: 0}
-  playerStatus: {fileID: 0}
-  pointerCanvas: {fileID: 0}
 --- !u!225 &3333696394210053248
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1772,6 +1772,7 @@ MonoBehaviour:
   invertedAudioInterval: 2
   _cameraShake: {fileID: 1738933042057194107}
   isCrouching: 0
+  isInverted: 0
   toggleInversion: 0
   minInvertCooldown: 10
   maxInvertCooldown: 20
@@ -1797,8 +1798,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCam: {fileID: 3484199021066931564}
   pointer: {fileID: 0}
-  grabPointer: {fileID: 0}
-  dragPointer: {fileID: 0}
+  pointerUI: {fileID: 0}
   GrabButton: Grab
   ThrowButton: Throw
   UseButton: Use
@@ -2379,6 +2379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f1202b698df14c90ae347a8151b09f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isStrobeEffectActive: 0
 --- !u!1 &7999786597446992186
 GameObject:
   m_ObjectHideFlags: 0

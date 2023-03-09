@@ -70,6 +70,7 @@ public class BlackoutScreen : MonoBehaviour
         fpsController.toggleInversion = true;
         cameraShake.enabled = true;
         pointerCanvas.SetActive(true);
+        playerStatus.canPlayerMove = true;
         yield return null;
     }
 }

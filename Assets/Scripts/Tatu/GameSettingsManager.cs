@@ -45,7 +45,7 @@ public class GameSettingsManager : MonoBehaviour
             }
             fpsController.mouseSensitivity = gameSettings.lookSensitivity;
 
-            Debug.Log(fpsController.mouseSensitivity);
+            Debug.Log("Mouse sensitivity " + fpsController.mouseSensitivity);
         }
     }
 }

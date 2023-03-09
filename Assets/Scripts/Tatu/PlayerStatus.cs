@@ -18,16 +18,26 @@ public enum Status
     needShower,
     needEarplugs,
 }
+// classic is the game jam version
+// enhanced uses new ending and point counting
+public enum GameMode
+{
+    classic,
+    enhanced
+}
 public class PlayerStatus : MonoBehaviour
 {
     [SerializeField] public List<Status> statusList;
     [SerializeField] DragRigidbodyUse dragRigidbodyUse;
     [SerializeField] MessageManager messageManager;
+    public bool canPlayerMove = false;
+    [SerializeField] HideCursor hideCursor;
 
     [Header("UI")]
     [SerializeField] TextMeshProUGUI statusText;
 
     [Header("Tasks")]
+    [SerializeField] int timeUntilWork = 300;
     [SerializeField] bool areLightsOn;
     [SerializeField] GameObject lightImage;
     public bool isShaking;
@@ -59,11 +69,21 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField] string hasEatenText;
 
     [Header("Ending")]
+    [SerializeField] GameMode gameMode;
     [SerializeField] GameObject endingScreen;
     [SerializeField] GameObject heartGO;
     [SerializeField] GameObject pointerCanvas;
     [SerializeField] Clock clock;
     float timer = 0.0f;
+
+    int score = 100;
+    [TextArea]
+    [SerializeField] string[] endingConditions;
+    [TextArea]
+    [SerializeField] string[] endingResults;
+    List<string> conditions = new List<string>();
+
+    [SerializeField] GraphicRaycaster inGameUIGraphicRaycaster;
 
     [Header("Trigger Volume Logic")]
     [SerializeField] bool bedroomVolumeTrigger = false;
@@ -88,6 +108,11 @@ public class PlayerStatus : MonoBehaviour
             GameEvents.current.onShowerEnter += OnShowerEnter;
             GameEvents.current.onGrillFoodEaten += OnGrillFoodEaten;
         }
+
+        if(gameMode == null)
+        {
+            gameMode = GameMode.classic;
+        }
     }
 
     void Update()
@@ -98,7 +123,9 @@ public class PlayerStatus : MonoBehaviour
             statusText.text = "";*/
         
         CheckTasks();
-        timer += Time.deltaTime;
+        // timer should only run after the player can move
+        if(canPlayerMove)
+            timer += Time.deltaTime;
         //Debug.Log(Mathf.Round(timer));
     }
 
@@ -152,13 +179,53 @@ public class PlayerStatus : MonoBehaviour
         return statusList.Contains(st);
     }
 
+    // Front door calls this to check if player can exit
     public bool CanOpenDoor()
     {
-        if(!isShaking && !isInverted && !areLightsOn && !highHeartRate)
-            return true;
-        else
+        if(gameMode == GameMode.classic)
         {
+            if(!isShaking && !isInverted && !areLightsOn && !highHeartRate)
+                return true;
+            else
+            {
+                return false;
+            }
+        }
+        else if(gameMode == GameMode.enhanced)
+        {
+            CheckConditions();
+            return true;
+        }
+        else
             return false;
+    }
+
+    void CheckConditions()
+    {
+        if(isShaking)
+        {
+            score -= 25;
+            conditions.Add(endingConditions[0]);
+        }
+        if(isInverted)
+        {
+            score -= 25;
+            conditions.Add(endingConditions[1]);
+        }
+        if(areLightsOn)
+        {
+            score -= 25;
+            conditions.Add(endingConditions[2]);
+        }
+        if(highHeartRate)
+        {
+            score -= 25;
+            conditions.Add(endingConditions[3]);
+        }
+        Debug.Log("player score " + score);
+        foreach (var item in conditions)
+        {
+            Debug.Log(item);
         }
     }
 
@@ -175,10 +242,21 @@ public class PlayerStatus : MonoBehaviour
         TextMeshProUGUI victoryText = endingScreen.GetComponentInChildren<TextMeshProUGUI>();
         float timerTime = Mathf.Round(timer);
         string endingText;
-        if(timer < 300)
+        float origFontSize = victoryText.fontSize;
+        int timeBonus = 0;
+        string removedPoints = "\n-25";
+        if(timerTime < timeUntilWork)
         {
             endingText = "You managed to leave for work in time. \n" +
             "It only took you " + timerTime +" seconds!";
+            // This needs to be balanced somehow
+            if(timerTime < 100)
+            {   
+                timeBonus = 25;
+                score += timeBonus;
+                //timeBonus = (int) ExtensionMethods.Remap(timer, 0, 100, 100, 0);
+                //score += timeBonus;
+            }
         }
         else
         {
@@ -199,12 +277,42 @@ public class PlayerStatus : MonoBehaviour
         victoryText.text = endingText;
         for (float i = 0; i < 1; i += 0.01f)
         {
-            endingScreen.GetComponent<Image>().color = new Color(0, 0, 0, i);
+            Color origColor = endingScreen.GetComponent<Image>().color;
+            endingScreen.GetComponent<Image>().color = new Color(origColor.r, origColor.g, origColor.b, i);
             victoryText.color = new Color(1, 1, 1, i);
             yield return new WaitForFixedUpdate();
         }
-        yield return new WaitForSeconds(10f);
-        SceneManager.LoadScene("MainMenu");
+        yield return new WaitForSeconds(3f);
+        if(conditions.Count != 0)
+        {
+            victoryText.fontSize = 100;
+            victoryText.text = "BUT!";
+            yield return new WaitForSeconds(1f);
+            victoryText.fontSize = origFontSize;
+            foreach (var condition in conditions)
+            {
+                victoryText.text = condition;
+                yield return new WaitForSeconds(1f);
+                victoryText.text += removedPoints;
+                yield return new WaitForSeconds(0.75f);
+            }
+        }
+        if(timeBonus != 0)
+        {
+            victoryText.text = "Time bonus" ;
+            yield return new WaitForSeconds(1f);
+            victoryText.text += "\n+" + timeBonus.ToString();
+            yield return new WaitForSeconds(0.75f);
+        }
+        yield return new WaitForSeconds(0.25f);
+        victoryText.text = "Your final score is " + score.ToString() + ".";
+        yield return new WaitForSeconds(2f);
+        // show cursor so player can retry or quit
+        hideCursor.enabled = true;
+        inGameUIGraphicRaycaster.enabled = true;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        endingScreen.transform.Find("Buttons").gameObject.SetActive(true);
     }
 
     public string TaskList()

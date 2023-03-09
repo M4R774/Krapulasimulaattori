@@ -140,7 +140,7 @@ public class MessageManager : MonoBehaviour
     }
     IEnumerator TextDisplayAndAudioPlay(TextMeshProUGUI ui, string text, List<AudioClip> audioClips)
     {
-        Debug.Log(missingAudioClipHack);
+        // Debug.Log(missingAudioClipHack);
         float waitTime = 0.0f;
         if(text.Contains("*"))
         {

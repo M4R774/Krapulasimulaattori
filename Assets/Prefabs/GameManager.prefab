@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 331101004453912701}
   - component: {fileID: 2929162407373484463}
   - component: {fileID: 2971552130832428268}
+  - component: {fileID: 6851668215544040077}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -62,7 +63,9 @@ MonoBehaviour:
   statusList: 
   dragRigidbodyUse: {fileID: 0}
   messageManager: {fileID: 331101004453912701}
+  canPlayerMove: 0
   statusText: {fileID: 0}
+  timeUntilWork: 300
   areLightsOn: 0
   lightImage: {fileID: 0}
   isShaking: 0
@@ -81,10 +84,13 @@ MonoBehaviour:
   highHeartRateText: My heart is pumping too fast.
   hasShoweredText: I smell too bad.
   hasEatenText: I'm too hungry.
+  gameMode: 0
   endingScreen: {fileID: 0}
   heartGO: {fileID: 0}
   pointerCanvas: {fileID: 0}
   clock: {fileID: 0}
+  endingConditions: []
+  endingResults: []
   bedroomVolumeTrigger: 0
   cantleave: {fileID: 8300000, guid: 0cf92d88d182e364cb3b16b9f2392fa1, type: 3}
 --- !u!114 &331101004453912701
@@ -118,6 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whiteout: {fileID: 0}
   simpleWhiteout: {fileID: 0}
+  fpsController: {fileID: 0}
 --- !u!114 &2971552130832428268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,3 +138,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuItems: {fileID: 0}
+  hideCursor: {fileID: 0}
+  endingScreen: {fileID: 0}
+--- !u!114 &6851668215544040077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331101004453912689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea90aa67c339cea45ac16161efa07466, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
