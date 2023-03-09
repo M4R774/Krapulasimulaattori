@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CoffeeMaker : Usable
-{
+{   
+    [SerializeField] GameObject coffeePan;
     [TextArea(5,5)]
     [SerializeField] string makeCoffeeDialogue;
     [SerializeField] string makingCoffeeDialogue;
@@ -11,24 +12,37 @@ public class CoffeeMaker : Usable
     private bool makingCoffee = false;
     private bool coffeeReady = false;
     private bool coffeeTimerStarted = false;
-    private float coffeeTimer = 0f;
+    [SerializeField] private float coffeeTimer = 10f;
 
     // Reaction audio
     [SerializeField] AudioClip reactionClip;
     AudioSource _innerAudioSource;
 
+    // Countdown
+    [SerializeField] CountdownTexture countdown;
+
     void Start()
     {
         _innerAudioSource = GameObject.Find("PlayerAudioSource").GetComponent<AudioSource>();
         GameEvents.current.onCoffeePackPickedUp += OnCoffeePackPickedUp;
+        coffeePan.tag = "Untagged";
+        coffeePan.layer = 0;
     }
 
     void Update() {
-        if (coffeeTimerStarted) {
-            if (coffeeTimer > 0) {
+        if (coffeeTimerStarted)
+        {
+            if (coffeeTimer > 0)
+            {
                 coffeeTimer -= Time.deltaTime;
-            } else {
+            }
+            else
+            {
                 coffeeReady = true;
+                coffeePan.tag = "Interact";
+                coffeePan.layer = 6;
+                // stop this code getting called
+                coffeeTimerStarted = false;
             }
         }
     }
@@ -40,14 +54,19 @@ public class CoffeeMaker : Usable
     {
         if(usable)
         {
-            if (!makingCoffee && !coffeeReady) {
+            if (!makingCoffee && !coffeeReady)
+            {
                 messageManager.DisplayDialogueAndPlayAudio(makeCoffeeDialogue, audioClips);
                 makingCoffee = true;
-                coffeeTimer = 10f;
+                countdown.StartCountDown(coffeeTimer);
                 coffeeTimerStarted = true;
-            } else if(makingCoffee && !coffeeReady ) {
+            }
+            else if(makingCoffee && !coffeeReady )
+            {
                 messageManager.DisplayDialogueAndPlayAudio(makingCoffeeDialogue, audioClips);
-            } else {
+            }
+            else
+            {
                 messageManager.DisplayDialogueAndPlayAudio(coffeeReadyDialogue, audioClips);
             }
             //if(playerStatusComponent.statusList[0] == myStatus && playerStatusComponent.RemoveStatus(myStatus))

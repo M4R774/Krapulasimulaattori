@@ -37,7 +37,7 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField] TextMeshProUGUI statusText;
 
     [Header("Tasks")]
-    [SerializeField] int timeUntilWork = 300;
+    [SerializeField] int timeUntilWork = 120; // in seconds
     [SerializeField] bool areLightsOn;
     [SerializeField] GameObject lightImage;
     public bool isShaking;
@@ -76,7 +76,7 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField] Clock clock;
     float timer = 0.0f;
 
-    int score = 100;
+    int score = 75;
     [TextArea]
     [SerializeField] string[] endingConditions;
     [TextArea]
@@ -250,10 +250,18 @@ public class PlayerStatus : MonoBehaviour
             endingText = "You managed to leave for work in time. \n" +
             "It only took you " + timerTime +" seconds!";
             // This needs to be balanced somehow
-            if(timerTime < 100)
+            // Now games takes about 30sec to go thru if coffee is boiled first
+            // and 35sec if coffee is boiled last
+            if(timerTime < 60)
             {   
-                timeBonus = 25;
+                timeBonus = 10;
                 score += timeBonus;
+                if(timerTime <= 30)
+                {
+                    Debug.Log("Timer was " + timerTime);
+                    timeBonus += 15;
+                    score += 15;
+                }
                 //timeBonus = (int) ExtensionMethods.Remap(timer, 0, 100, 100, 0);
                 //score += timeBonus;
             }
