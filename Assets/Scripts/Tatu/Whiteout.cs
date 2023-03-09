@@ -51,7 +51,7 @@ public class Whiteout : MonoBehaviour
             Debug.Log("Stopped strobing");
             StopCoroutine(strobeCoroutine);
             strobeCoroutine = null;
-            GetComponent<Image>().color = new Color(1, 1, 1, 0.7f);
+            GetComponent<Image>().color = new Color(1, 1, 1, 0.9f);
         }
     }
 

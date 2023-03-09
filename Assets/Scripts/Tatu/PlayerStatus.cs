@@ -76,7 +76,7 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField] Clock clock;
     float timer = 0.0f;
 
-    int score = 75;
+    int score = 0;
     [TextArea]
     [SerializeField] string[] endingConditions;
     [TextArea]
@@ -204,24 +204,24 @@ public class PlayerStatus : MonoBehaviour
     {
         if(isShaking)
         {
-            score -= 25;
+            score -= 50;
             conditions.Add(endingConditions[0]);
-        }
+        } else score += 25;
         if(isInverted)
         {
-            score -= 25;
+            score -= 50;
             conditions.Add(endingConditions[1]);
-        }
+        } else score += 25;
         if(areLightsOn)
         {
-            score -= 25;
+            score -= 50;
             conditions.Add(endingConditions[2]);
-        }
+        } else score += 25;
         if(highHeartRate)
         {
-            score -= 25;
+            score -= 50;
             conditions.Add(endingConditions[3]);
-        }
+        } else score += 25;
         Debug.Log("player score " + score);
         foreach (var item in conditions)
         {
@@ -313,6 +313,7 @@ public class PlayerStatus : MonoBehaviour
             yield return new WaitForSeconds(0.75f);
         }
         yield return new WaitForSeconds(0.25f);
+        if(score < 0) score = 0;
         victoryText.text = "Your final score is " + score.ToString() + ".";
         yield return new WaitForSeconds(2f);
         // show cursor so player can retry or quit

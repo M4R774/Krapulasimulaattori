@@ -5,7 +5,7 @@ using UnityEngine;
 using FPSControllerLPFP;
 
 //
-// Checks changes made into game settings json that can be chnaged in the main menu
+// Checks changes made into game settings json that can be changed in the main menu and pause menu
 // Settings found in MainMenuManager.cs
 //
 

@@ -21,13 +21,15 @@ public class MessageManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI messageUI;
     [Header("Dialogue")]
     [SerializeField] TextMeshProUGUI dialogueUI;
+    [Header("Notification")]
+    [SerializeField] TextMeshProUGUI notificationUI;
     private Coroutine messageDisplayCoroutine;
     private string textReference; // current text stored
     [SerializeField] AudioSource audioSource;
     [SerializeField] Transform playerAudioSource;
     [SerializeField] List<AudioClip> placeholderForEmptyList;
     bool isAudioClipListEmpty;
-    // this int enables us to not play audio when there is no corresponding clip to match teh text
+    // this int enables us to not play audio when there is no corresponding clip to match the text
     int missingAudioClipHack = 100;
 
     // The method is complicated to make sure that the coroutine is only started once
@@ -48,6 +50,24 @@ public class MessageManager : MonoBehaviour
             string message = "Picked up " + text + ".";
             textReference = text;
             messageDisplayCoroutine = StartCoroutine(TextDisplay(messageUI, message));
+        }
+    }
+    public void DisplayNotification(string text)
+    {
+        if(messageDisplayCoroutine == null)
+        {
+            string message = text;
+            textReference = text;
+            messageDisplayCoroutine = StartCoroutine(TextDisplay(notificationUI, message));
+        }
+        // in case another message wants to interrupt the current one 
+        if(messageDisplayCoroutine != null && text != textReference)
+        {
+            //StopCoroutine(messageDisplayCoroutine); // Stopping makes the dialogue screen stuck if there is one
+            //messageDisplayCoroutine = null;
+            string message = text;
+            textReference = text;
+            messageDisplayCoroutine = StartCoroutine(TextDisplay(notificationUI, message));
         }
     }
 

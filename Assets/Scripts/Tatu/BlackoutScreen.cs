@@ -24,11 +24,13 @@ public class BlackoutScreen : MonoBehaviour
     [SerializeField] Bed bed;
     [SerializeField] PlayerStatus playerStatus;
     [SerializeField] GameObject pointerCanvas;
+    [SerializeField] GameObject heart;
 
     // Start is called before the first frame update
     void Awake()
     {
         StartCoroutine(FadeFromBlack());
+        heart.SetActive(false);
     }
 
     private void Start()
@@ -59,7 +61,7 @@ public class BlackoutScreen : MonoBehaviour
         float newFade;
         Color newColor;
         whiteoutSquare.SetActive(true);
-        while (whiteoutSquare.GetComponent<Image>().color.a < 0.7f) {
+        while (whiteoutSquare.GetComponent<Image>().color.a < 0.9f) {
             var color = whiteoutSquare.GetComponent<Image>().color;
             newFade = color.a + (fadeSpeed * Time.deltaTime);
             newColor = new Color(color.r, color.g, color.b, newFade);
@@ -71,6 +73,9 @@ public class BlackoutScreen : MonoBehaviour
         cameraShake.enabled = true;
         pointerCanvas.SetActive(true);
         playerStatus.canPlayerMove = true;
+
+        messageManager.DisplayNotification("GET TO WORK!\n      ");
+        heart.SetActive(true);
         yield return null;
     }
 }
