@@ -85,6 +85,7 @@ namespace FPSControllerLPFP
         // Tatu
         public bool isCrouching = false;
         public bool isInverted = false;
+        bool isRunning = false;
         [Tooltip("Toggle random inversion on/off"), SerializeField]
         public bool toggleInversion = true;
         [Tooltip("Minimum time before next invert."), SerializeField]
@@ -105,7 +106,11 @@ namespace FPSControllerLPFP
         [SerializeField] PlayerStats playerStats;
         // Tracking player movement and rotation
         public bool trackPlayerMovement = false;
+        bool isMoving = false;
+        bool isLooking = false;
         Quaternion previousPlayerRotation;
+        float heartrateIncreaseAmount = 0.01f;
+        float heartrateDecreaseAmount = -0.005f;
 
         /// Initializes the FpsController on start.
         private void Start()
@@ -201,6 +206,28 @@ namespace FPSControllerLPFP
             if (_status.isInverted) { RandomInvert(); }
             if(playerStats.IsHeartRateTooHigh()) // Stops player from abusing momentart speed gained from standing up
                 walkingSpeed = origWalkingSpeed / 2;
+            
+            // Running logic
+            if(canMove)
+            {
+                if(Input.GetButtonDown("Run") && !isRunning)
+                {
+                    isRunning = true;
+                    runningSpeed = 2f;
+                    heartrateIncreaseAmount = 0.1f;
+                }
+                else if(Input.GetButtonUp("Run") && isRunning)
+                {
+                    isRunning = false;
+                    runningSpeed = 1f;
+                    heartrateIncreaseAmount = 0.01f;
+                }
+            }
+            // Heartrate decrease logic
+            if(!isMoving && !isLooking)
+            {
+                playerStats.DecreaseHeartRate(heartrateDecreaseAmount);
+            }
         }
 
         public void Crouch()
@@ -295,10 +322,12 @@ namespace FPSControllerLPFP
 			arms.rotation = rotation;
             if(rotation != previousPlayerRotation && trackPlayerMovement)
             {
+                isLooking = true;
                 previousPlayerRotation = rotation;
                 playerStats.IncreaseHeartRate(0.01f);
                 //Debug.Log("Player is looking around");
             }
+            else isLooking = false;
             //Debug.Log(rotation);
         }
 			
@@ -347,12 +376,14 @@ namespace FPSControllerLPFP
 
             var direction = isInverted ? new Vector3(-input.Move, 0f, -input.Strafe).normalized : new Vector3(input.Move, 0f, input.Strafe).normalized;
             var worldDirection = transform.TransformDirection(direction);
-            var velocity = worldDirection * walkingSpeed;
+            var velocity = worldDirection * walkingSpeed * runningSpeed;
             if(velocity != Vector3.zero && trackPlayerMovement)
-            {
-                playerStats.IncreaseHeartRate(0.01f);
+            {   
+                isMoving = true;
+                playerStats.IncreaseHeartRate(heartrateIncreaseAmount);
                 //Debug.Log("Player is moving.");
             }
+            else isMoving = false;
             //Checks for collisions so that the character does not stuck when jumping against walls.
             var intersectsWall = CheckCollisionsWithWalls(velocity);
             if (intersectsWall)

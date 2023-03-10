@@ -81,8 +81,15 @@ public class PlayerStats : MonoBehaviour
     }
 
     public void IncreaseHeartRate(float increase)
-    {
-        heartRateBPM += increase;
+    {   
+        if(heartRateBPM >= baselineHeartRate)
+            heartRateBPM += increase;
+        SetHeartRate(heartRateBPM);
+    }
+    public void DecreaseHeartRate(float increase)
+    {   
+        if(heartRateBPM > baselineHeartRate)
+            heartRateBPM += increase;
         SetHeartRate(heartRateBPM);
     }
     void SetHeartRate(double bpm)

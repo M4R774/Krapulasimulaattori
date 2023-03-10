@@ -4555,9 +4555,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1097789001}
     - target: {fileID: 3587621155106502664, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
+      propertyPath: input.run
+      value: Run
+      objectReference: {fileID: 0}
+    - target: {fileID: 3587621155106502664, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
       propertyPath: playerStats
       value: 
       objectReference: {fileID: 2122086619750300774}
+    - target: {fileID: 3587621155106502664, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
+      propertyPath: runningSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3587621155106502664, guid: 7cd324ae3622acf4e9fc7379af535d73, type: 3}
       propertyPath: messageManager
       value: 
