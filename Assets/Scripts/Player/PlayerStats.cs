@@ -18,6 +18,8 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] MessageManager messageManager;
     public List<AudioClip> audioClips;
     bool canDisplayMessage = true;
+    //
+    public bool timeBasedHeartrate = true;
 
     void Start()
     {
@@ -43,7 +45,7 @@ public class PlayerStats : MonoBehaviour
     {
         // TODO: Tarkista oletko s�ngyss�
         double newHeartRate = heartRateBPM + Time.deltaTime; // 1s in irl -> +1 BPM to heart rate
-        SetHeartRate(newHeartRate);
+        if(timeBasedHeartrate) SetHeartRate(newHeartRate);
         // TODO: N�kym�n reunoilla n�kyv� punainen syke
     }
 
@@ -78,6 +80,11 @@ public class PlayerStats : MonoBehaviour
         crouchScriprt.ResetCrouchAfterSleeping();
     }
 
+    public void IncreaseHeartRate(float increase)
+    {
+        heartRateBPM += increase;
+        SetHeartRate(heartRateBPM);
+    }
     void SetHeartRate(double bpm)
     {
         heartRateBPM = bpm;

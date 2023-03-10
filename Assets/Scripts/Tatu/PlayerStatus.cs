@@ -77,6 +77,7 @@ public class PlayerStatus : MonoBehaviour
     float timer = 0.0f;
 
     int score = 0;
+    int penalty = 50;
     [TextArea]
     [SerializeField] string[] endingConditions;
     [TextArea]
@@ -109,9 +110,10 @@ public class PlayerStatus : MonoBehaviour
             GameEvents.current.onGrillFoodEaten += OnGrillFoodEaten;
         }
 
-        if(gameMode == null)
+        if(gameMode == GameMode.enhanced)
         {
-            gameMode = GameMode.classic;
+            playerStats.timeBasedHeartrate = false;
+            fpsController.trackPlayerMovement = true;
         }
     }
 
@@ -204,22 +206,22 @@ public class PlayerStatus : MonoBehaviour
     {
         if(isShaking)
         {
-            score -= 50;
+            score -= penalty;
             conditions.Add(endingConditions[0]);
         } else score += 25;
         if(isInverted)
         {
-            score -= 50;
+            score -= penalty;
             conditions.Add(endingConditions[1]);
         } else score += 25;
         if(areLightsOn)
         {
-            score -= 50;
+            score -= penalty;
             conditions.Add(endingConditions[2]);
         } else score += 25;
         if(highHeartRate)
         {
-            score -= 50;
+            score -= penalty;
             conditions.Add(endingConditions[3]);
         } else score += 25;
         Debug.Log("player score " + score);
@@ -244,7 +246,7 @@ public class PlayerStatus : MonoBehaviour
         string endingText;
         float origFontSize = victoryText.fontSize;
         int timeBonus = 0;
-        string removedPoints = "\n-25";
+        string removedPoints = "\n-" + penalty.ToString();
         if(timerTime < timeUntilWork)
         {
             endingText = "You managed to leave for work in time. \n" +
@@ -254,13 +256,13 @@ public class PlayerStatus : MonoBehaviour
             // and 35sec if coffee is boiled last
             if(timerTime < 60)
             {   
-                timeBonus = 10;
+                timeBonus = 25;
                 score += timeBonus;
                 if(timerTime <= 30)
                 {
                     Debug.Log("Timer was " + timerTime);
-                    timeBonus += 15;
-                    score += 15;
+                    timeBonus += 25;
+                    score += 25;
                 }
                 //timeBonus = (int) ExtensionMethods.Remap(timer, 0, 100, 100, 0);
                 //score += timeBonus;

@@ -103,6 +103,9 @@ namespace FPSControllerLPFP
         [SerializeField] Bed bed;
         float origWalkingSpeed;
         [SerializeField] PlayerStats playerStats;
+        // Tracking player movement and rotation
+        public bool trackPlayerMovement = false;
+        Quaternion previousPlayerRotation;
 
         /// Initializes the FpsController on start.
         private void Start()
@@ -290,6 +293,13 @@ namespace FPSControllerLPFP
                            Quaternion.AngleAxis(clampedY, Vector3.left);
             transform.eulerAngles = new Vector3(0f, rotation.eulerAngles.y, 0f);
 			arms.rotation = rotation;
+            if(rotation != previousPlayerRotation && trackPlayerMovement)
+            {
+                previousPlayerRotation = rotation;
+                playerStats.IncreaseHeartRate(0.01f);
+                //Debug.Log("Player is looking around");
+            }
+            //Debug.Log(rotation);
         }
 			
         /// Returns the target rotation of the camera around the y axis with no smoothing.
@@ -338,6 +348,11 @@ namespace FPSControllerLPFP
             var direction = isInverted ? new Vector3(-input.Move, 0f, -input.Strafe).normalized : new Vector3(input.Move, 0f, input.Strafe).normalized;
             var worldDirection = transform.TransformDirection(direction);
             var velocity = worldDirection * walkingSpeed;
+            if(velocity != Vector3.zero && trackPlayerMovement)
+            {
+                playerStats.IncreaseHeartRate(0.01f);
+                //Debug.Log("Player is moving.");
+            }
             //Checks for collisions so that the character does not stuck when jumping against walls.
             var intersectsWall = CheckCollisionsWithWalls(velocity);
             if (intersectsWall)
@@ -485,6 +500,7 @@ namespace FPSControllerLPFP
             /// Returns the value of the virtual axis mapped to move the character back and forth.        
             public float Move
             {
+                
                 get { return Input.GetAxisRaw(move); }
             }
 				       
