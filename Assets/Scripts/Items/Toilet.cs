@@ -16,6 +16,7 @@ public class Toilet : Usable
             animator.SetTrigger("Flush");
             buttonAnimator.SetTrigger("ButtonDown");
             audioSource.PlayOneShot(audioClip);
+            messageManager.DisplayDialogueAndPlayAudio(itemDescription, audioClips);
         }
     }
        

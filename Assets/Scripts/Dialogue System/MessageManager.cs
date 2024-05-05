@@ -17,6 +17,7 @@ using TMPro;
 
 public class MessageManager : MonoBehaviour
 {
+    public bool isActive = true;
     [Header("Messages")]
     [SerializeField] TextMeshProUGUI messageUI;
     [Header("Dialogue")]
@@ -116,6 +117,9 @@ public class MessageManager : MonoBehaviour
     // Functions to display text and to play audio
     public void DisplayDialogueAndPlayAudio(string text, List<AudioClip> clips)
     {
+        if (!isActive) {
+            return;
+        }
         List<AudioClip> tempClips = new List<AudioClip>(clips); // This way we don't manipulate the list given as input
         if(messageDisplayCoroutine == null)
         {   

@@ -6,6 +6,8 @@ public class LightSwitch : Usable
 {
     public GameObject whiteoutSquare;
     public Light[] lights;
+    [SerializeField] protected List<AudioClip> lightsOff;
+    [SerializeField] protected List<AudioClip> lightsOn;
 
     public override void OnUseItem() {
         // Toggle whiteout
@@ -13,6 +15,7 @@ public class LightSwitch : Usable
             whiteoutSquare.GetComponent<Whiteout>().enabled = false;
             whiteoutSquare.SetActive(false);
             itemDescription = "Lights out.";
+            messageManager.DisplayDialogueAndPlayAudio(itemDescription, lightsOff);
             if (lights.Length != 0) {
                 foreach (Light light in lights)
                 {
@@ -23,6 +26,7 @@ public class LightSwitch : Usable
             whiteoutSquare.SetActive(true);
             whiteoutSquare.GetComponent<Whiteout>().enabled = true;
             itemDescription = "Ouch the light hurts my eyes!";
+            messageManager.DisplayDialogueAndPlayAudio(itemDescription, lightsOn);
             if (lights.Length != 0) {
                 foreach (Light light in lights)
                 {
@@ -30,6 +34,6 @@ public class LightSwitch : Usable
                 }
             }
         }
-        messageManager.DisplayDialogueAndPlayAudio(itemDescription, audioClips);
+        //messageManager.DisplayDialogueAndPlayAudio(itemDescription, audioClips);
     }
 }

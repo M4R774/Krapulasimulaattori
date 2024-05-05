@@ -85,6 +85,7 @@ public class PlayerStatus : MonoBehaviour
     List<string> conditions = new List<string>();
 
     [SerializeField] GraphicRaycaster inGameUIGraphicRaycaster;
+    [SerializeField] AudioSource musicSource;
 
     [Header("Trigger Volume Logic")]
     [SerializeField] bool bedroomVolumeTrigger = false;
@@ -238,6 +239,8 @@ public class PlayerStatus : MonoBehaviour
         dragRigidbodyUse.enabled = false;
         StartCoroutine("EndingScreen");
         GameObject.Find("GameManager").GetComponent<PauseGame>().DisablePause();
+        messageManager.isActive = false;
+        musicSource.volume = 1;
     }
     IEnumerator EndingScreen()
     {

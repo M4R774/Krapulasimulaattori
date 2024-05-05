@@ -16,6 +16,8 @@ public class CoffeeMaker : Usable
 
     // Reaction audio
     [SerializeField] AudioClip reactionClip;
+    [SerializeField] protected List<AudioClip> boilingCoffee;
+    [SerializeField] protected List<AudioClip> coffeeReadyAudio;
     AudioSource _innerAudioSource;
 
     // Countdown
@@ -56,18 +58,18 @@ public class CoffeeMaker : Usable
         {
             if (!makingCoffee && !coffeeReady)
             {
-                messageManager.DisplayDialogueAndPlayAudio(makeCoffeeDialogue, audioClips);
+                messageManager.DisplayDialogueAndPlayAudio(makeCoffeeDialogue, boilingCoffee);
                 makingCoffee = true;
                 countdown.StartCountDown(coffeeTimer);
                 coffeeTimerStarted = true;
             }
-            else if(makingCoffee && !coffeeReady )
+            /*else if(makingCoffee && !coffeeReady )
             {
                 messageManager.DisplayDialogueAndPlayAudio(makingCoffeeDialogue, audioClips);
-            }
-            else
+            }*/
+            else if(makingCoffee && coffeeReady)
             {
-                messageManager.DisplayDialogueAndPlayAudio(coffeeReadyDialogue, audioClips);
+                messageManager.DisplayDialogueAndPlayAudio(coffeeReadyDialogue, coffeeReadyAudio);
             }
             //if(playerStatusComponent.statusList[0] == myStatus && playerStatusComponent.RemoveStatus(myStatus))
             //{

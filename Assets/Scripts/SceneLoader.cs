@@ -5,12 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip menuClickSound;
+    
     public void LoadMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        StartCoroutine(LoadScene("MainMenu"));
     }
     public void LoadGameplay()
     {
-        SceneManager.LoadScene("Gameplay");
+        StartCoroutine(LoadScene("Gameplay"));
+    }
+
+    IEnumerator LoadScene(string scene)
+    {
+        audioSource.PlayOneShot(menuClickSound);
+        yield return new WaitForSeconds(1);
+        if (scene == "MainMenu") {
+            SceneManager.LoadScene("MainMenu");
+        }
+        else if (scene == "Gameplay") {
+            SceneManager.LoadScene("Gameplay");
+        }
     }
 }
